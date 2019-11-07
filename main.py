@@ -86,7 +86,7 @@ if do_lon_lat_contour:
 if do_polar_contour_N:
      os.system("echo '<H2><font color=navy>------ North Pole contour ------ <A></H3>'     >> " \
              +os.environ["OUTDIR"]+"/E3SM_diag.html")
-     os.system("echo '<H2><font color=navy>\ \ \ \ \ ANN  DJF  JJA  <A></H3>'     >> " \
+     os.system("echo '<H3><font color=navy><A    ANN  DJF  JJA  <A></H3>'     >> " \
              +os.environ["OUTDIR"]+"/E3SM_diag.html")
      #for i in range(nvrs_ml):
      #figname="d2_polar_contour_N_"+varnm+"."+os.environ["fig_suffix"]
