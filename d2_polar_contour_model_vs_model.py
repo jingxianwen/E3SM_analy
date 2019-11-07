@@ -1,4 +1,6 @@
-
+#====================================================
+#
+#====================================================
 # os
 import os
 #import netCDF4
@@ -16,6 +18,8 @@ import matplotlib.path as mpath
 import matplotlib.colors as colors
 # numpy
 import numpy as np
+# parameters
+from get_parameters import *
 
 def polar_contour_model_vs_model(varnm,season,scale_ctl,scale_exp,pole):
     # data path
@@ -160,7 +164,7 @@ def polar_contour_model_vs_model(varnm,season,scale_ctl,scale_exp,pole):
         fig.text(panel[i][0] + 0.45, panel[i][1] + 0.225, "%.2f\n%.2f\n%.2f" %
                  stats[0:3], ha='right', fontdict=plotText)
 
-    fig.suptitle(varnm, x=0.5, y=0.96, fontdict=plotTitle)
+    fig.suptitle(varnm+" "+season, x=0.5, y=0.96, fontdict=plotTitle)
     #save figure as file
     if os.environ["fig_save"]=="True":
         fname="d2_polar_contour_"+pole+"_"+varnm+"_"+season+"."+os.environ["fig_suffix"]
@@ -178,28 +182,28 @@ def polar_contour_model_vs_model(varnm,season,scale_ctl,scale_exp,pole):
     #plt.close()
     #os.system("display "+fname)
     
-def get_parameters(varnm,season):
-    #list_rad=["FLUT","FLUTC","FLNT","FLNTC","FSNT","FSNTC","FSDS","FSDSC","FSNS","FSNSC"]
-    if varnm == "FLUT":
-        parameters={"units":"W/m2",\
-		   "contour_levs":[120, 140, 160, 180, 200, 220, 240, 260, 280, 300],\
-		   "diff_levs":[-50, -40, -30, -20, -10, -5, 5, 10, 20, 30, 40, 50],\
-                   "colormap":"PiYG_r",\
-                   "colormap_diff":"bwr"\
-		   }
-    return parameters
-
-def get_area_mean_min_max(varnm,lat):
-   # 1. area weighted average 
-    #convert latitude to radians
-    latr=np.deg2rad(lat)
-    #use cosine of latitudes as weights for the mean
-    weights=np.cos(latr)
-    #first calculate zonal mean
-    zonal_mean=varnm.mean(axis=2)
-    #then calculate weighted global mean
-    area_mean=np.average(zonal_mean,axis=1,weights=weights)
-   # 2. min and max
-    minval=varnm.min()
-    maxval=varnm.max()
-    return area_mean,minval,maxval
+#def get_parameters(varnm,season):
+#    #list_rad=["FLUT","FLUTC","FLNT","FLNTC","FSNT","FSNTC","FSDS","FSDSC","FSNS","FSNSC"]
+#    if varnm == "FLUT":
+#        parameters={"units":"W/m2",\
+#		   "contour_levs":[120, 140, 160, 180, 200, 220, 240, 260, 280, 300],\
+#		   "diff_levs":[-50, -40, -30, -20, -10, -5, 5, 10, 20, 30, 40, 50],\
+#                   "colormap":"PiYG_r",\
+#                   "colormap_diff":"bwr"\
+#		   }
+#    return parameters
+#
+#def get_area_mean_min_max(varnm,lat):
+#   # 1. area weighted average 
+#    #convert latitude to radians
+#    latr=np.deg2rad(lat)
+#    #use cosine of latitudes as weights for the mean
+#    weights=np.cos(latr)
+#    #first calculate zonal mean
+#    zonal_mean=varnm.mean(axis=2)
+#    #then calculate weighted global mean
+#    area_mean=np.average(zonal_mean,axis=1,weights=weights)
+#   # 2. min and max
+#    minval=varnm.min()
+#    maxval=varnm.max()
+#    return area_mean,minval,maxval

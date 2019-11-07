@@ -1,4 +1,6 @@
-
+#=====================================================
+#
+#=====================================================
 # os
 import os
 #import netCDF4
@@ -14,6 +16,8 @@ from mpl_toolkits.axes_grid1 import AxesGrid
 import matplotlib.colors as colors
 # numpy
 import numpy as np
+# parameters
+from get_parameters import *
 
 def lon_lat_contour_model_vs_model(varnm,season,scale_ctl,scale_exp):
     # data path
@@ -34,9 +38,9 @@ def lon_lat_contour_model_vs_model(varnm,season,scale_ctl,scale_exp):
     dtctl=file_ctl.variables[varnm] #*scale_ctl
     dtexp=file_exp.variables[varnm] #*scale_exp
     dtdif=dtexp[:,:,:]-dtctl[:,:,:]
-    stats_ctl=get_area_mean_range(dtctl[:,:,:],lat[:])
-    stats_exp=get_area_mean_range(dtexp[:,:,:],lat[:])
-    stats_dif=get_area_mean_range(dtdif[:,:,:],lat[:])
+    stats_ctl=get_area_mean_min_max(dtctl[:,:,:],lat[:])
+    stats_exp=get_area_mean_min_max(dtexp[:,:,:],lat[:])
+    stats_dif=get_area_mean_min_max(dtdif[:,:,:],lat[:])
     
     # add cyclic
     dtctl=add_cyclic_point(dtctl[:,:,:])
@@ -125,32 +129,37 @@ def lon_lat_contour_model_vs_model(varnm,season,scale_ctl,scale_exp):
 
     #fig.suptitle(varnm, x=0.5, y=0.96, fontsize=14)
     fig.suptitle(varnm, x=0.5, y=0.96, fontdict=plotTitle)
-    plt.show()
+    #save figure as file
+    if os.environ["fig_save"]=="True":
+        fname="d1_lon_lat_contour_"+varnm+"_"+season+"."+os.environ["fig_suffix"]
+        plt.savefig(os.environ["OUTDIR"]+"/figures/"+fname)
+    if os.environ["fig_show"]=="True":
+        plt.show()
     plt.close()
     
     
-def get_parameters(varnm,season):
-    #list_rad=["FLUT","FLUTC","FLNT","FLNTC","FSNT","FSNTC","FSDS","FSDSC","FSNS","FSNSC"]
-    if varnm == "FLUT":
-        parameters={"units":"W/m2",\
-		   "contour_levs":[120, 140, 160, 180, 200, 220, 240, 260, 280, 300],\
-		   "diff_levs":[-50, -40, -30, -20, -10, -5, 5, 10, 20, 30, 40, 50],\
-                   "colormap":"PiYG_r",\
-                   "colormap_diff":"bwr"\
-		   }
-    return parameters
-
-def get_area_mean_range(varnm,lat):
-   # 1. area weighted average 
-    #convert latitude to radians
-    latr=np.deg2rad(lat)
-    #use cosine of latitudes as weights for the mean
-    weights=np.cos(latr)
-    #first calculate zonal mean
-    zonal_mean=varnm.mean(axis=2)
-    #then calculate weighted global mean
-    area_mean=np.average(zonal_mean,axis=1,weights=weights)
-   # 2. min and max
-    minval=varnm.min()
-    maxval=varnm.max()
-    return area_mean,minval,maxval
+#def get_parameters(varnm,season):
+#    #list_rad=["FLUT","FLUTC","FLNT","FLNTC","FSNT","FSNTC","FSDS","FSDSC","FSNS","FSNSC"]
+#    if varnm == "FLUT":
+#        parameters={"units":"W/m2",\
+#		   "contour_levs":[120, 140, 160, 180, 200, 220, 240, 260, 280, 300],\
+#		   "diff_levs":[-50, -40, -30, -20, -10, -5, 5, 10, 20, 30, 40, 50],\
+#                   "colormap":"PiYG_r",\
+#                   "colormap_diff":"bwr"\
+#		   }
+#    return parameters
+#
+#def get_area_mean_range(varnm,lat):
+#   # 1. area weighted average 
+#    #convert latitude to radians
+#    latr=np.deg2rad(lat)
+#    #use cosine of latitudes as weights for the mean
+#    weights=np.cos(latr)
+#    #first calculate zonal mean
+#    zonal_mean=varnm.mean(axis=2)
+#    #then calculate weighted global mean
+#    area_mean=np.average(zonal_mean,axis=1,weights=weights)
+#   # 2. min and max
+#    minval=varnm.min()
+#    maxval=varnm.max()
+#    return area_mean,minval,maxval

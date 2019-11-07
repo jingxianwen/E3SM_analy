@@ -5,6 +5,7 @@
 print ("============== starting ==============")
 import os
 import numpy as np
+from get_parameters import *
 from d1_lon_lat_contour_model_vs_model import *
 from d2_polar_contour_model_vs_model import *
 
@@ -34,9 +35,9 @@ scale_ctl=1.
 scale_exp=1.
 
 #-- select which diag to do
-do_lon_lat_contour=False
+do_lon_lat_contour=True
 do_polar_contour_N=True
-do_polar_contour_S=False
+do_polar_contour_S=True
 
 #-- set format of figure files
 os.environ["fig_show"]="False"
@@ -73,9 +74,9 @@ os.system("echo '<H2><font color=navy>  "+os.environ["diagcase_name"]+"  <A></H3
 
 ## diagnosis 1
 if do_lon_lat_contour:
-     os.system("echo '<H2><font color=navy>------ Lon-Lat contour ------ <A></H3>'     >> " \
+     os.system("echo '<H3><font color=navy>------ Lon-Lat contour ------ <A></H3>'     >> " \
              +os.environ["OUTDIR"]+"/E3SM_diag.html")
-     os.system("echo '<H2><font color=navy>      ANN  DJF  JJA  <A></H3>'     >> " \
+     os.system("echo '<H3><font color=navy>&emsp;&emsp;&emsp;ANN  DJF  JJA  <A></H3>'     >> " \
              +os.environ["OUTDIR"]+"/E3SM_diag.html")
      #for i in range(nvrs_ml):
      figname="d1_lon_lat_contour_N_"+varnm+"."+os.environ["fig_suffix"]
@@ -84,9 +85,9 @@ if do_lon_lat_contour:
 
 ## diagnosis 1
 if do_polar_contour_N:
-     os.system("echo '<H2><font color=navy>------ North Pole contour ------ <A></H3>'     >> " \
+     os.system("echo '<H3><font color=navy>------ North Pole contour ------ <A></H3>'     >> " \
              +os.environ["OUTDIR"]+"/E3SM_diag.html")
-     os.system("echo '<H3><font color=navy>    ANN  DJF  JJA  <A></H3>'     >> " \
+     os.system("echo '<H3><font color=navy>&emsp;&emsp;&emsp;ANN  DJF  JJA  <A></H3>'     >> " \
              +os.environ["OUTDIR"]+"/E3SM_diag.html")
      #for i in range(nvrs_ml):
      #figname="d2_polar_contour_N_"+varnm+"."+os.environ["fig_suffix"]
@@ -103,9 +104,9 @@ if do_polar_contour_N:
                "</H3>' >> "+os.environ["OUTDIR"]+"/E3SM_diag.html")
 ## diagnosis 1
 if do_polar_contour_S:
-     os.system("echo '<H2><font color=navy>------ South Pole contour ------ <A></H3>'     >> " \
+     os.system("echo '<H3><font color=navy>------ South Pole contour ------ <A></H3>'     >> " \
              +os.environ["OUTDIR"]+"/E3SM_diag.html")
-     os.system("echo '<H3><font color=navy>    ANN  DJF  JJA  <A></H3>'     >> " \
+     os.system("echo '<H3><font color=navy>&emsp;&emsp;&emsp;ANN  DJF  JJA  <A></H3>'     >> " \
              +os.environ["OUTDIR"]+"/E3SM_diag.html")
      #for i in range(nvrs_ml):
      figname_ANN="d2_polar_contour_S_"+varnm+"_ANN."+os.environ["fig_suffix"]
