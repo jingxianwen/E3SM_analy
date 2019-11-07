@@ -163,8 +163,8 @@ def polar_contour_model_vs_model(varnm,season,scale_ctl,scale_exp,pole):
     fig.suptitle(varnm, x=0.5, y=0.96, fontdict=plotTitle)
     #save figure as file
     if os.environ["fig_save"]=="True":
-        fname="d2_polar_contour_"+pole+"_"+varnm+"."+os.environ["fig_suffix"]
-        plt.savefig(os.environ["WORKDIR"]+"/"+os.environ["diagcase_name"]+"/figures/"+fname)
+        fname="d2_polar_contour_"+pole+"_"+varnm+"_"+season+"."+os.environ["fig_suffix"]
+        plt.savefig(os.environ["OUTDIR"]+"/figures/"+fname)
     if os.environ["fig_show"]=="True":
         plt.show()
     plt.close()

@@ -15,7 +15,7 @@ import matplotlib.colors as colors
 # numpy
 import numpy as np
 
-def lon_lat_model_vs_model(varnm,season,scale_ctl,scale_exp):
+def lon_lat_contour_model_vs_model(varnm,season,scale_ctl,scale_exp):
     # data path
     ctl_name=os.environ["ctl_name"]
     exp_name=os.environ["exp_name"]
