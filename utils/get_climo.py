@@ -21,8 +21,10 @@ def listToString(s):
 # The main program starts here.
 
 # Input 
-caseid="E3SM_DECKv1b_H1.ne30"
-monthly_data_path="./E3SM_DECKv1b_H1.ne30/remap_180x360"
+#caseid="E3SM_DECKv1b_H1.ne30"
+#monthly_data_path="./E3SM_DECKv1b_H1.ne30/remap_180x360"
+caseid="E3SM_coupled_restart_20TR_Yr2000-Scat.Year2000_2014"
+monthly_data_path="/raid00/xianwen/Yi-Hsuan/E3SM_coupled_restart_20TR_Yr2000-Scat.Year2000_2014/remap_180x360"
 years=np.arange(2000,2015)
 # Output
 months_to_do=["01","02","03","04","05","06","07","08","09","10","11","12"]

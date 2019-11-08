@@ -19,12 +19,12 @@ import numpy as np
 # parameters
 from get_parameters import *
 
-def lon_lat_contour_model_vs_model(varnm,season,scale_ctl,scale_exp):
+def lon_lat_contour_model_vs_model(varnm,season,scale_ctl,scale_exp,table):
     # data path
     ctl_name=os.environ["ctl_name"]
     exp_name=os.environ["exp_name"]
-    fpath_ctl=os.environ["fpath_ctl"]
-    fpath_exp=os.environ["fpath_exp"]
+    fpath_ctl=os.environ["fpath_ctl"]+"/"+os.environ["ctl_run_id"]+"_climo_"+season+".nc"
+    fpath_exp=os.environ["fpath_exp"]+"/"+os.environ["exp_run_id"]+"_climo_"+season+".nc"
     
     # open data file
     file_ctl=netcdf_dataset(fpath_ctl,"r")
@@ -41,7 +41,14 @@ def lon_lat_contour_model_vs_model(varnm,season,scale_ctl,scale_exp):
     stats_ctl=get_area_mean_min_max(dtctl[:,:,:],lat[:])
     stats_exp=get_area_mean_min_max(dtexp[:,:,:],lat[:])
     stats_dif=get_area_mean_min_max(dtdif[:,:,:],lat[:])
-    
+    stats_difp=stats_dif[0]/stats_ctl[0]*100.
+    # stats_out saves the two mean, their absolute difference and % difference.
+    stats_out=np.array([0.,0.,0.,0.])
+    stats_out[0]=np.float32(stats_ctl[0]).data #.compressed
+    stats_out[1]=np.float32(stats_exp[0]).data #.compressed
+    stats_out[2]=np.float32(stats_dif[0]).data #.compressed
+    stats_out[3]=np.float32(stats_difp[0]) #.compressed
+
     # add cyclic
     dtctl=add_cyclic_point(dtctl[:,:,:])
     dtexp=add_cyclic_point(dtexp[:,:,:])
@@ -136,7 +143,15 @@ def lon_lat_contour_model_vs_model(varnm,season,scale_ctl,scale_exp):
     if os.environ["fig_show"]=="True":
         plt.show()
     plt.close()
-    
+
+# write mean values to table    
+    col1=varnm+"["+units+"]"
+    line=col1+" "*(18-len(col1))+f'{stats_out[0]:10.3f}'+" "*5+\
+         f'{stats_out[1]:10.3f}'+" "*5+\
+         f'{stats_out[2]:10.3f}'+" "*5+\
+         f'{stats_out[3]:10.3f}'+"%"
+    table.write(line+"\r\n")
+    return 0
     
 #def get_parameters(varnm,season):
 #    #list_rad=["FLUT","FLUTC","FLNT","FLNTC","FSNT","FSNTC","FSDS","FSDSC","FSNS","FSNSC"]

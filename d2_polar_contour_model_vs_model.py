@@ -21,13 +21,15 @@ import numpy as np
 # parameters
 from get_parameters import *
 
-def polar_contour_model_vs_model(varnm,season,scale_ctl,scale_exp,pole):
+def polar_contour_model_vs_model(varnm,season,scale_ctl,scale_exp,pole,table):
     # data path
     ctl_name=os.environ["ctl_name"]
     exp_name=os.environ["exp_name"]
-    fpath_ctl=os.environ["fpath_ctl"]
-    fpath_exp=os.environ["fpath_exp"]
-    
+    #fpath_ctl=os.environ["fpath_ctl"]
+    #fpath_exp=os.environ["fpath_exp"]
+    fpath_ctl=os.environ["fpath_ctl"]+"/"+os.environ["ctl_run_id"]+"_climo_"+season+".nc"
+    fpath_exp=os.environ["fpath_exp"]+"/"+os.environ["exp_run_id"]+"_climo_"+season+".nc"
+
     # open data file
     file_ctl=netcdf_dataset(fpath_ctl,"r")
     file_exp=netcdf_dataset(fpath_exp,"r")
@@ -52,7 +54,14 @@ def polar_contour_model_vs_model(varnm,season,scale_ctl,scale_exp,pole):
     stats_ctl=get_area_mean_min_max(dtctl[:,latbound1:latbound2,:],lat[latbound1:latbound2])
     stats_exp=get_area_mean_min_max(dtexp[:,latbound1:latbound2,:],lat[latbound1:latbound2])
     stats_dif=get_area_mean_min_max(dtdif[:,latbound1:latbound2,:],lat[latbound1:latbound2])
-    
+    stats_difp=np.array(stats_dif[0]/stats_ctl[0]*100.)
+    # stats_out saves the two mean, their absolute difference and % difference.
+    stats_out=np.array([0.,0.,0.,0.])
+    stats_out[0]=np.float32(stats_ctl[0]).data #.compressed
+    stats_out[1]=np.float32(stats_exp[0]).data #.compressed
+    stats_out[2]=np.float32(stats_dif[0]).data #.compressed
+    stats_out[3]=np.float32(stats_difp[0]) #.compressed
+
     # add cyclic
     dtctl=add_cyclic_point(dtctl[:,:,:])
     dtexp=add_cyclic_point(dtexp[:,:,:])
@@ -93,15 +102,18 @@ def polar_contour_model_vs_model(varnm,season,scale_ctl,scale_exp,pole):
 
         ax = fig.add_axes(panel[i],projection=projection,autoscale_on=True)
         ax.set_global()
-        ax.gridlines(color="gray",linestyle=":",\
-			#draw_labels=True, \
+        if pole == "N":
+            ax.gridlines(color="gray",linestyle=":",\
 			xlocs=[0,60,120,180,240,300,360],ylocs=[50,60,70,80,90])
+        elif pole == "S":
+            ax.gridlines(color="gray",linestyle=":",\
+			xlocs=[0,60,120,180,240,300,360],ylocs=[-50,-60,-70,-80,-90])
         #ax.grid(c='gray',ls=':')
         
         if pole == "N":
             ax.set_extent([-180, 180, 50, 90], crs=ccrs.PlateCarree())
         elif pole == "S":
-            ax.set_extent([-180, 180, -55, 90], crs=ccrs.PlateCarree())
+            ax.set_extent([-180, 180, -55, -90], crs=ccrs.PlateCarree())
 
         if i == 0:
             dtplot=dtexp[:,:,:]
@@ -172,6 +184,15 @@ def polar_contour_model_vs_model(varnm,season,scale_ctl,scale_exp,pole):
     if os.environ["fig_show"]=="True":
         plt.show()
     plt.close()
+
+# write mean values to table    
+    col1=varnm+"["+units+"]"
+    line=col1+" "*(18-len(col1))+f'{stats_out[0]:10.3f}'+" "*5+\
+         f'{stats_out[1]:10.3f}'+" "*5+\
+         f'{stats_out[2]:10.3f}'+" "*5+\
+         f'{stats_out[3]:10.3f}'+"%"
+    table.write(line+"\r\n")
+    return(stats_out)
 
     #fig.suptitle(varnm, x=0.5, y=0.96, fontsize=14)
     #fig.suptitle(varnm, x=0.5, y=0.96, fontdict=plotTitle)
