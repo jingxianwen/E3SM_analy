@@ -80,6 +80,22 @@ def get_parameters(varnm,season):
                    "colormap_diff":"bwr"\
 		   }
 
+    if varnm == "FSDS":
+        parameters={"units":"W/m2",\
+		   "contour_levs":[0, 50, 100, 150, 200, 250, 300, 350, 400],\
+		   "diff_levs":[-50, -40, -30, -20, -10, -5, 5, 10, 20, 30, 40, 50],\
+                   "colormap":"PiYG_r",\
+                   "colormap_diff":"bwr"\
+		   }
+
+    if varnm == "FSDSC":
+        parameters={"units":"W/m2",\
+		   "contour_levs":[0, 50, 100, 150, 200, 250, 300, 350, 400],\
+		   "diff_levs":[-50, -40, -30, -20, -10, -5, 5, 10, 20, 30, 40, 50],\
+                   "colormap":"PiYG_r",\
+                   "colormap_diff":"bwr"\
+		   }
+
     if varnm == "FSNTOA":
         parameters={"units":"W/m2",\
 		   "contour_levs":[0, 50, 100, 150, 200, 250, 300, 350, 400],\

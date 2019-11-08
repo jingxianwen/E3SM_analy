@@ -33,7 +33,7 @@ os.environ["exp_run_id"]="E3SM_coupled_restart_20TR_Yr2000-Scat.Year2000_2014"
 os.environ["diagcase_name"]=os.environ["exp_name"]+"-"+os.environ["ctl_name"]
 os.environ["OUTDIR"]=os.environ["WORKDIR"]+"/"+os.environ["diagcase_name"]
 
-varnms_2d=["FLUT","FLUTC","FSNTOA","FSNTOAC","SOLIN","FLNS","FLNSC","FLDS","SHFLX","LHFLX"]
+varnms_2d=["FLUT","FLUTC","FSNTOA","FSNTOAC","SOLIN","FLNS","FLNSC","FLDS","FSDS","FSDSC","FSNS","FSNSC","SHFLX","LHFLX"]
 varnms_3d=["QRL","QRS","CLOUD","CLDLIQ","CLDICE","T","P","RH","Q","U","V","W"]
 seasons=["ANN","DJF","JJA"]
 scale_ctl=1.
