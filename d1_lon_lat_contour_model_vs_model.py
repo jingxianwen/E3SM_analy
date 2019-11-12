@@ -54,10 +54,10 @@ def lon_lat_contour_model_vs_model(varnm,season,scale_ctl,scale_exp,table):
     dtexp=add_cyclic_point(dtexp[:,:,:])
     dtdif=add_cyclic_point(dtdif[:,:,:])
     lon=np.append(lon[:],360.)
-
+    #print(lon)
     # make plot
     parameters=get_parameters(varnm,season)
-    projection = ccrs.PlateCarree(central_longitude=180)
+    projection = ccrs.PlateCarree(central_longitude=0)
 
     fig = plt.figure(figsize=[7.0,11.0],dpi=150.)
     plotTitle = {'fontsize': 13.}
@@ -82,9 +82,11 @@ def lon_lat_contour_model_vs_model(varnm,season,scale_ctl,scale_exp,table):
         #        levels = [-1.0e8] + cnlevels + [1.0e8]
         #        norm = colors.BoundaryNorm(boundaries=levels, ncolors=256)
 
-        ax = fig.add_axes(panel[i],projection=projection)
-        ax.set_global()
+        ax = fig.add_axes(panel[i],projection=ccrs.PlateCarree(central_longitude=180))
+        #ax = fig.add_axes(panel[i],projection=projection)
+        #ax.set_global()
         cmap=parameters["colormap"]
+        #ax.set_extent([0, 180, -90, 90], crs=ccrs.PlateCarree())
         #p1 = ax.contourf(lon[:],lat[:],dtexp[0,:,:])
         if i == 0:
             dtplot=dtexp[:,:,:]
@@ -98,7 +100,6 @@ def lon_lat_contour_model_vs_model(varnm,season,scale_ctl,scale_exp,table):
             dtplot=dtdif[:,:,:]
             cmap=parameters["colormap_diff"]
             stats=stats_dif
-
         p1 = ax.contourf(lon[:],lat[:],dtplot[0,:,:],\
                     transform=projection,\
                     #norm=norm,\

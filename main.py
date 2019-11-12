@@ -33,20 +33,23 @@ os.environ["exp_run_id"]="E3SM_coupled_restart_20TR_Yr2000-Scat.Year2000_2014"
 os.environ["diagcase_name"]=os.environ["exp_name"]+"-"+os.environ["ctl_name"]
 os.environ["OUTDIR"]=os.environ["WORKDIR"]+"/"+os.environ["diagcase_name"]
 
-varnms_2d=["FLUT","FLUTC","FSNTOA","FSNTOAC","SOLIN","FLNS","FLNSC","FLDS","FSDS","FSDSC","FSNS","FSNSC","SHFLX","LHFLX"]
+#varnms_2d=["FLUT","FLUTC","FSNTOA","FSNTOAC","SOLIN","FLNS","FLNSC","FLDS","FSDS","FSDSC","FSNS","FSNSC","SHFLX","LHFLX"]
 varnms_3d=["QRL","QRS","CLOUD","CLDLIQ","CLDICE","T","P","RH","Q","U","V","W"]
-seasons=["ANN","DJF","JJA"]
+#seasons=["ANN","DJF","JJA"]
 scale_ctl=1.
 scale_exp=1.
 
-#-- select which diag to do
-do_lon_lat_contour=True
-do_polar_contour_N=True
-do_polar_contour_S=True
+varnms_2d=["FLUT"]
+seasons=["ANN"]
+#-- select which diag to do (1:do, 0:not do)
+do_lon_lat_contour=0
+do_polar_contour_N=0
+do_polar_contour_S=0
+do_northw_energy_transport=1
 
 #-- set format of figure files
-os.environ["fig_show"]="False"
-os.environ["fig_save"]="True"
+os.environ["fig_show"]="True"
+os.environ["fig_save"]="False"
 os.environ["fig_suffix"]="png" # supported format: png, eps, pdf, etc.
 
 #-- create work directory (for figures and html)
@@ -76,20 +79,11 @@ if "JJA" in seasons:
 if do_lon_lat_contour:
     print("--do lon lat contour--")
     table_file_ANN.write("Global"+"\r\n")
-    table_file_DJF.write("Global"+"\r\n")
-    table_file_JJA.write("Global"+"\r\n")
+    #table_file_DJF.write("Global"+"\r\n")
+    #table_file_JJA.write("Global"+"\r\n")
     for varnm in varnms_2d:
         print(varnm)
         for seasn in seasons:
-            #lon_lat_contour_model_vs_model(varnm,seasn,scale_ctl,scale_exp,table_file_ANN)
-	    # stats_out saves the two mean, their absolute difference and % difference.
-            #col1=varnm
-            #line=col1+" "*(18-len(col1))+f'{stats_out[0]:10.3f}'+" "*5+\
-            #     f'{stats_out[1]:10.3f}'+" "*5+\
-            #     f'{stats_out[2]:10.3f}'+" "*5+\
-            #     f'{stats_out[3]:10.3f}'+"%"
-            #print(line)
-            #exit()
             if seasn == "ANN":
                 lon_lat_contour_model_vs_model(varnm,seasn,scale_ctl,scale_exp,table_file_ANN)
                 #table_file_ANN.write(line+"\r\n")
@@ -108,13 +102,6 @@ if do_polar_contour_N:
     for varnm in varnms_2d:
         print(varnm)
         for seasn in seasons:
-            #polar_contour_model_vs_model(varnm,seasn,scale_ctl,scale_exp,"N",stats_out)
-	    # stats_out saves the two mean, their absolute difference and % difference.
-            #col1=varnm
-            #line=col1+" "*(18-len(col1))+f'{stats_out[0]:10.3f}'+" "*5+\
-            #     f'{stats_out[1]:10.3f}'+" "*5+\
-            #     f'{stats_out[2]:10.3f}'+" "*5+\
-            #     f'{stats_out[3]:10.3f}'+"%"
             if seasn == "ANN":
                 polar_contour_model_vs_model(varnm,seasn,scale_ctl,scale_exp,"N",table_file_ANN)
                 #table_file_ANN.write(line+"\r\n")
@@ -133,13 +120,6 @@ if do_polar_contour_S:
     for varnm in varnms_2d:
         print(varnm)
         for seasn in seasons:
-            #polar_contour_model_vs_model(varnm,seasn,scale_ctl,scale_exp,"S",table_file_ANN)
-	    # stats_out saves the two mean, their absolute difference and % difference.
-            #col1=varnm
-            #line=col1+" "*(18-len(col1))+f'{stats_out[0]:10.3f}'+" "*5+\
-            #     f'{stats_out[1]:10.3f}'+" "*5+\
-            #     f'{stats_out[2]:10.3f}'+" "*5+\
-            #     f'{stats_out[3]:10.3f}'+"%"
             if seasn == "ANN":
                 polar_contour_model_vs_model(varnm,seasn,scale_ctl,scale_exp,"S",table_file_ANN)
                 #table_file_ANN.write(line+"\r\n")
@@ -150,6 +130,11 @@ if do_polar_contour_S:
                 polar_contour_model_vs_model(varnm,seasn,scale_ctl,scale_exp,"S",table_file_JJA)
                 #table_file_JJA.write(line+"\r\n")
 
+if do_northw_energy_transport:
+    print("--do northward energy transport--")
+    for seasn in seasons:
+        if seasn == "ANN":
+            northw_energy_transport(seasn,)
 
 #--------------------------------
 # creat html file
@@ -227,5 +212,11 @@ if do_polar_contour_S:
                   " <A HREF=\"figures/"+figname_JJA+"\">plots</A>"+\
                   "</H3>' >> "+os.environ["OUTDIR"]+"/E3SM_diag.html")
 
-
+## diagnosis 1
+if do_northw_energy_transport:
+    os.system("echo '<H3><font color=navy>------ Northward Energy Transport ------ <A></H3>'     >> " \
+            +os.environ["OUTDIR"]+"/E3SM_diag.html")
+    os.system("echo '<H3><font color=navy>&emsp;&emsp;&emsp;ANN  DJF  JJA  <A></H3>'     >> " \
+            +os.environ["OUTDIR"]+"/E3SM_diag.html")
+    
 print ("============== Finished ==============")
