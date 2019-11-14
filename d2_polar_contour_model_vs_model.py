@@ -46,11 +46,11 @@ def polar_contour_model_vs_model(varnm,season,scale_ctl,scale_exp,pole,table):
     dtdif=dtexp[:,:,:]-dtctl[:,:,:]
 
     if pole == "N":
-        latbound1=np.min(np.where(lat[:]>50))
+        latbound1=np.min(np.where(lat[:]>60))
         latbound2=nlat
     elif pole == "S":
         latbound1=0
-        latbound2=np.max(np.where(lat[:]<-55))+1
+        latbound2=np.max(np.where(lat[:]<-60))+1
     stats_ctl=get_area_mean_min_max(dtctl[:,latbound1:latbound2,:],lat[latbound1:latbound2])
     stats_exp=get_area_mean_min_max(dtexp[:,latbound1:latbound2,:],lat[latbound1:latbound2])
     stats_dif=get_area_mean_min_max(dtdif[:,latbound1:latbound2,:],lat[latbound1:latbound2])

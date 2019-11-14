@@ -135,6 +135,13 @@ def get_parameters(varnm,season):
                    "colormap":"PiYG_r",\
                    "colormap_diff":"bwr"\
 		   }
+    if varnm == "TS":
+        parameters={"units":"K",\
+		   "contour_levs":[240, 245, 250, 255, 260, 265, 270, 275, 280, 285, 290, 295],\
+		   "diff_levs":[-10, -7.5, -5, -4, -3, -2, -1, -0.5, 0.5, 1, 2, 3, 4, 5, 7.5, 10],\
+                   "colormap":"PiYG_r",\
+                   "colormap_diff":"bwr"\
+		   }
     return parameters
 
 

@@ -34,18 +34,20 @@ os.environ["exp_run_id"]="E3SM_coupled_restart_20TR_Yr2000-Scat.Year2000_2014"
 os.environ["diagcase_name"]=os.environ["exp_name"]+"-"+os.environ["ctl_name"]
 os.environ["OUTDIR"]=os.environ["WORKDIR"]+"/"+os.environ["diagcase_name"]
 
-#varnms_2d=["FLUT","FLUTC","FSNTOA","FSNTOAC","SOLIN","FLNS","FLNSC","FLDS","FSDS","FSDSC","FSNS","FSNSC","SHFLX","LHFLX"]
+varnms_2d=["FLUT","FLUTC","FSNTOA","FSNTOAC","SOLIN","FLNS","FLNSC","FLDS","FSDS","FSDSC","FSNS","FSNSC","SHFLX","LHFLX","TS"]
 varnms_3d=["QRL","QRS","CLOUD","CLDLIQ","CLDICE","T","P","RH","Q","U","V","W"]
 seasons=["ANN","DJF","JJA"]
 scale_ctl=1.
 scale_exp=1.
 
-varnms_2d=["FLUT"]
-#seasons=["ANN"]
+##-- one time test --
+##varnms_2d=["FLUT"]
+##seasons=["ANN"]
+
 #-- select which diag to do (1:do, 0:not do)
-do_lon_lat_contour=0
-do_polar_contour_N=0
-do_polar_contour_S=0
+do_lon_lat_contour=1
+do_polar_contour_N=1
+do_polar_contour_S=1
 do_northw_energy_transport=1
 
 #-- set format of figure files
@@ -136,7 +138,6 @@ if do_northw_energy_transport:
     for seasn in seasons:
         #if seasn == "ANN":
         northw_energy_transport_model_vs_model(seasn)
-exit()
 #--------------------------------
 # creat html file
 #--------------------------------
