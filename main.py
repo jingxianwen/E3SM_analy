@@ -8,6 +8,7 @@ import numpy as np
 from get_parameters import *
 from d1_lon_lat_contour_model_vs_model import *
 from d2_polar_contour_model_vs_model import *
+from d3_northw_energy_transport_model_vs_model import *
 
 
 #+++++++++++++++++++++++
@@ -35,12 +36,12 @@ os.environ["OUTDIR"]=os.environ["WORKDIR"]+"/"+os.environ["diagcase_name"]
 
 #varnms_2d=["FLUT","FLUTC","FSNTOA","FSNTOAC","SOLIN","FLNS","FLNSC","FLDS","FSDS","FSDSC","FSNS","FSNSC","SHFLX","LHFLX"]
 varnms_3d=["QRL","QRS","CLOUD","CLDLIQ","CLDICE","T","P","RH","Q","U","V","W"]
-#seasons=["ANN","DJF","JJA"]
+seasons=["ANN","DJF","JJA"]
 scale_ctl=1.
 scale_exp=1.
 
 varnms_2d=["FLUT"]
-seasons=["ANN"]
+#seasons=["ANN"]
 #-- select which diag to do (1:do, 0:not do)
 do_lon_lat_contour=0
 do_polar_contour_N=0
@@ -48,8 +49,8 @@ do_polar_contour_S=0
 do_northw_energy_transport=1
 
 #-- set format of figure files
-os.environ["fig_show"]="True"
-os.environ["fig_save"]="False"
+os.environ["fig_show"]="False"
+os.environ["fig_save"]="True"
 os.environ["fig_suffix"]="png" # supported format: png, eps, pdf, etc.
 
 #-- create work directory (for figures and html)
@@ -133,9 +134,9 @@ if do_polar_contour_S:
 if do_northw_energy_transport:
     print("--do northward energy transport--")
     for seasn in seasons:
-        if seasn == "ANN":
-            northw_energy_transport(seasn,)
-
+        #if seasn == "ANN":
+        northw_energy_transport_model_vs_model(seasn)
+exit()
 #--------------------------------
 # creat html file
 #--------------------------------
@@ -218,5 +219,13 @@ if do_northw_energy_transport:
             +os.environ["OUTDIR"]+"/E3SM_diag.html")
     os.system("echo '<H3><font color=navy>&emsp;&emsp;&emsp;ANN  DJF  JJA  <A></H3>'     >> " \
             +os.environ["OUTDIR"]+"/E3SM_diag.html")
+    figname_ANN="d3_northw_energy_transport_"+varnm+"_ANN."+os.environ["fig_suffix"]
+    figname_DJF="d3_northw_energy_transport_"+varnm+"_DJF."+os.environ["fig_suffix"]
+    figname_JJA="d3_northw_energy_transport_"+varnm+"_JJA."+os.environ["fig_suffix"]
+    os.system("echo '<H3><font color=navy> "+"NHT"+\
+              " <A HREF=\"figures/"+figname_ANN+"\">plots</A>"+\
+              " <A HREF=\"figures/"+figname_DJF+"\">plots</A>"+\
+              " <A HREF=\"figures/"+figname_JJA+"\">plots</A>"+\
+              "</H3>' >> "+os.environ["OUTDIR"]+"/E3SM_diag.html")
     
 print ("============== Finished ==============")
