@@ -157,8 +157,8 @@ def northw_energy_transport_model_vs_model(season):
     ax2.set_xlim(-89.5,89.5)
     #ax1.set_ylim(-7.9,7.9)
     # titles
-    ax1.set_title("Northward Heat Transport",fontsize=12,fontweight='bold')
-    ax2.set_title("Difference",fontsize=12,fontweight='bold')
+    ax1.set_title("Northward_Heat_Transport "+season,fontsize=12,fontweight='bold')
+    ax2.set_title("Difference "+season,fontsize=12,fontweight='bold')
     #ax1.set_xlabel("Latitude",fontsize=12,fontweight='bold')
     ax2.set_xlabel("Latitude",fontsize=12,fontweight='bold')
     ax1.set_ylabel("NHT(PW)",fontsize=12,fontweight='bold')
