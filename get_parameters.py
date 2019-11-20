@@ -142,6 +142,23 @@ def get_parameters(varnm,season):
                    "colormap":"PiYG_r",\
                    "colormap_diff":"bwr"\
 		   }
+
+    if varnm == "SWCF":
+        parameters={"units":"W/m2",\
+		   "contour_levs":[-180, -160, -140, -120, -100, -80, -60, -40, -20,  0],\
+		   "diff_levs":[-60, -50, -40, -30, -20, -10, -5, 5, 10, 20, 30, 40, 50, 60],\
+                   "colormap":"PiYG_r",\
+                   "colormap_diff":"bwr"\
+		   }
+
+    if varnm == "LWCF":
+        parameters={"units":"W/m2",\
+		   "contour_levs":[0, 10, 20, 30, 40, 50, 60, 70, 80],\
+		   "diff_levs":[-35, -30, -25, -20, -15, -10, -5, -2, 2, 5, 10, 15, 20, 25, 30, 35],\
+                   "colormap":"PiYG_r",\
+                   "colormap_diff":"bwr"\
+		   }
+
     return parameters
 
 
