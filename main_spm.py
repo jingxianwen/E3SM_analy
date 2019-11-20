@@ -45,14 +45,14 @@ scale_exp=1.
 ##seasons=["ANN"]
 
 #-- select which diag to do (1:do, 0:not do)
-do_lon_lat_contour=1
-do_polar_contour_N=1
-do_polar_contour_S=1
-do_northw_energy_transport=1
+do_lon_lat_contour=0
+do_polar_contour_N=0
+do_polar_contour_S=0
+do_northw_energy_transport=0
 
 #-- set format of figure files
-os.environ["fig_show"]="False"
-os.environ["fig_save"]="True"
+os.environ["fig_show"]="True"
+os.environ["fig_save"]="False"
 os.environ["fig_suffix"]="png" # supported format: png, eps, pdf, etc.
 
 #-- create work directory (for figures and html)
