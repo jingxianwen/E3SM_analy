@@ -24,12 +24,14 @@ os.environ["DATADIR"]=os.environ["DIAG_HOME"]+"/inputdata"
 
 #-- case dependent setups
 os.environ["exp_name"]="MC6_Scat"
-os.environ["ctl_name"]="Standard"
+os.environ["ctl_name"]="MC6_noScat"
 #os.environ["fpath_ctl"]=os.environ["DATADIR"]+"/"+os.environ["ctl_name"]+"_test.nc"
 #os.environ["fpath_exp"]=os.environ["DATADIR"]+"/"+os.environ["exp_name"]+"_test.nc"
-os.environ["fpath_ctl"]="/raid00/xianwen/Yi-Hsuan/E3SM_DECKv1b_H1.ne30/remap_180x360/climo"
+#os.environ["fpath_ctl"]="/raid00/xianwen/Yi-Hsuan/E3SM_DECKv1b_H1.ne30/remap_180x360/climo"
+os.environ["fpath_ctl"]="/raid00/xianwen/Yi-Hsuan/E3SM_coupled_restart_20TR_Yr2000-noScat.Year2000_2014/remap_180x360/climo"
 os.environ["fpath_exp"]="/raid00/xianwen/Yi-Hsuan/E3SM_coupled_restart_20TR_Yr2000-Scat.Year2000_2014/remap_180x360/climo"
-os.environ["ctl_run_id"]="E3SM_DECKv1b_H1.ne30"
+#os.environ["ctl_run_id"]="E3SM_DECKv1b_H1.ne30"
+os.environ["ctl_run_id"]="E3SM_coupled_restart_20TR_Yr2000-noScat.Year2000_2014"
 os.environ["exp_run_id"]="E3SM_coupled_restart_20TR_Yr2000-Scat.Year2000_2014"
 os.environ["diagcase_name"]=os.environ["exp_name"]+"-"+os.environ["ctl_name"]
 os.environ["OUTDIR"]=os.environ["WORKDIR"]+"/"+os.environ["diagcase_name"]
