@@ -1,3 +1,1 @@
                   MC6_noScat       MC6_Scat           Diff          Diff%
-North Pole
-TGCLDLWP[g/m2]        44.741         48.258          3.517          7.861%
