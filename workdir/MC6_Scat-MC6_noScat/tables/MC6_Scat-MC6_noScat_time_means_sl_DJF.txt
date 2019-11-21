@@ -1,0 +1,3 @@
+                  MC6_noScat       MC6_Scat           Diff          Diff%
+North Pole
+TVQ[kg/m/s]            5.962          6.214          0.252          4.222%

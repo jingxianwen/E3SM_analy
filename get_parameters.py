@@ -159,6 +159,37 @@ def get_parameters(varnm,season):
                    "colormap_diff":"bwr"\
 		   }
 
+    if varnm == "TGCLDLWP":
+        parameters={"units":"g/m2",\
+		   "contour_levs":[20, 30, 40, 50, 60, 70, 80, 90, 100, 110],\
+		   "diff_levs":[-10,-8,-6,-4,-2,-1,1,2,4,6,8,10],\
+                   "colormap":"PuBuGn",\
+                   "colormap_diff":"bwr"\
+		   }
+
+    if varnm == "TGCLDIWP":
+        parameters={"units":"g/m2",\
+		   "contour_levs":[4, 8, 12, 16, 20, 24, 28, 32, 36],\
+		   "diff_levs":[-8,-6,-4,-2,-1,1,2,4,6,8],\
+                   "colormap":"PuBuGn",\
+                   "colormap_diff":"bwr"\
+		   }
+    if varnm == "TMQ":
+        parameters={"units":"kg/m2",\
+		   "contour_levs":[1, 2, 3, 4, 5, 6, 7, 8, 9, 10],\
+		   "diff_levs":[-1.2,-0.8,-0.6,-0.4,-0.2,0.2,0.4,0.6,0.8,1.2],\
+                   "colormap":"PuBuGn",\
+                   "colormap_diff":"bwr"\
+		   }
+
+    if varnm == "TVQ":
+        parameters={"units":"kg/m/s",\
+		   "contour_levs":[-10,0,10, 20, 30, 40, 50],\
+		   "diff_levs":[-8,-6,-4,-2,2,4,6,8],\
+                   "colormap":"PuBuGn",\
+                   "colormap_diff":"bwr"\
+		   }
+
     return parameters
 
 
@@ -174,6 +205,6 @@ def get_area_mean_min_max(varnm,lat):
     #then calculate weighted global mean
     area_mean=np.average(zonal_mean,axis=1,weights=weights)
    # 2. min and max
-    minval=varnm.min()
-    maxval=varnm.max()
+    minval=varnm.min(axis=((1,2)))
+    maxval=varnm.max(axis=((1,2)))
     return area_mean,minval,maxval

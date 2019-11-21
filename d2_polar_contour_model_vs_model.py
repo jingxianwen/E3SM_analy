@@ -41,8 +41,8 @@ def polar_contour_model_vs_model(varnm,season,scale_ctl,scale_exp,pole,table):
     nlon=lon[:].size
 
     # read data and calculate mean/min/max
-    dtctl=file_ctl.variables[varnm] #*scale_ctl
-    dtexp=file_exp.variables[varnm] #*scale_exp
+    dtctl=file_ctl.variables[varnm][:,:,:]*scale_ctl
+    dtexp=file_exp.variables[varnm][:,:,:]*scale_exp
     dtdif=dtexp[:,:,:]-dtctl[:,:,:]
 
     if pole == "N":
@@ -104,16 +104,16 @@ def polar_contour_model_vs_model(varnm,season,scale_ctl,scale_exp,pole,table):
         ax.set_global()
         if pole == "N":
             ax.gridlines(color="gray",linestyle=":",\
-			xlocs=[0,60,120,180,240,300,360],ylocs=[50,60,70,80,90])
+			xlocs=[0,60,120,180,240,300,360],ylocs=[60,70,80,90])
         elif pole == "S":
             ax.gridlines(color="gray",linestyle=":",\
-			xlocs=[0,60,120,180,240,300,360],ylocs=[-50,-60,-70,-80,-90])
+			xlocs=[0,60,120,180,240,300,360],ylocs=[-60,-70,-80,-90])
         #ax.grid(c='gray',ls=':')
         
         if pole == "N":
-            ax.set_extent([-180, 180, 50, 90], crs=ccrs.PlateCarree())
+            ax.set_extent([-180, 180, 60, 90], crs=ccrs.PlateCarree())
         elif pole == "S":
-            ax.set_extent([-180, 180, -55, -90], crs=ccrs.PlateCarree())
+            ax.set_extent([-180, 180, -60, -90], crs=ccrs.PlateCarree())
 
         if i == 0:
             dtplot=dtexp[:,:,:]

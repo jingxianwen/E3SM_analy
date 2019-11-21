@@ -9,6 +9,7 @@ from get_parameters import *
 from d1_lon_lat_contour_model_vs_model import *
 from d2_polar_contour_model_vs_model import *
 from d3_northw_energy_transport_model_vs_model import *
+from d4_time_series_areamean_model_vs_model import *
 
 
 #+++++++++++++++++++++++
@@ -24,19 +25,26 @@ os.environ["DATADIR"]=os.environ["DIAG_HOME"]+"/inputdata"
 
 #-- case dependent setups
 os.environ["exp_name"]="MC6_Scat"
-os.environ["ctl_name"]="Standard"
+os.environ["ctl_name"]="MC6_noScat"
 #os.environ["fpath_ctl"]=os.environ["DATADIR"]+"/"+os.environ["ctl_name"]+"_test.nc"
 #os.environ["fpath_exp"]=os.environ["DATADIR"]+"/"+os.environ["exp_name"]+"_test.nc"
-os.environ["fpath_ctl"]="/raid00/xianwen/Yi-Hsuan/E3SM_DECKv1b_H1.ne30/remap_180x360/climo"
+#os.environ["fpath_ctl"]="/raid00/xianwen/Yi-Hsuan/E3SM_DECKv1b_H1.ne30/remap_180x360/climo"
+os.environ["fpath_ctl"]="/raid00/xianwen/Yi-Hsuan/E3SM_coupled_restart_20TR_Yr2000-noScat.Year2000_2014/remap_180x360/climo"
 os.environ["fpath_exp"]="/raid00/xianwen/Yi-Hsuan/E3SM_coupled_restart_20TR_Yr2000-Scat.Year2000_2014/remap_180x360/climo"
-os.environ["ctl_run_id"]="E3SM_DECKv1b_H1.ne30"
+#os.environ["ctl_run_id"]="E3SM_DECKv1b_H1.ne30"
+os.environ["ctl_run_id"]="E3SM_coupled_restart_20TR_Yr2000-noScat.Year2000_2014"
 os.environ["exp_run_id"]="E3SM_coupled_restart_20TR_Yr2000-Scat.Year2000_2014"
 os.environ["diagcase_name"]=os.environ["exp_name"]+"-"+os.environ["ctl_name"]
 os.environ["OUTDIR"]=os.environ["WORKDIR"]+"/"+os.environ["diagcase_name"]
 
-varnms_2d=["FLUT","FLUTC","FSNTOA","FSNTOAC","SOLIN","LWCF","SWCF","FLNS","FLNSC","FLDS","FSDS","FSDSC","FSNS","FSNSC","SHFLX","LHFLX","TS"]
-varnms_3d=["QRL","QRS","CLOUD","CLDLIQ","CLDICE","T","P","RH","Q","U","V","W"]
-seasons=["ANN","DJF","JJA"]
+#varnms_2d=["FLUT","FLUTC","FSNTOA","FSNTOAC","SOLIN","LWCF","SWCF","FLNS","FLNSC","FLDS","FSDS","FSDSC","FSNS","FSNSC","SHFLX","LHFLX","TS"]
+#varnms_3d=["QRL","QRS","CLOUD","CLDLIQ","CLDICE","T","P","RH","Q","U","V","W"]
+#seasons=["ANN","DJF","JJA"]
+#varnms_2d=["TGCLDIWP"]
+#varnms_2d=["TMQ"]
+varnms_2d=["TVQ"]
+varnms_3d=["CLDLIQ"]
+seasons=["DJF"]
 scale_ctl=1.
 scale_exp=1.
 
@@ -46,13 +54,14 @@ scale_exp=1.
 
 #-- select which diag to do (1:do, 0:not do)
 do_lon_lat_contour=0
-do_polar_contour_N=0
+do_polar_contour_N=1
 do_polar_contour_S=0
 do_northw_energy_transport=0
+do_time_series_areamean=0
 
 #-- set format of figure files
 os.environ["fig_show"]="True"
-os.environ["fig_save"]="False"
+os.environ["fig_save"]="True"
 os.environ["fig_suffix"]="png" # supported format: png, eps, pdf, etc.
 
 #-- create work directory (for figures and html)
@@ -81,9 +90,12 @@ if "JJA" in seasons:
 
 if do_lon_lat_contour:
     print("--do lon lat contour--")
-    table_file_ANN.write("Global"+"\r\n")
-    #table_file_DJF.write("Global"+"\r\n")
-    #table_file_JJA.write("Global"+"\r\n")
+    if "ANN" in seasons: 
+        table_file_ANN.write("Global"+"\r\n")
+    if "DJF" in seasons: 
+        table_file_DJF.write("Global"+"\r\n")
+    if "JJA" in seasons: 
+        table_file_JJA.write("Global"+"\r\n")
     for varnm in varnms_2d:
         print(varnm)
         for seasn in seasons:
@@ -99,9 +111,12 @@ if do_lon_lat_contour:
 
 if do_polar_contour_N:
     print("--do polar contour N--")
-    table_file_ANN.write("North Pole"+"\r\n")
-    table_file_DJF.write("North Pole"+"\r\n")
-    table_file_JJA.write("North Pole"+"\r\n")
+    if "ANN" in seasons: 
+        table_file_ANN.write("North Pole"+"\r\n")
+    if "DJF" in seasons: 
+        table_file_DJF.write("North Pole"+"\r\n")
+    if "JJA" in seasons: 
+        table_file_JJA.write("North Pole"+"\r\n")
     for varnm in varnms_2d:
         print(varnm)
         for seasn in seasons:
@@ -117,9 +132,12 @@ if do_polar_contour_N:
 
 if do_polar_contour_S:
     print("--do polar contour S--")
-    table_file_ANN.write("South Pole"+"\r\n")
-    table_file_DJF.write("South Pole"+"\r\n")
-    table_file_JJA.write("South Pole"+"\r\n")
+    if "ANN" in seasons: 
+        table_file_ANN.write("South Pole"+"\r\n")
+    if "DJF" in seasons: 
+        table_file_DJF.write("South Pole"+"\r\n")
+    if "JJA" in seasons: 
+        table_file_JJA.write("South Pole"+"\r\n")
     for varnm in varnms_2d:
         print(varnm)
         for seasn in seasons:
@@ -136,8 +154,14 @@ if do_polar_contour_S:
 if do_northw_energy_transport:
     print("--do northward energy transport--")
     for seasn in seasons:
-        #if seasn == "ANN":
         northw_energy_transport_model_vs_model(seasn)
+
+
+if do_time_series_areamean:
+    print("--do time series of areamean --")
+    seasn="09"
+    varnm="ICEFRAC"
+    time_series_areamean_model_vs_model(varnm,seasn,scale_ctl,scale_exp)
 #--------------------------------
 # creat html file
 #--------------------------------
