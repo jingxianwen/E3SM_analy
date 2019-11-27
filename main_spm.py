@@ -13,6 +13,7 @@ from d4_time_series_areamean_model_vs_model import *
 from d5_polar_stream_model_vs_model import *
 from d6_polar_contour_lts_model_vs_model import *
 from d7_polar_stream_contour_model_vs_model import *
+from d8_polar_prof_contour_model_vs_model import *
 
 
 #+++++++++++++++++++++++
@@ -64,11 +65,12 @@ do_northw_energy_transport=0
 do_time_series_areamean=0
 do_polar_stream_N=0
 do_polar_contour_lts_N=0
-do_polar_stream_contour_N=1
+do_polar_stream_contour_N=0
+do_polar_prof_contour_N=1
 
 #-- set format of figure files
 os.environ["fig_show"]="True"
-os.environ["fig_save"]="True"
+os.environ["fig_save"]="False"
 os.environ["fig_suffix"]="png" # supported format: png, eps, pdf, etc.
 
 #-- create work directory (for figures and html)
@@ -185,6 +187,12 @@ if do_polar_stream_contour_N:
     print("--do polar contour lts --")
     seasn="DJF"
     polar_stream_contour_model_vs_model(seasn,scale_ctl,scale_exp,"N")
+
+if do_polar_prof_contour_N:
+    print("--do polar contour lts --")
+    seasn="DJF"
+    varnm="FREQI"
+    polar_prof_contour_model_vs_model(varnm,seasn,scale_ctl,scale_exp,"N")
 #--------------------------------
 # creat html file
 #--------------------------------

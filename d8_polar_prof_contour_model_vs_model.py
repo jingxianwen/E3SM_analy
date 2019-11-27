@@ -21,7 +21,7 @@ import numpy as np
 # parameters
 from get_parameters import *
 
-def polar_stream_contour_model_vs_model(season,scale_ctl,scale_exp,pole):
+def polar_prof_contour_model_vs_model(varnm,season,scale_ctl,scale_exp,pole):
     # data path
     ctl_name=os.environ["ctl_name"]
     exp_name=os.environ["exp_name"]
@@ -42,23 +42,15 @@ def polar_stream_contour_model_vs_model(season,scale_ctl,scale_exp,pole):
     nlon=lon[:].size
     nlev=lev[:].size
 
-    # read data and calculate mean/min/max
-    lev850=np.min(np.where(lev[:]>850.))
-    print(lev[lev850])
-    uctl=file_ctl.variables["U"][:,lev850,:,:]*scale_ctl
-    uexp=file_exp.variables["U"][:,lev850,:,:]*scale_exp
-    vctl=file_ctl.variables["V"][:,lev850,:,:]*scale_ctl
-    vexp=file_exp.variables["V"][:,lev850,:,:]*scale_exp
-    #print(np.shape(uctl))
-    #print(np.shape(vctl))
-    udif=uexp[:,:,:]-uctl[:,:,:]
-    vdif=vexp[:,:,:]-vctl[:,:,:]
-    
-    # read data for contour plot
-    tmqctl=file_ctl.variables["TMQ"][:,:,:]
-    tmqexp=file_exp.variables["TMQ"][:,:,:]
-    tmqdif=tmqexp[:,:,:]-tmqctl[:,:,:]
-       
+    # read data and calculate difference
+    dtctl=file_ctl.variables[varnm][:,:,:,:]*scale_ctl
+    dtexp=file_exp.variables[varnm][:,:,:,:]*scale_exp
+    dtdif=dtexp[:,:,:,:]-dtctl[:,:,:,:]
+   
+    # compute zonal mean 
+    dtctl_zm=np.mean(dtctl,axis=3)
+    dtexp_zm=np.mean(dtexp,axis=3)
+    dtdif_zm=np.mean(dtdif,axis=3)
 
     if pole == "N":
         latbound1=np.min(np.where(lat[:]>60))
@@ -66,10 +58,10 @@ def polar_stream_contour_model_vs_model(season,scale_ctl,scale_exp,pole):
     elif pole == "S":
         latbound1=0
         latbound2=np.max(np.where(lat[:]<-60))+1
-    stats_ctl=get_area_mean_min_max(tmqctl[:,latbound1:latbound2,:],lat[latbound1:latbound2])
-    stats_exp=get_area_mean_min_max(tmqexp[:,latbound1:latbound2,:],lat[latbound1:latbound2])
-    stats_dif=get_area_mean_min_max(tmqdif[:,latbound1:latbound2,:],lat[latbound1:latbound2])
-    stats_difp=np.array(stats_dif[0]/stats_ctl[0]*100.)
+##    stats_ctl=get_area_mean_min_max(dtctl[:,latbound1:latbound2,:],lat[latbound1:latbound2])
+##    stats_exp=get_area_mean_min_max(dtexp[:,latbound1:latbound2,:],lat[latbound1:latbound2])
+##    stats_dif=get_area_mean_min_max(dtdif[:,latbound1:latbound2,:],lat[latbound1:latbound2])
+##    stats_difp=np.array(stats_dif[0]/stats_ctl[0]*100.)
 ##    # stats_out saves the two mean, their absolute difference and % difference.
 ##    stats_out=np.array([0.,0.,0.,0.])
 ##    stats_out[0]=np.float32(stats_ctl[0]).data #.compressed
@@ -78,36 +70,30 @@ def polar_stream_contour_model_vs_model(season,scale_ctl,scale_exp,pole):
 ##    stats_out[3]=np.float32(stats_difp[0]) #.compressed
 
     # add cyclic
-    uctl=add_cyclic_point(uctl[:,:,:])
-    uexp=add_cyclic_point(uexp[:,:,:])
-    udif=add_cyclic_point(udif[:,:,:])
-    vctl=add_cyclic_point(vctl[:,:,:])
-    vexp=add_cyclic_point(vexp[:,:,:])
-    vdif=add_cyclic_point(vdif[:,:,:])
-    tmqctl=add_cyclic_point(tmqctl[:,:,:])
-    tmqexp=add_cyclic_point(tmqexp[:,:,:])
-    tmqdif=add_cyclic_point(tmqdif[:,:,:])
-    lon=np.append(lon[:],360.)
+##    dtctl=add_cyclic_point(dtctl[:,:,:])
+##    dtexp=add_cyclic_point(dtexp[:,:,:])
+##    dtdif=add_cyclic_point(dtdif[:,:,:])
+##    lon=np.append(lon[:],360.)
 
     # make plot
-    parameters=get_parameters("TMQ",season)
+    parameters=get_parameters(varnm,season)
     #projection = ccrs.PlateCarree(central_longitude=180)
-    if pole == "N":
-        projection = ccrs.NorthPolarStereo(central_longitude=0)
-    elif pole == "S":
-        projection = ccrs.SouthPolarStereo(central_longitude=0)
+##    if pole == "N":
+##        projection = ccrs.NorthPolarStereo(central_longitude=0)
+##    elif pole == "S":
+##        projection = ccrs.SouthPolarStereo(central_longitude=0)
 
     fig = plt.figure(figsize=[8.0,11.0],dpi=150.)
     #fig.set_size_inches(4.5, 6.5, forward=True)
     plotTitle = {'fontsize': 13.}
     plotSideTitle = {'fontsize': 9.}
     plotText = {'fontsize': 8.}
-    panel = [(0.34, 0.65, 0.3235, 0.25),\
-             (0.34, 0.35, 0.3235, 0.25),\
-             (0.34, 0.05, 0.3235, 0.25),\
+    panel = [(0.27, 0.65, 0.3235, 0.25),\
+             (0.27, 0.35, 0.3235, 0.25),\
+             (0.27, 0.05, 0.3235, 0.25),\
             ]
     labels=[exp_name,ctl_name,exp_name+"-"+ctl_name] 
-    units="m/s"  ##parameters["units"]
+    units=parameters["units"]
     for i in range(0,3):
        #1. first plot
         levels = None
@@ -121,47 +107,37 @@ def polar_stream_contour_model_vs_model(season,scale_ctl,scale_exp,pole):
         #        levels = [-1.0e8] + cnlevels + [1.0e8]
         #        norm = colors.BoundaryNorm(boundaries=levels, ncolors=256)
 
-        ax = fig.add_axes(panel[i],projection=projection,autoscale_on=True)
-        ax.set_global()
-        if pole == "N":
-            ax.gridlines(color="gray",linestyle=":",\
-			xlocs=[0,60,120,180,240,300,360],ylocs=[60,70,80,90])
-        elif pole == "S":
-            ax.gridlines(color="gray",linestyle=":",\
-			xlocs=[0,60,120,180,240,300,360],ylocs=[-60,-70,-80,-90])
+##        ax = fig.add_axes(panel[i],projection=projection,autoscale_on=True)
+        ax = fig.add_axes(panel[i],autoscale_on=True)
+##        ax.set_global()
+##        if pole == "N":
+##            ax.gridlines(color="gray",linestyle=":",\
+##                       xlocs=[0,60,120,180,240,300,360],ylocs=[60,70,80,90])
+##        elif pole == "S":
+##            ax.gridlines(color="gray",linestyle=":",\
+##                       xlocs=[0,60,120,180,240,300,360],ylocs=[-60,-70,-80,-90])
         #ax.grid(c='gray',ls=':')
         
-        if pole == "N":
-            ax.set_extent([-180, 180, 60, 90], crs=ccrs.PlateCarree())
-        elif pole == "S":
-            ax.set_extent([-180, 180, -60, -90], crs=ccrs.PlateCarree())
+##        if pole == "N":
+##            ax.set_extent([-180, 180, 60, 90], crs=ccrs.PlateCarree())
+##        elif pole == "S":
+##            ax.set_extent([-180, 180, -60, -90], crs=ccrs.PlateCarree())
 
         if i == 0:
-            uplot=uexp[:,:,:]
-            vplot=vexp[:,:,:]
-            tmqplot=tmqexp[:,:,:]
+            dtplot=dtexp_zm[:,:,:]
             cmap=parameters["colormap"]
-            stats=stats_exp
+##            stats=stats_exp
         elif i == 1:
-            uplot=uctl[:,:,:]
-            vplot=vctl[:,:,:]
-            tmqplot=tmqctl[:,:,:]
+            dtplot=dtctl_zm[:,:,:]
             cmap=parameters["colormap"]
-            stats=stats_ctl
+##            stats=stats_ctl
         else:
-            uplot=udif[:,:,:]
-            vplot=vdif[:,:,:]
-            tmqplot=tmqdif[:,:,:]
+            dtplot=dtdif_zm[:,:,:]
             cmap=parameters["colormap_diff"]
-            stats=stats_dif
-        p1 = ax.streamplot(lon[:],lat[latbound1:latbound2],uplot[0,latbound1:latbound2,:],\
-                    vplot[0,latbound1:latbound2,:],\
-		    transform=ccrs.PlateCarree(),\
-		    density=[0.8,0.8],arrowstyle="->", arrowsize=1.0,\
-		    color="b",linewidth=0.5\
-		    )
-        p2 = ax.contourf(lon[:],lat[latbound1:latbound2],tmqplot[0,latbound1:latbound2,:],\
-                    transform=ccrs.PlateCarree(),\
+##            stats=stats_dif
+
+        p1 = ax.contourf(lat[latbound1:latbound2],lev[:],dtplot[0,:,latbound1:latbound2],\
+                    #transform=ccrs.PlateCarree(),\
                     #norm=norm,\
                     levels=cnlevels,\
                     cmap=cmap,\
@@ -169,14 +145,15 @@ def polar_stream_contour_model_vs_model(season,scale_ctl,scale_exp,pole):
                     #autoscale_on=True\
             	    )
         #ax.set_aspect("auto")
-        ax.coastlines(lw=0.3)
+        #ax.coastlines(lw=0.3)
         #ax.set_autoscale_on()
 
-        theta = np.linspace(0, 2 * np.pi, 100)
-        center, radius = [0.5, 0.5], 0.5
-        verts = np.vstack([np.sin(theta), np.cos(theta)]).T
-        circle = mpath.Path(verts * radius + center)
-        ax.set_boundary(circle, transform=ax.transAxes)
+##        theta = np.linspace(0, 2 * np.pi, 100)
+##        #center, radius = [0.5, 0.5], 0.5
+##        center, radius = [0.5, 0.5], 0.5
+##        verts = np.vstack([np.sin(theta), np.cos(theta)]).T
+##        circle = mpath.Path(verts * radius + center)
+##        ax.set_boundary(circle, transform=ax.transAxes)
 
         #ax.grid(color="r")
 
@@ -194,34 +171,36 @@ def polar_stream_contour_model_vs_model(season,scale_ctl,scale_exp,pole):
         #ax.tick_params(labelsize=8.0, direction='out', width=1)
         #ax.xaxis.set_ticks_position('bottom')
         #ax.yaxis.set_ticks_position('left')
+        ax.invert_yaxis()
 
         # color bar
         cbax = fig.add_axes((panel[i][0] + 0.35, panel[i][1] + 0.0354, 0.0326, 0.1792))
-        cbar = fig.colorbar(p2, cax=cbax, ticks=cnlevels)
+        cbar = fig.colorbar(p1, cax=cbax, ticks=cnlevels)
+        #w, h = get_ax_size(fig, cbax)
         cbar.ax.tick_params(labelsize=9.0, length=0)
 
         # Mean, Min, Max
-        fig.text(panel[i][0] + 0.35, panel[i][1] + 0.225,
-                 "Mean\nMin\nMax", ha='left', fontdict=plotText)
-        fig.text(panel[i][0] + 0.45, panel[i][1] + 0.225, "%.2f\n%.2f\n%.2f" %
-                 stats[0:3], ha='right', fontdict=plotText)
+##        fig.text(panel[i][0] + 0.35, panel[i][1] + 0.225,
+##                 "Mean\nMin\nMax", ha='left', fontdict=plotText)
+##        fig.text(panel[i][0] + 0.45, panel[i][1] + 0.225, "%.2f\n%.2f\n%.2f" %
+##                 stats[0:3], ha='right', fontdict=plotText)
 
-    fig.suptitle("850 hPa wind "+season, x=0.5, y=0.96, fontdict=plotTitle)
+    fig.suptitle(varnm+" "+season, x=0.5, y=0.96, fontdict=plotTitle)
     #save figure as file
     if os.environ["fig_save"]=="True":
-        fname="d7_polar_stream_contour"+pole+"_"+season+"."+os.environ["fig_suffix"]
+        fname="d2_polar_contour_"+pole+"_"+varnm+"_"+season+"."+os.environ["fig_suffix"]
         plt.savefig(os.environ["OUTDIR"]+"/figures/"+fname)
     if os.environ["fig_show"]=="True":
         plt.show()
     plt.close()
 
 # write mean values to table    
-    #col1=varnm+"["+units+"]"
-    #line=col1+" "*(18-len(col1))+f'{stats_out[0]:10.3f}'+" "*5+\
-    #     f'{stats_out[1]:10.3f}'+" "*5+\
-    #     f'{stats_out[2]:10.3f}'+" "*5+\
-    #     f'{stats_out[3]:10.3f}'+"%"
-    #table.write(line+"\r\n")
+##    col1=varnm+"["+units+"]"
+##    line=col1+" "*(18-len(col1))+f'{stats_out[0]:10.3f}'+" "*5+\
+##         f'{stats_out[1]:10.3f}'+" "*5+\
+##         f'{stats_out[2]:10.3f}'+" "*5+\
+##         f'{stats_out[3]:10.3f}'+"%"
+##    table.write(line+"\r\n")
     return()
 
     #fig.suptitle(varnm, x=0.5, y=0.96, fontsize=14)
