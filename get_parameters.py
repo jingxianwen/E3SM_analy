@@ -143,6 +143,46 @@ def get_parameters(varnm,season):
                    "colormap_diff":"bwr"\
 		   }
 
+    if varnm == "CLDHGH":
+        parameters={"units":"fraction",\
+		   "contour_levs":[0.2,0.24,0.28, 0.32, 0.36, 0.40,0.44,0.48],\
+		   "diff_levs":[-0.08,-0.06,-0.04,-0.02,0,0.02,0.04,0.06,0.08],\
+                   "colormap":"OrRd",\
+                   "colormap_diff":"bwr"\
+		   }
+
+    if varnm == "CLDMED":
+        parameters={"units":"fraction",\
+		   "contour_levs":[0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9],\
+		   "diff_levs":[-0.08,-0.06,-0.04,-0.02,0,0.02,0.04,0.06,0.08],\
+                   "colormap":"OrRd",\
+                   "colormap_diff":"bwr"\
+		   }
+
+    if varnm == "CLDLOW":
+        parameters={"units":"fraction",\
+		   "contour_levs":[0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9],\
+		   "diff_levs":[-0.08,-0.06,-0.04,-0.02,0,0.02,0.04,0.06,0.08],\
+                   "colormap":"OrRd",\
+                   "colormap_diff":"bwr"\
+		   }
+
+    if varnm == "CLDTOT":
+        parameters={"units":"fraction",\
+		   "contour_levs":[0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9],\
+		   "diff_levs":[-0.4,-0.3,-0.2,-0.1,0,0.1,0.2,0.3,0.4],\
+                   "colormap":"PiYG_r",\
+                   "colormap_diff":"bwr"\
+		   }
+
+    if varnm == "LTS":
+        parameters={"units":"K",\
+		   "contour_levs":[ 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28,],\
+		   "diff_levs":[ -5, -4, -3, -2, -1, -0.5, 0.5, 1, 2, 3, 4, 5],\
+                   "colormap":"PiYG_r",\
+                   "colormap_diff":"bwr"\
+		   }
+
     if varnm == "SWCF":
         parameters={"units":"W/m2",\
 		   "contour_levs":[-180, -160, -140, -120, -100, -80, -60, -40, -20,  0],\
@@ -161,19 +201,20 @@ def get_parameters(varnm,season):
 
     if varnm == "TGCLDLWP":
         parameters={"units":"g/m2",\
-		   "contour_levs":[20, 30, 40, 50, 60, 70, 80, 90, 100, 110],\
-		   "diff_levs":[-10,-8,-6,-4,-2,-1,1,2,4,6,8,10],\
+		   "contour_levs":[20, 30, 40, 50, 60, 70, 80, 90, 100, 110,120,130],\
+		   "diff_levs":[-20,-15,-10,-5,0,5,10,15,20],\
                    "colormap":"PuBuGn",\
                    "colormap_diff":"bwr"\
 		   }
 
     if varnm == "TGCLDIWP":
         parameters={"units":"g/m2",\
-		   "contour_levs":[4, 8, 12, 16, 20, 24, 28, 32, 36],\
-		   "diff_levs":[-8,-6,-4,-2,-1,1,2,4,6,8],\
+		   "contour_levs":[5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55],\
+		   "diff_levs":[-8,-6,-4,-2,-1,0,1,2,4,6,8],\
                    "colormap":"PuBuGn",\
                    "colormap_diff":"bwr"\
 		   }
+
     if varnm == "TMQ":
         parameters={"units":"kg/m2",\
 		   "contour_levs":[1, 2, 3, 4, 5, 6, 7, 8, 9, 10],\
@@ -186,6 +227,14 @@ def get_parameters(varnm,season):
         parameters={"units":"kg/m/s",\
 		   "contour_levs":[-10,0,10, 20, 30, 40, 50],\
 		   "diff_levs":[-8,-6,-4,-2,2,4,6,8],\
+                   "colormap":"PuBuGn",\
+                   "colormap_diff":"bwr"\
+		   }
+
+    if varnm == "TVH":
+        parameters={"units":"W/m2",\
+		   "contour_levs":[1, 2, 3, 4, 5, 6, 7, 8, 9, 10],\
+		   "diff_levs":[-1.2,-0.8,-0.6,-0.4,-0.2,0.2,0.4,0.6,0.8,1.2],\
                    "colormap":"PuBuGn",\
                    "colormap_diff":"bwr"\
 		   }

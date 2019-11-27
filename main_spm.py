@@ -10,6 +10,9 @@ from d1_lon_lat_contour_model_vs_model import *
 from d2_polar_contour_model_vs_model import *
 from d3_northw_energy_transport_model_vs_model import *
 from d4_time_series_areamean_model_vs_model import *
+from d5_polar_stream_model_vs_model import *
+from d6_polar_contour_lts_model_vs_model import *
+from d7_polar_stream_contour_model_vs_model import *
 
 
 #+++++++++++++++++++++++
@@ -42,7 +45,8 @@ os.environ["OUTDIR"]=os.environ["WORKDIR"]+"/"+os.environ["diagcase_name"]
 #seasons=["ANN","DJF","JJA"]
 #varnms_2d=["TGCLDIWP"]
 #varnms_2d=["TMQ"]
-varnms_2d=["TVQ"]
+#varnms_2d=["TVH"]
+varnms_2d=["CLDMED"]
 varnms_3d=["CLDLIQ"]
 seasons=["DJF"]
 scale_ctl=1.
@@ -54,10 +58,13 @@ scale_exp=1.
 
 #-- select which diag to do (1:do, 0:not do)
 do_lon_lat_contour=0
-do_polar_contour_N=1
+do_polar_contour_N=0
 do_polar_contour_S=0
 do_northw_energy_transport=0
 do_time_series_areamean=0
+do_polar_stream_N=0
+do_polar_contour_lts_N=0
+do_polar_stream_contour_N=1
 
 #-- set format of figure files
 os.environ["fig_show"]="True"
@@ -162,6 +169,22 @@ if do_time_series_areamean:
     seasn="09"
     varnm="ICEFRAC"
     time_series_areamean_model_vs_model(varnm,seasn,scale_ctl,scale_exp)
+
+if do_polar_stream_N:
+    print("--do polar stream --")
+    seasn="DJF"
+    polar_stream_model_vs_model(seasn,scale_ctl,scale_exp,"N")
+
+if do_polar_contour_lts_N:
+    print("--do polar contour lts --")
+    seasn="DJF"
+    varnm="LTS"
+    polar_contour_lts_model_vs_model(varnm,seasn,scale_ctl,scale_exp,"N")
+
+if do_polar_stream_contour_N:
+    print("--do polar contour lts --")
+    seasn="DJF"
+    polar_stream_contour_model_vs_model(seasn,scale_ctl,scale_exp,"N")
 #--------------------------------
 # creat html file
 #--------------------------------
