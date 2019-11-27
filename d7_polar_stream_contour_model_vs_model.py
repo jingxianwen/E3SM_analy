@@ -78,13 +78,16 @@ def polar_stream_contour_model_vs_model(season,scale_ctl,scale_exp,pole):
 ##    stats_out[3]=np.float32(stats_difp[0]) #.compressed
 
     # add cyclic
-    #uctl=add_cyclic_point(uctl[:,:,:])
-    #uexp=add_cyclic_point(uexp[:,:,:])
-    #udif=add_cyclic_point(udif[:,:,:])
-    #vctl=add_cyclic_point(uctl[:,:,:])
-    #vexp=add_cyclic_point(uexp[:,:,:])
-    #vdif=add_cyclic_point(udif[:,:,:])
-    #lon=np.append(lon[:],360.)
+    uctl=add_cyclic_point(uctl[:,:,:])
+    uexp=add_cyclic_point(uexp[:,:,:])
+    udif=add_cyclic_point(udif[:,:,:])
+    vctl=add_cyclic_point(vctl[:,:,:])
+    vexp=add_cyclic_point(vexp[:,:,:])
+    vdif=add_cyclic_point(vdif[:,:,:])
+    tmqctl=add_cyclic_point(tmqctl[:,:,:])
+    tmqexp=add_cyclic_point(tmqexp[:,:,:])
+    tmqdif=add_cyclic_point(tmqdif[:,:,:])
+    lon=np.append(lon[:],360.)
 
     # make plot
     parameters=get_parameters("TMQ",season)
