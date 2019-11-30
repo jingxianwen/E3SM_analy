@@ -1,1 +1,3 @@
                   MC6_noScat       MC6_Scat           Diff          Diff%
+Global
+TGCLDIWP[g/m2]        10.811         10.699         -0.112         -1.038%

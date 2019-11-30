@@ -14,6 +14,8 @@ from d5_polar_stream_model_vs_model import *
 from d6_polar_contour_lts_model_vs_model import *
 from d7_polar_stream_contour_model_vs_model import *
 from d8_polar_prof_contour_model_vs_model import *
+from d9_polar_prof_lines_model_vs_model import *
+from d10_polar_stream_contour_vert_model_vs_model import *
 
 
 #+++++++++++++++++++++++
@@ -44,21 +46,21 @@ os.environ["OUTDIR"]=os.environ["WORKDIR"]+"/"+os.environ["diagcase_name"]
 #varnms_2d=["FLUT","FLUTC","FSNTOA","FSNTOAC","SOLIN","LWCF","SWCF","FLNS","FLNSC","FLDS","FSDS","FSDSC","FSNS","FSNSC","SHFLX","LHFLX","TS"]
 #varnms_3d=["QRL","QRS","CLOUD","CLDLIQ","CLDICE","T","P","RH","Q","U","V","W"]
 #seasons=["ANN","DJF","JJA"]
-#varnms_2d=["TGCLDIWP"]
+varnms_2d=["TGCLDIWP"]
 #varnms_2d=["TMQ"]
 #varnms_2d=["TVH"]
-varnms_2d=["CLDMED"]
+#varnms_2d=["CLDMED"]
 varnms_3d=["CLDLIQ"]
 seasons=["DJF"]
-scale_ctl=1.
-scale_exp=1.
+scale_ctl=1000.
+scale_exp=1000.
 
 ##-- one time test --
 ##varnms_2d=["FLUT"]
 ##seasons=["ANN"]
 
 #-- select which diag to do (1:do, 0:not do)
-do_lon_lat_contour=0
+do_lon_lat_contour=1
 do_polar_contour_N=0
 do_polar_contour_S=0
 do_northw_energy_transport=0
@@ -66,7 +68,9 @@ do_time_series_areamean=0
 do_polar_stream_N=0
 do_polar_contour_lts_N=0
 do_polar_stream_contour_N=0
-do_polar_prof_contour_N=1
+do_polar_prof_contour_N=0
+do_polar_prof_lines_N=0
+do_polar_stream_contour_vert_N=0
 
 #-- set format of figure files
 os.environ["fig_show"]="True"
@@ -184,15 +188,27 @@ if do_polar_contour_lts_N:
     polar_contour_lts_model_vs_model(varnm,seasn,scale_ctl,scale_exp,"N")
 
 if do_polar_stream_contour_N:
-    print("--do polar contour lts --")
+    print("--do polar stream contour --")
     seasn="DJF"
     polar_stream_contour_model_vs_model(seasn,scale_ctl,scale_exp,"N")
 
 if do_polar_prof_contour_N:
-    print("--do polar contour lts --")
+    print("--do polar prof contour --")
     seasn="DJF"
-    varnm="FREQI"
+    varnm="FICE"
     polar_prof_contour_model_vs_model(varnm,seasn,scale_ctl,scale_exp,"N")
+
+if do_polar_prof_lines_N:
+    print("--do polar lines --")
+    seasn="DJF"
+    varnm="FICE"
+    polar_prof_lines_model_vs_model(varnm,seasn,scale_ctl,scale_exp,"N")
+
+if do_polar_stream_contour_vert_N:
+    print("--do stream contour polar lines --")
+    seasn="DJF"
+    #varnm="Q"
+    polar_stream_contour_vert_model_vs_model(seasn,scale_ctl,scale_exp,"N")
 #--------------------------------
 # creat html file
 #--------------------------------

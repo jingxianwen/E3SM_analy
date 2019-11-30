@@ -35,8 +35,8 @@ def lon_lat_contour_model_vs_model(varnm,season,scale_ctl,scale_exp,table):
     lon=file_ctl.variables["lon"]
 
     # read data and calculate mean/min/max
-    dtctl=file_ctl.variables[varnm] #*scale_ctl
-    dtexp=file_exp.variables[varnm] #*scale_exp
+    dtctl=file_ctl.variables[varnm][:,:,:]*scale_ctl
+    dtexp=file_exp.variables[varnm][:,:,:]*scale_exp
     dtdif=dtexp[:,:,:]-dtctl[:,:,:]
     stats_ctl=get_area_mean_min_max(dtctl[:,:,:],lat[:])
     stats_exp=get_area_mean_min_max(dtexp[:,:,:],lat[:])

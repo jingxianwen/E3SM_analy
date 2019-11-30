@@ -239,6 +239,54 @@ def get_parameters(varnm,season):
                    "colormap_diff":"bwr"\
 		   }
 
+    if varnm == "FREQI":
+        parameters={"units":"fraction",\
+		   "contour_levs":[0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9],\
+		   "diff_levs":[-0.08,-0.06,-0.04,-0.02,0,0.02,0.04,0.06,0.08],\
+                   "colormap":"OrRd",\
+                   "colormap_diff":"bwr"\
+		   }
+
+    if varnm == "FREQL":
+        parameters={"units":"fraction",\
+		   "contour_levs":[0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9],\
+		   "diff_levs":[-0.08,-0.06,-0.04,-0.02,0,0.02,0.04,0.06,0.08],\
+                   "colormap":"OrRd",\
+                   "colormap_diff":"bwr"\
+		   }
+
+    if varnm == "FREQS":
+        parameters={"units":"fraction",\
+		   "contour_levs":[0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9],\
+		   "diff_levs":[-0.08,-0.06,-0.04,-0.02,0,0.02,0.04,0.06,0.08],\
+                   "colormap":"OrRd",\
+                   "colormap_diff":"bwr"\
+		   }
+
+    if varnm == "FREQR":
+        parameters={"units":"fraction",\
+		   "contour_levs":[0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9],\
+		   "diff_levs":[-0.08,-0.06,-0.04,-0.02,0,0.02,0.04,0.06,0.08],\
+                   "colormap":"OrRd",\
+                   "colormap_diff":"bwr"\
+		   }
+
+    if varnm == "FICE":
+        parameters={"units":"fraction",\
+		   "contour_levs":[0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9],\
+		   "diff_levs":[-0.08,-0.06,-0.04,-0.02,0,0.02,0.04,0.06,0.08],\
+                   "colormap":"PiYG_r",\
+                   "colormap_diff":"bwr"\
+		   }
+
+    if varnm == "Q":
+        parameters={"units":"kg/kg",\
+		   "contour_levs":[0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9],\
+		   "diff_levs":[-0.08,-0.06,-0.04,-0.02,0,0.02,0.04,0.06,0.08],\
+                   "colormap":"OrRd",\
+                   "colormap_diff":"bwr"\
+		   }
+
     return parameters
 
 
@@ -257,3 +305,15 @@ def get_area_mean_min_max(varnm,lat):
     minval=varnm.min(axis=((1,2)))
     maxval=varnm.max(axis=((1,2)))
     return area_mean,minval,maxval
+
+def get_area_mean_prof(varnm,lat):
+   # 1. area weighted average 
+    #convert latitude to radians
+    latr=np.deg2rad(lat)
+    #use cosine of latitudes as weights for the mean
+    weights=np.cos(latr)
+    #first calculate zonal mean
+    zonal_mean=varnm.mean(axis=3)
+    #then calculate weighted global mean
+    area_mean=np.average(zonal_mean,axis=2,weights=weights)
+    return area_mean
