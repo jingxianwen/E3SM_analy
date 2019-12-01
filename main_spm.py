@@ -16,6 +16,7 @@ from d7_polar_stream_contour_model_vs_model import *
 from d8_polar_prof_contour_model_vs_model import *
 from d9_polar_prof_lines_model_vs_model import *
 from d10_polar_stream_contour_vert_model_vs_model import *
+from d11_poleward_MSE_transport_model_vs_model import *
 
 
 #+++++++++++++++++++++++
@@ -46,22 +47,23 @@ os.environ["OUTDIR"]=os.environ["WORKDIR"]+"/"+os.environ["diagcase_name"]
 #varnms_2d=["FLUT","FLUTC","FSNTOA","FSNTOAC","SOLIN","LWCF","SWCF","FLNS","FLNSC","FLDS","FSDS","FSDSC","FSNS","FSNSC","SHFLX","LHFLX","TS"]
 #varnms_3d=["QRL","QRS","CLOUD","CLDLIQ","CLDICE","T","P","RH","Q","U","V","W"]
 #seasons=["ANN","DJF","JJA"]
-varnms_2d=["TGCLDIWP"]
+#varnms_2d=["TGCLDIWP"]
 #varnms_2d=["TMQ"]
 #varnms_2d=["TVH"]
 #varnms_2d=["CLDMED"]
-varnms_3d=["CLDLIQ"]
+varnms_2d=["Z3"]
+#varnms_3d=["Z3"]
 seasons=["DJF"]
-scale_ctl=1000.
-scale_exp=1000.
+scale_ctl=1.
+scale_exp=1.
 
 ##-- one time test --
 ##varnms_2d=["FLUT"]
 ##seasons=["ANN"]
 
 #-- select which diag to do (1:do, 0:not do)
-do_lon_lat_contour=1
-do_polar_contour_N=0
+do_lon_lat_contour=0
+do_polar_contour_N=1
 do_polar_contour_S=0
 do_northw_energy_transport=0
 do_time_series_areamean=0
@@ -71,10 +73,11 @@ do_polar_stream_contour_N=0
 do_polar_prof_contour_N=0
 do_polar_prof_lines_N=0
 do_polar_stream_contour_vert_N=0
+do_poleward_MSE_transport_N=0
 
 #-- set format of figure files
 os.environ["fig_show"]="True"
-os.environ["fig_save"]="False"
+os.environ["fig_save"]="True"
 os.environ["fig_suffix"]="png" # supported format: png, eps, pdf, etc.
 
 #-- create work directory (for figures and html)
@@ -209,6 +212,13 @@ if do_polar_stream_contour_vert_N:
     seasn="DJF"
     #varnm="Q"
     polar_stream_contour_vert_model_vs_model(seasn,scale_ctl,scale_exp,"N")
+
+if do_poleward_MSE_transport_N:
+    print("--do poleward MSE transport --")
+    seasn="DJF"
+    varnm="TVH"
+    poleward_MSE_transport_model_vs_model(varnm,seasn,scale_ctl,scale_exp,"N")
+
 #--------------------------------
 # creat html file
 #--------------------------------

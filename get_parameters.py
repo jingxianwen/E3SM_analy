@@ -143,6 +143,14 @@ def get_parameters(varnm,season):
                    "colormap_diff":"bwr"\
 		   }
 
+    if varnm == "Z3":
+        parameters={"units":"m",\
+		   "contour_levs":[1200, 1500, 1800, 2100, 2400, 2700, 3000,3300,3600,3900],\
+		   "diff_levs":[-12, -10, -8, -6, -4, -2, 2, 4, 6, 8, 10, 12],\
+                   "colormap":"PiYG_r",\
+                   "colormap_diff":"bwr"\
+		   }
+
     if varnm == "CLDHGH":
         parameters={"units":"fraction",\
 		   "contour_levs":[0.2,0.24,0.28, 0.32, 0.36, 0.40,0.44,0.48],\
