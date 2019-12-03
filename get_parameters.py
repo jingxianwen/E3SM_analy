@@ -51,7 +51,8 @@ def get_parameters(varnm,season):
     if varnm == "FLDS":
         parameters={"units":"W/m2",\
 		   "contour_levs":[0, 50, 100, 150, 200, 250, 300, 350, 400, 450],\
-		   "diff_levs":[-50, -40, -30, -20, -10, -5, 5, 10, 20, 30, 40, 50],\
+		   #"diff_levs":[-50, -40, -30, -20, -10, -5, 5, 10, 20, 30, 40, 50],\
+		   "diff_levs":[-18, -15, -12, -9, -6, -3, 3, 6, 9, 12, 15, 18],\
                    "colormap":"PiYG_r",\
                    "colormap_diff":"bwr"\
 		   }
@@ -59,7 +60,8 @@ def get_parameters(varnm,season):
     if varnm == "FLDSC":
         parameters={"units":"W/m2",\
 		   "contour_levs":[0, 50, 100, 150, 200, 250, 300, 350, 400, 450],\
-		   "diff_levs":[-50, -40, -30, -20, -10, -5, 5, 10, 20, 30, 40, 50],\
+		   #"diff_levs":[-50, -40, -30, -20, -10, -5, 5, 10, 20, 30, 40, 50],\
+		   "diff_levs":[-18, -15, -12, -9, -6, -3, 3, 6, 9, 12, 15, 18],\
                    "colormap":"PiYG_r",\
                    "colormap_diff":"bwr"\
 		   }
@@ -138,7 +140,8 @@ def get_parameters(varnm,season):
     if varnm == "TS":
         parameters={"units":"K",\
 		   "contour_levs":[240, 245, 250, 255, 260, 265, 270, 275, 280, 285, 290, 295],\
-		   "diff_levs":[-10, -7.5, -5, -4, -3, -2, -1, -0.5, 0.5, 1, 2, 3, 4, 5, 7.5, 10],\
+		   #"diff_levs":[-10, -7.5, -5, -4, -3, -2, -1, -0.5, 0.5, 1, 2, 3, 4, 5, 7.5, 10],\
+		   "diff_levs":[ -5, -4, -3, -2, -1, -0.5, 0.5, 1, 2, 3, 4, 5],\
                    "colormap":"PiYG_r",\
                    "colormap_diff":"bwr"\
 		   }

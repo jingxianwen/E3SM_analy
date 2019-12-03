@@ -1,3 +1,3 @@
                   MC6_noScat       MC6_Scat           Diff          Diff%
-North Pole
-Z3[m]               1462.782       1466.830          4.048          0.277%
+Global
+FLDS[W/m2]           332.860        334.603          1.743          0.524%
