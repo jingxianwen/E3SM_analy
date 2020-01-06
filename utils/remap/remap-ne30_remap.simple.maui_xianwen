@@ -1,0 +1,58 @@
+#!/bin/bash
+# remapping an ne30 file
+
+# folder that regridded files will be
+#exp_name="E3SM_coupled_restart_20TR_Yr2000-Scat.Year2000_2014"
+exp_name="E3SMv2_modified_PresSST_UMRadALLon"
+filein_folder="/global/cscratch1/sd/xianwen/acme_scratch/cori-knl/"$exp_name"/run"
+#filein_folder="/raid00/xianwen/Yi-Hsuan/"$exp_name
+fileinlist=`ls $filein_folder/*cam.h0.*`
+#for eachfile in $filelist
+#do
+#	   echo $eachfile
+#done
+#exit 0
+fileout_folder="/global/cscratch1/sd/xianwen/acme_scratch/cori-knl/"$exp_name"/remap_180x360"
+#fileout_folder=$exp_name"/remap180x360"
+# mapfile to convert an  E3SM ne30 file
+#mapfile="/raid00/xianwen/E3SM_remap/map_ne30np4_to_fv257x512_bilin.20150901.nc"
+#mapfile="./map_ne30np4_to_fv257x512_bilin.20150901.nc"
+mapfile="./map_ne30np4_to_cmip6_180x360_aave.20181001.nc"
+
+
+# choose variables in the regrid files
+#VARS="hyam,hybm,hyai,hybi,date,LANDFRAC,PRECC,PRECL,TMQ,T,Q,RELHUM,PS"
+VARS=""  #remap all variables
+
+#----------------
+# program start
+#----------------
+
+if [ ! -e $fileout_folder ]; then
+   mkdir $fileout_folder || exit 1
+fi
+
+# files are read from command line
+#for file in $@; do
+
+# files are read from fileinlist above.
+for file in $fileinlist;do
+
+  filename=`echo ${file##*/}`
+  echo $filename
+  filen=$fileout_folder/$filename
+  echo $filen
+
+  if [ $VARS ]; then
+    ncks -O -v $VARS --map $mapfile $file $filen \
+      && echo "Done. create [$filen]" || exit 3
+  else
+    echo "---remap all variables---"
+    #ncks -O --map $mapfile $file $filen || exit 3
+    ncks -O --map $mapfile $file $filen || exit 3
+  fi
+done
+
+exit 0
+
+

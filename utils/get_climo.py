@@ -23,14 +23,19 @@ def listToString(s):
 # Input 
 #caseid="E3SM_DECKv1b_H1.ne30"
 #monthly_data_path="./E3SM_DECKv1b_H1.ne30/remap_180x360"
-caseid="E3SM_coupled_restart_20TR_Yr2000-Scat.Year2000_2014"
-monthly_data_path="/raid00/xianwen/Yi-Hsuan/E3SM_coupled_restart_20TR_Yr2000-Scat.Year2000_2014/remap_180x360"
-years=np.arange(2000,2015)
+#caseid="E3SM_coupled_restart_20TR_Yr2000-Scat.Year2000_2014"
+caseid="E3SMv2_modified_PresSST_UMRadALLon"
+print(caseid)
+#monthly_data_path="/raid00/xianwen/Yi-Hsuan/E3SM_coupled_restart_20TR_Yr2000-Scat.Year2000_2014/remap_180x360"
+#monthly_data_path="/global/cscratch1/sd/xianwen/acme_scratch/cori-knl/E3SMv2_standard_PresSST_UMRadALLoff/remap_180x360/"
+monthly_data_path="/global/cscratch1/sd/xianwen/acme_scratch/cori-knl/"+caseid+"/remap_180x360/"
+#years=np.arange(0001,0004)
+years=np.array(["0002","0003","0004","0005","0006","0007","0008","0009","0010","0011"])
 # Output
 months_to_do=["01","02","03","04","05","06","07","08","09","10","11","12"]
 seasons_to_do=["ANN","DJF","MAM","JJA","SON"]
 
-out_path=monthly_data_path+"/climo"
+out_path=monthly_data_path+"../climo"
 if not os.path.exists(out_path):
      os.makedirs(out_path)
 
@@ -42,7 +47,7 @@ for mon in months_to_do:
     if os.path.exists(list_file):
         os.system("rm "+list_file)
     for yr in years:
-        os.system("ls "+monthly_data_path+"/*"+str(yr)+"-"+mon+".nc|cat >>"+list_file)
+        os.system("ls "+monthly_data_path+"/*cam.h0*"+str(yr)+"-"+mon+".nc|cat >>"+list_file)
     #os.system("ls "+monthly_data_path+"/*"+mon+".nc >"+list_file)
     with open(list_file) as f_obj:
         lines=f_obj.readlines()
