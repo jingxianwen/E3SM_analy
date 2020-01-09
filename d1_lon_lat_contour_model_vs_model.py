@@ -67,6 +67,11 @@ def lon_lat_contour_model_vs_model(varnm,season,scale_ctl,scale_exp,table):
              (0.1691, 0.3961, 0.6465, 0.2258), \
              (0.1691, 0.1112, 0.6465, 0.2258), \
              ]
+    # --> for horizontal colorbar
+    #panel = [(0.1691, 0.7410, 0.6465, 0.2258), \
+    #         (0.1691, 0.4161, 0.6465, 0.2258), \
+    #         (0.1691, 0.0912, 0.6465, 0.2258), \
+    #         ]
     labels=[exp_name,ctl_name,exp_name+"-"+ctl_name] 
     units=parameters["units"]
     for i in range(0,3):
@@ -124,9 +129,10 @@ def lon_lat_contour_model_vs_model(varnm,season,scale_ctl,scale_exp,table):
         ax.yaxis.set_ticks_position('left')
         # color bar
         cbax = fig.add_axes((panel[i][0] + 0.6635, panel[i][1] + 0.0215, 0.0326, 0.1792))
-        #cbax = fig.add_axes((panel[i][0] + 0.6635, panel[i][1] + 0.0215, 0.0326, 0.2850))
-        cbar = fig.colorbar(p1, cax=cbax, ticks=cnlevels)
-        #w, h = get_ax_size(fig, cbax)
+        cbar = fig.colorbar(p1, cax=cbax, ticks=cnlevels,orientation="vertical")
+    # --> for horizontal colorbar
+        #cbax = fig.add_axes((0.24, panel[i][1] - 0.04, 0.5, 0.015))
+        #cbar = fig.colorbar(p1, cax=cbax, ticks=cnlevels,orientation="horizontal")
         cbar.ax.tick_params(labelsize=9.0, length=0)
 
         # Mean, Min, Max
@@ -135,8 +141,11 @@ def lon_lat_contour_model_vs_model(varnm,season,scale_ctl,scale_exp,table):
         fig.text(panel[i][0] + 0.7835, panel[i][1] + 0.2107, "%.2f\n%.2f\n%.2f" %
                  stats[0:3], ha='right', fontdict=plotText)
 
-    #fig.suptitle(varnm, x=0.5, y=0.96, fontsize=14)
     fig.suptitle(varnm, x=0.5, y=0.96, fontdict=plotTitle)
+
+    # --> for horizontal colorbar
+    #fig.suptitle(varnm, x=0.5, y=0.99, fontdict=plotTitle)
+
     #save figure as file
     if os.environ["fig_save"]=="True":
         fname="d1_lon_lat_contour_"+varnm+"_"+season+"."+os.environ["fig_suffix"]

@@ -69,6 +69,11 @@ def polar_contour_model_vs_model(varnm,season,scale_ctl,scale_exp,pole,table):
     lon=np.append(lon[:],360.)
 
     # make plot
+  
+    #  data is originally on PlateCarree projection.
+    #  cartopy need this to transform projection
+    data_crs=ccrs.PlateCarree()
+
     parameters=get_parameters(varnm,season)
     #projection = ccrs.PlateCarree(central_longitude=180)
     if pole == "N":
@@ -79,6 +84,7 @@ def polar_contour_model_vs_model(varnm,season,scale_ctl,scale_exp,pole,table):
     fig = plt.figure(figsize=[8.0,11.0],dpi=150.)
     #fig.set_size_inches(4.5, 6.5, forward=True)
     plotTitle = {'fontsize': 13.}
+    #plotSideTitle = {'fontsize': 9., 'verticalalignment':'center'}
     plotSideTitle = {'fontsize': 9.}
     plotText = {'fontsize': 8.}
     panel = [(0.27, 0.65, 0.3235, 0.25),\
@@ -104,10 +110,10 @@ def polar_contour_model_vs_model(varnm,season,scale_ctl,scale_exp,pole,table):
         ax.set_global()
         if pole == "N":
             ax.gridlines(color="gray",linestyle=":",\
-			xlocs=[0,60,120,180,240,300,360],ylocs=[60,70,80,90])
+			xlocs=[0,60,120,180,240,300,360],ylocs=[60,70,80,89.5])
         elif pole == "S":
             ax.gridlines(color="gray",linestyle=":",\
-			xlocs=[0,60,120,180,240,300,360],ylocs=[-60,-70,-80,-90])
+			xlocs=[0,60,120,180,240,300,360],ylocs=[-60,-70,-80])
         #ax.grid(c='gray',ls=':')
         
         if pole == "N":
@@ -129,7 +135,7 @@ def polar_contour_model_vs_model(varnm,season,scale_ctl,scale_exp,pole,table):
             stats=stats_dif
 
         p1 = ax.contourf(lon[:],lat[latbound1:latbound2],dtplot[0,latbound1:latbound2,:],\
-                    transform=ccrs.PlateCarree(),\
+                    transform=data_crs,\
                     #norm=norm,\
                     levels=cnlevels,\
                     cmap=cmap,\
@@ -142,27 +148,29 @@ def polar_contour_model_vs_model(varnm,season,scale_ctl,scale_exp,pole,table):
 
         theta = np.linspace(0, 2 * np.pi, 100)
         #center, radius = [0.5, 0.5], 0.5
-        center, radius = [0.5, 0.5], 0.5
+	# correct center location to match latitude circle and contours.
+        center, radius = [0.5, 0.495], 0.50
         verts = np.vstack([np.sin(theta), np.cos(theta)]).T
         circle = mpath.Path(verts * radius + center)
         ax.set_boundary(circle, transform=ax.transAxes)
 
-        #ax.grid(color="r")
+	#add longitude and latitude mark
+	#lon
+        transf=data_crs._as_mpl_transform(ax)
+        ax.annotate("0", xy=(-1.85,57.5), xycoords=transf,fontsize=8)
+        ax.annotate("60E", xy=(57,59), xycoords=transf,fontsize=8)
+        ax.annotate("120E", xy=(120,60), xycoords=transf,fontsize=8)
+        ax.annotate("180", xy=(185.2,59.5), xycoords=transf,fontsize=8)
+        ax.annotate("120W", xy=(246, 52.5), xycoords=transf,fontsize=8)
+        ax.annotate("60W", xy=(297, 53), xycoords=transf,fontsize=8)
+	#lat
+        ax.annotate("60N", xy=(-4.5,61.3), xycoords=transf,fontsize=8)
+        ax.annotate("70N", xy=(-8.5,71), xycoords=transf,fontsize=8)
+        ax.annotate("80N", xy=(-17.5,81), xycoords=transf,fontsize=8)
 
         # title
-        ax.set_title(labels[i],loc="left",fontdict=plotSideTitle)
-        #ax.set_title("exp",fontdict=plotTitle)
+        ax.set_title(labels[i],loc="left",fontdict=plotSideTitle,alpha=0.5)
         ax.set_title(units,loc="right",fontdict=plotSideTitle)
-        #ax.set_xticks([0, 60, 120, 180, 240, 300, 359.99], crs=ccrs.PlateCarree())
-        #ax.set_yticks([-90, -60, -30, 0, 30, 60, 90], crs=ccrs.PlateCarree())
-        #ax.set_yticks([80, 90, 100], crs=projection)
-        #lon_formatter = LongitudeFormatter(zero_direction_label=True, number_format='.0f')
-        #lat_formatter = LatitudeFormatter()
-        #ax.xaxis.set_major_formatter(lon_formatter)
-        #ax.yaxis.set_major_formatter(lat_formatter)
-        #ax.tick_params(labelsize=8.0, direction='out', width=1)
-        #ax.xaxis.set_ticks_position('bottom')
-        #ax.yaxis.set_ticks_position('left')
 
         # color bar
         cbax = fig.add_axes((panel[i][0] + 0.35, panel[i][1] + 0.0354, 0.0326, 0.1792))

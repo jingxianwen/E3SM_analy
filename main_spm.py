@@ -51,7 +51,7 @@ os.environ["OUTDIR"]=os.environ["WORKDIR"]+"/"+os.environ["diagcase_name"]
 #varnms_2d=["TMQ"]
 #varnms_2d=["TVH"]
 #varnms_2d=["CLDMED"]
-varnms_2d=["Z3"]
+varnms_2d=["FLDS"]
 #varnms_3d=["Z3"]
 seasons=["DJF"]
 scale_ctl=1.
@@ -77,7 +77,7 @@ do_poleward_MSE_transport_N=0
 
 #-- set format of figure files
 os.environ["fig_show"]="True"
-os.environ["fig_save"]="True"
+os.environ["fig_save"]="False"
 os.environ["fig_suffix"]="png" # supported format: png, eps, pdf, etc.
 
 #-- create work directory (for figures and html)
@@ -175,8 +175,9 @@ if do_northw_energy_transport:
 
 if do_time_series_areamean:
     print("--do time series of areamean --")
-    seasn="09"
-    varnm="ICEFRAC"
+    seasn="ANN"
+    #varnm="ICEFRAC"
+    varnm="TS"
     time_series_areamean_model_vs_model(varnm,seasn,scale_ctl,scale_exp)
 
 if do_polar_stream_N:
