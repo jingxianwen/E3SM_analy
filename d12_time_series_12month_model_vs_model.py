@@ -120,6 +120,11 @@ def time_series_12month_model_vs_model():
     #print(MSE_exp)
     #print(ATM_ctl)
     #print(ATM_exp)
+
+    FSRF_OBS=np.array([37.,34.,31.,23.,-6.,-57,-85.,-37.,7.,36.,40.,52.])
+    FTOA_OBS=np.array([-162.,-162.,-143.,-100.,-56.,-10.,2.,-67.,-142.,-175.,-172.,-168.])
+    MSE_OBS=np.array([117.,128.,121.,102.,77.,78.,81.,91.,104.,108.,114.,115.])
+    ATM_OBS=np.array([-5.,1.,9.,22.,17.,15.,-2.,-20.,-30.,-25.,-15.,-7.])
   # make plot
     xlocs=range(1,13)
     yzero=np.zeros(12)
@@ -135,6 +140,11 @@ def time_series_12month_model_vs_model():
     line_MSE_exp=ax1.plot(xlocs,MSE_exp,ls=":",lw=2,label="MSE_exp",c="m")
     line_ATM_ctl=ax1.plot(xlocs,ATM_ctl,ls="-",lw=2,label="ATM_ctl",c="darkorange")
     line_ATM_exp=ax1.plot(xlocs,ATM_exp,ls=":",lw=2,label="ATM_exp",c="darkorange")
+    if latlim is 70.:
+       line_FSRF_OBS=ax1.plot(xlocs,FSRF_OBS,ls="--",marker="D",lw=2,c="y")
+       line_FTOA_OBS=ax1.plot(xlocs,FTOA_OBS,ls="--",marker="D",lw=2,c="c")
+       line_MSE_OBS=ax1.plot(xlocs,MSE_OBS,ls="--",marker="D",lw=2,c="m")
+       line_ATM_OBS=ax1.plot(xlocs,ATM_OBS,ls="--",marker="D",lw=2,c="darkorange")
     line_yzero=ax1.plot(xlocs,yzero,ls="-",lw=1,c="gray")
     ax1.set(xlim=[1,12])
     ax1.set_xticks(xlocs)
