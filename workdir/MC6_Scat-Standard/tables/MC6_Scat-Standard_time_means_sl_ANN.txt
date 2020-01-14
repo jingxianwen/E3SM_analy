@@ -1,3 +1,2 @@
                     Standard       MC6_Scat           Diff          Diff%
-North Pole
-TGCLDIWP[g/m2]         9.495          8.580         -0.916         -9.642%
+Global

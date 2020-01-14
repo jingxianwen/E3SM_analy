@@ -65,6 +65,8 @@ def poleward_MSE_transport_model_vs_model(varnm,season,scale_ctl,scale_exp,pole)
         #area mean tvh
         tvh_mean_ctl=tvh_tot_ctl/area_N
         tvh_mean_exp=tvh_tot_exp/area_N
+        #tvh_mean_ctl=np.mean(dtctl,axis=1)
+        #tvh_mean_exp=np.mean(dtexp,axis=1)
         tvh_mean_diff=tvh_mean_exp-tvh_mean_ctl
         
         print(tvh_mean_ctl)
