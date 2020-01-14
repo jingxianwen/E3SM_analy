@@ -58,7 +58,8 @@ def time_series_12month_model_vs_model():
         nlon=lon[:].size
     
      #Arctic area mean 
-        latbound1=np.min(np.where(lat[:]>60))
+        latlim=70.  #region limitation for latitude
+        latbound1=np.min(np.where(lat[:]>latlim))
         latbound2=nlat
      #Antarctic area mean 
         #latbound1=0
@@ -140,7 +141,7 @@ def time_series_12month_model_vs_model():
     ax1.set_xticklabels(xlabels)
     ax1.set_ylabel("W/m2")
     ax1.legend(loc="best")
-    ax1.set_title("Energy Budgets in Arctic (>60N)",fontsize=12,c="k")
+    ax1.set_title("Atmospheric energy budgets in Arctic (>"+str(int(latlim))+"N)",fontsize=12,c="k")
 
     line_FSRF_dif=ax2.plot(xlocs,FSRF_dif,ls="-",lw=2,label="FSRF_dif",c="y")
     line_FTOA_dif=ax2.plot(xlocs,FTOA_dif,ls="-",lw=2,label="FTOA_dif",c="c")
@@ -152,9 +153,9 @@ def time_series_12month_model_vs_model():
     ax2.set_xticklabels(xlabels)
     ax2.set_ylabel("W/m2")
     ax2.legend(loc="best")
-    ax2.set_title("Diff in Energy Budgets in Arctic (>60N)",fontsize=12,c="k")
+    ax2.set_title("Diff in atmospheric energy budgets in Arctic (>"+str(int(latlim))+"N)",fontsize=12,c="k")
     
-    fig.savefig("./workdir/others/time_series_12month_energybudget_arctic_60N.png",dpi=150)
+    fig.savefig("./workdir/others/time_series_12month_energybudget_arctic_"+str(int(latlim))+"N.png",dpi=150)
     show()
 
     #print(MSE_ctl)
