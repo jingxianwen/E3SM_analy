@@ -49,13 +49,20 @@ file_exp=netcdf_dataset(f2,"r")
 # read lat and lon
 lat=file_ctl.variables["lat"]
 lon=file_ctl.variables["lon"]
+lev=file_ctl.variables["lev"]
 
 #varnm="FSSDCLRS14"
-varnm="LWCF"
+varnm="T"
+units="K"
+#figure_name="lat_lon_"+varnm+"_"+exp_name+"-"+ctl_name+".png"
+figure_name="lat_lon_"+varnm+"500mb_"+exp_name+"-"+ctl_name+".png"
+
+lev250=np.min(np.where(lev[:]>250.))
+lev500=np.min(np.where(lev[:]>500.))
 
 # read data and calculate mean/min/max
-dtctl=file_ctl.variables[varnm] #*scale_ctl
-dtexp=file_exp.variables[varnm] #*scale_exp
+dtctl=file_ctl.variables[varnm][:,lev500,:,:] #*scale_ctl
+dtexp=file_exp.variables[varnm][:,lev500,:,:] #*scale_exp
 dtdif=dtexp[:,:,:]-dtctl[:,:,:]
 stats_ctl=get_area_mean_min_max(dtctl[:,:,:],lat[:])
 stats_exp=get_area_mean_min_max(dtexp[:,:,:],lat[:])
@@ -88,21 +95,23 @@ panel = [(0.1691, 0.6810, 0.6465, 0.2258), \
          (0.1691, 0.3961, 0.6465, 0.2258), \
          (0.1691, 0.1112, 0.6465, 0.2258), \
          ]
-labels=[exp_name,ctl_name,exp_name+"-"+ctl_name] 
+labels=[exp_name,ctl_name,varnm+" 500mb ("+exp_name+"-"+ctl_name+")"] 
 #units=parameters["units"]
-units="W/m2"
-for i in range(0,3):
+#units="W/m2"
+#units="kg/m2"
+for i in range(2,3):
    #1. first plot
     levels = None
     norm = None
     if i != 2:
         #cnlevels=np.array([0,10,20,30,40,50,60]) #parameters["contour_levs"]
         #cnlevels=np.arange(125,300,20)
-        cnlevels=np.arange(-45,115,10)
+        cnlevels=np.arange(20,150,10)
         #cnlevels=np.arange(0,80,8)
     else:
         #cnlevels=np.arange(-9,10,1.5)
-        cnlevels=np.arange(-6,7,1)
+        #cnlevels=np.arange(-7,8,1)
+        cnlevels=np.arange(-0.8,1.0,0.2)
         #cnlevels=np.array([-4,-3.5,-3,-2.5,-2,-1.5,-1.,-0.5,0.5,1.,1.5,2.,2.5,3.,3.5,4.]) #parameters["diff_levs"]
 
     #if len(cnlevels) >0:
@@ -125,7 +134,8 @@ for i in range(0,3):
         stats=stats_ctl
     else:
         dtplot=dtdif[:,:,:]
-        cmap="bwr" #parameters["colormap_diff"]
+        cmap="seismic" #parameters["colormap_diff"]
+        #cmap="RdYlBu_r" #parameters["colormap_diff"]
         stats=stats_dif
     p1 = ax.contourf(lon[:],lat[:],dtplot[0,:,:],\
                 transform=projection,\
@@ -168,7 +178,7 @@ fig.suptitle(varnm, x=0.5, y=0.96, fontdict=plotTitle)
 #if os.environ["fig_save"]=="True":
 #    fname="d1_lon_lat_contour_"+varnm+"_"+season+"."+os.environ["fig_suffix"]
 #    plt.savefig(os.environ["OUTDIR"]+"/figures/"+fname)
-#plt.savefig(varnm+"_"+exp_name+"-"+ctl_name+".png")
+plt.savefig(figure_name)
 #if os.environ["fig_show"]=="True":
 #    plt.show()
 plt.show()
