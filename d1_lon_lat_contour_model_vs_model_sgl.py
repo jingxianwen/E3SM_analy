@@ -21,22 +21,18 @@ from get_parameters import get_area_mean_min_max
 
 #def lon_lat_contour_model_vs_model(varnm,season,scale_ctl,scale_exp,table):
 # data path
-ctl_name="E3SM_standard" #os.environ["ctl_name"]
-exp_name="E3SM_modified_noEmis" #os.environ["exp_name"]
-#fpath_ctl=os.environ["fpath_ctl"]+"/"+os.environ["ctl_run_id"]+"_climo_"+season+".nc"
-#fpath_exp=os.environ["fpath_exp"]+"/"+os.environ["exp_run_id"]+"_climo_"+season+".nc"
-#fpath_ctl="./solar_TSIS_cesm211_standard-ETEST-f19_g17-ens1/atm/hist/"
-#fpath_exp="../DATA/tsis_ctl_cesm211_standard-ETEST-f19_g17-ens1/atm/hist/"
-fpath_ctl='/global/cscratch1/sd/xianwen/acme_scratch/cori-knl/E3SMv2_standard_PresSST_UMRadALLoff/climo/'
-fpath_exp='/global/cscratch1/sd/xianwen/acme_scratch/cori-knl/E3SMv2_modified_PresSST_UMRad_noEmis/climo/'
+ctl_name="standard" #os.environ["ctl_name"]
+exp_name="modified_noEmis" #os.environ["exp_name"]
+fpath_ctl='/global/cscratch1/sd/xianwen/acme_scratch/cori-knl/E3SMv2_offline_noEmis/climo/'
+fpath_exp='/global/cscratch1/sd/xianwen/acme_scratch/cori-knl/E3SMv2_offline_noEmis/climo/'
 
 #fpath_exp="../../E3SM_output/E3SM_coupled_restart_20TR_Yr2000-Scat.Year2000_2014/climo/"
  
 #f1=fpath_ctl+"solar_TSIS_cesm211_standard-ETEST-f19_g17-ens1.cam.h0.0001-01.nc"
 #f2=fpath_exp+"tsis_ctl_cesm211_standard-ETEST-f19_g17-ens1.cam.h0.0001-01.nc"
 #f1=fpath_ctl+"E3SM_DECKv1b_H1.ne30_climo_ANN.nc"
-f1=fpath_ctl+"E3SMv2_standard_PresSST_UMRadALLoff_climo_ANN.nc"
-f2=fpath_exp+"E3SMv2_modified_PresSST_UMRad_noEmis_climo_ANN.nc"
+f1=fpath_ctl+"E3SMv2_offline_noEmis_climo_ANN.nc"
+f2=fpath_exp+"E3SMv2_offline_noEmis_climo_ANN.nc"
 #f2=fpath_exp+"E3SM_coupled_restart_20TR_Yr2000-Scat.Year2000_2014_climo_ANN.nc"
 
 #f1=fpath_ctl+"solar_TSIS_cesm211_standard-ETEST-f19_g17-ens1.cam.h0.0001-01.nc"
@@ -52,17 +48,20 @@ lon=file_ctl.variables["lon"]
 lev=file_ctl.variables["lev"]
 
 #varnm="FSSDCLRS14"
-varnm="T"
-units="K"
-#figure_name="lat_lon_"+varnm+"_"+exp_name+"-"+ctl_name+".png"
-figure_name="lat_lon_"+varnm+"500mb_"+exp_name+"-"+ctl_name+".png"
+varnm="FLNS"
+varnm_off="FLNS_OFF"  #offline computation
+units=r"W/m$^2$"
+figure_name="lat_lon_"+varnm+"_"+exp_name+"-"+ctl_name+".png"
+#figure_name="lat_lon_"+varnm+"500mb_"+exp_name+"-"+ctl_name+".png"
 
-lev250=np.min(np.where(lev[:]>250.))
-lev500=np.min(np.where(lev[:]>500.))
+#lev250=np.min(np.where(lev[:]>250.))
+#lev500=np.min(np.where(lev[:]>500.))
 
 # read data and calculate mean/min/max
-dtctl=file_ctl.variables[varnm][:,lev500,:,:] #*scale_ctl
-dtexp=file_exp.variables[varnm][:,lev500,:,:] #*scale_exp
+#dtctl=file_ctl.variables[varnm][:,lev500,:,:] #*scale_ctl
+#dtexp=file_exp.variables[varnm][:,lev500,:,:] #*scale_exp
+dtctl=file_ctl.variables[varnm][:,:,:] #*scale_ctl
+dtexp=file_exp.variables[varnm_off][:,:,:] #*scale_exp
 dtdif=dtexp[:,:,:]-dtctl[:,:,:]
 stats_ctl=get_area_mean_min_max(dtctl[:,:,:],lat[:])
 stats_exp=get_area_mean_min_max(dtexp[:,:,:],lat[:])
@@ -95,23 +94,26 @@ panel = [(0.1691, 0.6810, 0.6465, 0.2258), \
          (0.1691, 0.3961, 0.6465, 0.2258), \
          (0.1691, 0.1112, 0.6465, 0.2258), \
          ]
-labels=[exp_name,ctl_name,varnm+" 500mb ("+exp_name+"-"+ctl_name+")"] 
+#labels=[exp_name,ctl_name,varnm+" 500mb ("+exp_name+"-"+ctl_name+")"] 
+labels=[exp_name,ctl_name,exp_name+"-"+ctl_name] 
 #units=parameters["units"]
 #units="W/m2"
 #units="kg/m2"
-for i in range(2,3):
+for i in range(0,3):
    #1. first plot
     levels = None
     norm = None
     if i != 2:
         #cnlevels=np.array([0,10,20,30,40,50,60]) #parameters["contour_levs"]
         #cnlevels=np.arange(125,300,20)
+        #cnlevels=np.arange(70,420,30)
         cnlevels=np.arange(20,150,10)
         #cnlevels=np.arange(0,80,8)
     else:
         #cnlevels=np.arange(-9,10,1.5)
         #cnlevels=np.arange(-7,8,1)
-        cnlevels=np.arange(-0.8,1.0,0.2)
+        #cnlevels=np.arange(-0.8,1.0,0.2)
+        cnlevels=np.arange(0.0,3.0,0.2)
         #cnlevels=np.array([-4,-3.5,-3,-2.5,-2,-1.5,-1.,-0.5,0.5,1.,1.5,2.,2.5,3.,3.5,4.]) #parameters["diff_levs"]
 
     #if len(cnlevels) >0:
@@ -121,21 +123,23 @@ for i in range(2,3):
     ax = fig.add_axes(panel[i],projection=ccrs.PlateCarree(central_longitude=180))
     #ax = fig.add_axes(panel[i],projection=projection)
     #ax.set_global()
-    cmap="PiYG_r" #parameters["colormap"]
+    #cmap="PiYG_r" #parameters["colormap"]
     #ax.set_extent([0, 180, -90, 90], crs=ccrs.PlateCarree())
     #p1 = ax.contourf(lon[:],lat[:],dtexp[0,:,:])
     if i == 0:
         dtplot=dtexp[:,:,:]
-        cmap="PiYG_r" #parameters["colormap"]
+        #cmap="PiYG_r" #parameters["colormap"]
+        cmap="jet" #parameters["colormap"]
         stats=stats_exp
     elif i == 1:
         dtplot=dtctl[:,:,:]
-        cmap="PiYG_r" #parameters["colormap"]
+        #cmap="PiYG_r" #parameters["colormap"]
+        cmap="jet" #parameters["colormap"]
         stats=stats_ctl
     else:
         dtplot=dtdif[:,:,:]
-        cmap="seismic" #parameters["colormap_diff"]
-        #cmap="RdYlBu_r" #parameters["colormap_diff"]
+        #cmap="seismic" #parameters["colormap_diff"]
+        cmap="YlOrRd" #parameters["colormap_diff"]
         stats=stats_dif
     p1 = ax.contourf(lon[:],lat[:],dtplot[0,:,:],\
                 transform=projection,\
@@ -178,7 +182,7 @@ fig.suptitle(varnm, x=0.5, y=0.96, fontdict=plotTitle)
 #if os.environ["fig_save"]=="True":
 #    fname="d1_lon_lat_contour_"+varnm+"_"+season+"."+os.environ["fig_suffix"]
 #    plt.savefig(os.environ["OUTDIR"]+"/figures/"+fname)
-plt.savefig(figure_name)
+plt.savefig("./figures/noEmis_offline/"+figure_name)
 #if os.environ["fig_show"]=="True":
 #    plt.show()
 plt.show()
