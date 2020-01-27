@@ -48,8 +48,8 @@ lon=file_ctl.variables["lon"]
 lev=file_ctl.variables["lev"]
 
 #varnm="FSSDCLRS14"
-varnm="FLNS"
-varnm_off="FLNS_OFF"  #offline computation
+varnm="FLUT"
+varnm_off="FLUT_OFF"  #offline computation
 units=r"W/m$^2$"
 figure_name="lat_lon_"+varnm+"_"+exp_name+"-"+ctl_name+".png"
 #figure_name="lat_lon_"+varnm+"500mb_"+exp_name+"-"+ctl_name+".png"
@@ -105,15 +105,15 @@ for i in range(0,3):
     norm = None
     if i != 2:
         #cnlevels=np.array([0,10,20,30,40,50,60]) #parameters["contour_levs"]
-        #cnlevels=np.arange(125,300,20)
+        cnlevels=np.arange(125,300,20)
         #cnlevels=np.arange(70,420,30)
-        cnlevels=np.arange(20,150,10)
+        #cnlevels=np.arange(20,150,10)
         #cnlevels=np.arange(0,80,8)
     else:
         #cnlevels=np.arange(-9,10,1.5)
-        #cnlevels=np.arange(-7,8,1)
+        cnlevels=np.arange(-7,8,1)
         #cnlevels=np.arange(-0.8,1.0,0.2)
-        cnlevels=np.arange(0.0,3.0,0.2)
+        #cnlevels=np.arange(0.0,3.0,0.2)
         #cnlevels=np.array([-4,-3.5,-3,-2.5,-2,-1.5,-1.,-0.5,0.5,1.,1.5,2.,2.5,3.,3.5,4.]) #parameters["diff_levs"]
 
     #if len(cnlevels) >0:
@@ -138,8 +138,8 @@ for i in range(0,3):
         stats=stats_ctl
     else:
         dtplot=dtdif[:,:,:]
-        #cmap="seismic" #parameters["colormap_diff"]
-        cmap="YlOrRd" #parameters["colormap_diff"]
+        cmap="seismic" #parameters["colormap_diff"]
+        #cmap="YlOrRd" #parameters["colormap_diff"]
         stats=stats_dif
     p1 = ax.contourf(lon[:],lat[:],dtplot[0,:,:],\
                 transform=projection,\
