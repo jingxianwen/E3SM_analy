@@ -23,16 +23,16 @@ from get_parameters import get_area_mean_min_max
 # data path
 ctl_name="standard" #os.environ["ctl_name"]
 exp_name="modified_noEmis" #os.environ["exp_name"]
-fpath_ctl='/global/cscratch1/sd/xianwen/acme_scratch/cori-knl/E3SMv2_offline_noEmis/climo/'
-fpath_exp='/global/cscratch1/sd/xianwen/acme_scratch/cori-knl/E3SMv2_offline_noEmis/climo/'
+fpath_ctl='/global/cscratch1/sd/xianwen/acme_scratch/cori-knl/E3SMv2_offline_ICEFLAG5_noEmis/climo/'
+fpath_exp='/global/cscratch1/sd/xianwen/acme_scratch/cori-knl/E3SMv2_offline_ICEFLAG5_noEmis/climo/'
 
 #fpath_exp="../../E3SM_output/E3SM_coupled_restart_20TR_Yr2000-Scat.Year2000_2014/climo/"
  
 #f1=fpath_ctl+"solar_TSIS_cesm211_standard-ETEST-f19_g17-ens1.cam.h0.0001-01.nc"
 #f2=fpath_exp+"tsis_ctl_cesm211_standard-ETEST-f19_g17-ens1.cam.h0.0001-01.nc"
 #f1=fpath_ctl+"E3SM_DECKv1b_H1.ne30_climo_ANN.nc"
-f1=fpath_ctl+"E3SMv2_offline_noEmis_climo_ANN.nc"
-f2=fpath_exp+"E3SMv2_offline_noEmis_climo_ANN.nc"
+f1=fpath_ctl+"E3SMv2_offline_ICEFLAG5_noEmis_climo_ANN.nc"
+f2=fpath_exp+"E3SMv2_offline_ICEFLAG5_noEmis_climo_ANN.nc"
 #f2=fpath_exp+"E3SM_coupled_restart_20TR_Yr2000-Scat.Year2000_2014_climo_ANN.nc"
 
 #f1=fpath_ctl+"solar_TSIS_cesm211_standard-ETEST-f19_g17-ens1.cam.h0.0001-01.nc"
@@ -48,8 +48,8 @@ lon=file_ctl.variables["lon"]
 lev=file_ctl.variables["lev"]
 
 #varnm="FSSDCLRS14"
-varnm="FLUT"
-varnm_off="FLUT_OFF"  #offline computation
+varnm="LWCF"
+varnm_off="LWCF_OFF"  #offline computation
 units=r"W/m$^2$"
 figure_name="lat_lon_"+varnm+"_"+exp_name+"-"+ctl_name+".png"
 #figure_name="lat_lon_"+varnm+"500mb_"+exp_name+"-"+ctl_name+".png"
@@ -104,8 +104,8 @@ for i in range(0,3):
     levels = None
     norm = None
     if i != 2:
-        #cnlevels=np.array([0,10,20,30,40,50,60]) #parameters["contour_levs"]
-        cnlevels=np.arange(125,300,20)
+        cnlevels=np.array([0,10,20,30,40,50,60]) #parameters["contour_levs"]
+        #cnlevels=np.arange(125,300,20)
         #cnlevels=np.arange(70,420,30)
         #cnlevels=np.arange(20,150,10)
         #cnlevels=np.arange(0,80,8)
@@ -182,7 +182,7 @@ fig.suptitle(varnm, x=0.5, y=0.96, fontdict=plotTitle)
 #if os.environ["fig_save"]=="True":
 #    fname="d1_lon_lat_contour_"+varnm+"_"+season+"."+os.environ["fig_suffix"]
 #    plt.savefig(os.environ["OUTDIR"]+"/figures/"+fname)
-plt.savefig("./figures/noEmis_offline/"+figure_name)
+plt.savefig("./figures/noEmis_offline_ICEFLAG5/"+figure_name)
 #if os.environ["fig_show"]=="True":
 #    plt.show()
 plt.show()
@@ -198,8 +198,8 @@ plt.close()
 #    return 0
     
 #def get_parameters(varnm,season):
-#    #list_rad=["FLUT","FLUTC","FLNT","FLNTC","FSNT","FSNTC","FSDS","FSDSC","FSNS","FSNSC"]
-#    if varnm == "FLUT":
+#    #list_rad=["LWCF","LWCFC","FLNT","FLNTC","FSNT","FSNTC","FSDS","FSDSC","FSNS","FSNSC"]
+#    if varnm == "LWCF":
 #        parameters={"units":"W/m2",\
 #		   "contour_levs":[120, 140, 160, 180, 200, 220, 240, 260, 280, 300],\
 #		   "diff_levs":[-50, -40, -30, -20, -10, -5, 5, 10, 20, 30, 40, 50],\

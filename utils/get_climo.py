@@ -24,12 +24,12 @@ def listToString(s):
 #caseid="E3SM_DECKv1b_H1.ne30"
 #monthly_data_path="./E3SM_DECKv1b_H1.ne30/remap_180x360"
 #caseid="E3SM_coupled_restart_20TR_Yr2000-emis_Scat.Year2000_2014"
-caseid="E3SMv2_offline_noEmis"
+caseid="E3SMv2_offline_ICEFLAG5_noEmis"
 print(caseid)
 #monthly_data_path="/raid00/xianwen/E3SM_output/"+caseid+"/remap_180x360"
 monthly_data_path="/global/cscratch1/sd/xianwen/acme_scratch/cori-knl/"+caseid+"/remap_180x360/"
 #years=np.arange(0001,0004)
-years=np.array(["2000","2001","2002"])
+years=np.array(["2000"])
 #years=np.array(["2000","2001","2002","2003","2004","2005","2006","2007","2008","2009","2010","2011","2012","2013","2014"])
 # Output
 months_to_do=["01","02","03","04","05","06","07","08","09","10","11","12"]
