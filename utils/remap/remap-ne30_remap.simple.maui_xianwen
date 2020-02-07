@@ -3,7 +3,11 @@
 
 # folder that regridded files will be
 #exp_name="E3SM_coupled_restart_20TR_Yr2000-Scat.Year2000_2014"
+<<<<<<< HEAD
 exp_name="E3SMv2_offline_ICEFLAG1_FAKE_noEmis"
+=======
+exp_name="E3SMv2_offline_ICEFLAG1_noEmis"
+>>>>>>> 4a0a163c14f2e3aa49b135c89da635559b93251d
 filein_folder="/global/cscratch1/sd/xianwen/acme_scratch/cori-knl/"$exp_name"/run"
 
 fileinlist=`ls $filein_folder/*cam.h0.*`
