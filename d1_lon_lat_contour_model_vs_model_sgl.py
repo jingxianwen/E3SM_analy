@@ -50,7 +50,7 @@ lev=file_ctl.variables["lev"]
 varnm="LWCF"
 varnm_off="LWCF_OFF"  #offline computation
 units=r"W/m$^2$"
-figure_name="lat_lon_"+varnm+"_"+exp_name+"-"+ctl_name+"_ICEFLAG1_MC6abs.png"
+figure_name="lat_lon_"+varnm+"_"+exp_name+"-"+ctl_name+"_ICEFLAG1_MC6abs_include_ssa.png"
 #figure_name="lat_lon_"+varnm+"500mb_"+exp_name+"-"+ctl_name+".png"
 
 #lev250=np.min(np.where(lev[:]>250.))
