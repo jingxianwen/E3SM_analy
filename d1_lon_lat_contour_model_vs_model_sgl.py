@@ -23,16 +23,15 @@ from get_parameters import get_area_mean_min_max
 # data path
 ctl_name="standard" #os.environ["ctl_name"]
 exp_name="modified_noEmis" #os.environ["exp_name"]
-fpath_ctl='/global/cscratch1/sd/xianwen/acme_scratch/cori-knl/E3SMv2_offline_ICEFLAG1_noEmis/climo/'
-fpath_exp='/global/cscratch1/sd/xianwen/acme_scratch/cori-knl/E3SMv2_offline_ICEFLAG1_noEmis/climo/'
+fpath_ctl='/global/cscratch1/sd/xianwen/acme_scratch/cori-knl/E3SMv2_offline_ICEFLAG1_noEmis/remap_180x360/'
+fpath_exp='/global/cscratch1/sd/xianwen/acme_scratch/cori-knl/E3SMv2_offline_ICEFLAG1_noEmis/remap_180x360/'
 
 #fpath_exp="../../E3SM_output/E3SM_coupled_restart_20TR_Yr2000-Scat.Year2000_2014/climo/"
  
-#f1=fpath_ctl+"solar_TSIS_cesm211_standard-ETEST-f19_g17-ens1.cam.h0.0001-01.nc"
-#f2=fpath_exp+"tsis_ctl_cesm211_standard-ETEST-f19_g17-ens1.cam.h0.0001-01.nc"
-#f1=fpath_ctl+"E3SM_DECKv1b_H1.ne30_climo_ANN.nc"
-f1=fpath_ctl+"E3SMv2_offline_ICEFLAG1_noEmis_climo_ANN.nc"
-f2=fpath_exp+"E3SMv2_offline_ICEFLAG1_noEmis_climo_ANN.nc"
+#f1=fpath_ctl+"E3SMv2_offline_ICEFLAG1_noEmis_climo_ANN.nc"
+#f2=fpath_exp+"E3SMv2_offline_ICEFLAG1_noEmis_climo_ANN.nc"
+f1=fpath_ctl+"E3SMv2_offline_ICEFLAG1_noEmis.cam.h0.2000-01-01-00000.nc"
+f2=fpath_exp+"E3SMv2_offline_ICEFLAG1_noEmis.cam.h0.2000-01-01-00000.nc"
 #f2=fpath_exp+"E3SM_coupled_restart_20TR_Yr2000-Scat.Year2000_2014_climo_ANN.nc"
 
 #f1=fpath_ctl+"solar_TSIS_cesm211_standard-ETEST-f19_g17-ens1.cam.h0.0001-01.nc"
