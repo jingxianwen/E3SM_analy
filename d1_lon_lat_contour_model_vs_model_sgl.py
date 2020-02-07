@@ -23,16 +23,16 @@ from get_parameters import get_area_mean_min_max
 # data path
 ctl_name="standard" #os.environ["ctl_name"]
 exp_name="modified_noEmis" #os.environ["exp_name"]
-fpath_ctl='/global/cscratch1/sd/xianwen/acme_scratch/cori-knl/E3SMv2_offline_ICEFLAG5_noEmis/climo/'
-fpath_exp='/global/cscratch1/sd/xianwen/acme_scratch/cori-knl/E3SMv2_offline_ICEFLAG5_noEmis/climo/'
+fpath_ctl='/global/cscratch1/sd/xianwen/acme_scratch/cori-knl/E3SMv2_offline_ICEFLAG1_noEmis/climo/'
+fpath_exp='/global/cscratch1/sd/xianwen/acme_scratch/cori-knl/E3SMv2_offline_ICEFLAG1_noEmis/climo/'
 
 #fpath_exp="../../E3SM_output/E3SM_coupled_restart_20TR_Yr2000-Scat.Year2000_2014/climo/"
  
 #f1=fpath_ctl+"solar_TSIS_cesm211_standard-ETEST-f19_g17-ens1.cam.h0.0001-01.nc"
 #f2=fpath_exp+"tsis_ctl_cesm211_standard-ETEST-f19_g17-ens1.cam.h0.0001-01.nc"
 #f1=fpath_ctl+"E3SM_DECKv1b_H1.ne30_climo_ANN.nc"
-f1=fpath_ctl+"E3SMv2_offline_ICEFLAG5_noEmis_climo_ANN.nc"
-f2=fpath_exp+"E3SMv2_offline_ICEFLAG5_noEmis_climo_ANN.nc"
+f1=fpath_ctl+"E3SMv2_offline_ICEFLAG1_noEmis_climo_ANN.nc"
+f2=fpath_exp+"E3SMv2_offline_ICEFLAG1_noEmis_climo_ANN.nc"
 #f2=fpath_exp+"E3SM_coupled_restart_20TR_Yr2000-Scat.Year2000_2014_climo_ANN.nc"
 
 #f1=fpath_ctl+"solar_TSIS_cesm211_standard-ETEST-f19_g17-ens1.cam.h0.0001-01.nc"
@@ -67,12 +67,14 @@ stats_ctl=get_area_mean_min_max(dtctl[:,:,:],lat[:])
 stats_exp=get_area_mean_min_max(dtexp[:,:,:],lat[:])
 stats_dif=get_area_mean_min_max(dtdif[:,:,:],lat[:])
 stats_difp=stats_dif[0]/stats_ctl[0]*100.
+#print(stats_ctl)
+#exit()
 # stats_out saves the two mean, their absolute difference and % difference.
-stats_out=np.array([0.,0.,0.,0.])
-stats_out[0]=np.float32(stats_ctl[0]).data #.compressed
-stats_out[1]=np.float32(stats_exp[0]).data #.compressed
-stats_out[2]=np.float32(stats_dif[0]).data #.compressed
-stats_out[3]=np.float32(stats_difp[0]) #.compressed
+#stats_out=np.array([0.,0.,0.,0.])
+#stats_out[0]=np.float32(stats_ctl[0]).data #.compressed
+#stats_out[1]=np.float32(stats_exp[0]).data #.compressed
+#stats_out[2]=np.float32(stats_dif[0]).data #.compressed
+#stats_out[3]=np.float32(stats_difp[0]) #.compressed
 
 # add cyclic
 dtctl=add_cyclic_point(dtctl[:,:,:])
@@ -130,17 +132,17 @@ for i in range(0,3):
         dtplot=dtexp[:,:,:]
         #cmap="PiYG_r" #parameters["colormap"]
         cmap="jet" #parameters["colormap"]
-        stats=stats_exp
+        stats=stats_exp[:]
     elif i == 1:
         dtplot=dtctl[:,:,:]
         #cmap="PiYG_r" #parameters["colormap"]
         cmap="jet" #parameters["colormap"]
-        stats=stats_ctl
+        stats=stats_ctl[:]
     else:
         dtplot=dtdif[:,:,:]
         cmap="seismic" #parameters["colormap_diff"]
         #cmap="YlOrRd" #parameters["colormap_diff"]
-        stats=stats_dif
+        stats=stats_dif[:]
     p1 = ax.contourf(lon[:],lat[:],dtplot[0,:,:],\
                 transform=projection,\
                 #norm=norm,\
@@ -182,7 +184,7 @@ fig.suptitle(varnm, x=0.5, y=0.96, fontdict=plotTitle)
 #if os.environ["fig_save"]=="True":
 #    fname="d1_lon_lat_contour_"+varnm+"_"+season+"."+os.environ["fig_suffix"]
 #    plt.savefig(os.environ["OUTDIR"]+"/figures/"+fname)
-plt.savefig("./figures/noEmis_offline_ICEFLAG5/"+figure_name)
+plt.savefig("./figures/noEmis_offline_ICEFLAG1/"+figure_name)
 #if os.environ["fig_show"]=="True":
 #    plt.show()
 plt.show()

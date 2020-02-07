@@ -173,7 +173,8 @@ def get_area_mean_min_max(varnm,lat):
     zonal_mean=varnm.mean(axis=2)
     #then calculate weighted global mean
     area_mean=np.average(zonal_mean,axis=1,weights=weights)
+    #print(area_mean)
    # 2. min and max
-    minval=varnm.min()
-    maxval=varnm.max()
-    return area_mean,minval,maxval
+    minval=varnm[0,:,:].min()
+    maxval=varnm[0,:,:].max()
+    return area_mean[0],minval,maxval
