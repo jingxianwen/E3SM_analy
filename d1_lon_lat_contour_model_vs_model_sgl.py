@@ -188,38 +188,3 @@ plt.savefig("./figures/noEmis_offline_ICEFLAG1/"+figure_name)
 #    plt.show()
 plt.show()
 plt.close()
-
-# write mean values to table    
-#    col1=varnm+"["+units+"]"
-#    line=col1+" "*(18-len(col1))+f'{stats_out[0]:10.3f}'+" "*5+\
-#         f'{stats_out[1]:10.3f}'+" "*5+\
-#         f'{stats_out[2]:10.3f}'+" "*5+\
-#         f'{stats_out[3]:10.3f}'+"%"
-#    table.write(line+"\r\n")
-#    return 0
-    
-#def get_parameters(varnm,season):
-#    #list_rad=["LWCF","LWCFC","FLNT","FLNTC","FSNT","FSNTC","FSDS","FSDSC","FSNS","FSNSC"]
-#    if varnm == "LWCF":
-#        parameters={"units":"W/m2",\
-#		   "contour_levs":[120, 140, 160, 180, 200, 220, 240, 260, 280, 300],\
-#		   "diff_levs":[-50, -40, -30, -20, -10, -5, 5, 10, 20, 30, 40, 50],\
-#                   "colormap":"PiYG_r",\
-#                   "colormap_diff":"bwr"\
-#		   }
-#    return parameters
-#
-#def get_area_mean_range(varnm,lat):
-#   # 1. area weighted average 
-#    #convert latitude to radians
-#    latr=np.deg2rad(lat)
-#    #use cosine of latitudes as weights for the mean
-#    weights=np.cos(latr)
-#    #first calculate zonal mean
-#    zonal_mean=varnm.mean(axis=2)
-#    #then calculate weighted global mean
-#    area_mean=np.average(zonal_mean,axis=1,weights=weights)
-#   # 2. min and max
-#    minval=varnm.min()
-#    maxval=varnm.max()
-#    return area_mean,minval,maxval
