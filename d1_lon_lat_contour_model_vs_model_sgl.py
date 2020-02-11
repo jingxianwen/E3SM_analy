@@ -23,15 +23,15 @@ from get_parameters import get_area_mean_min_max
 # data path
 ctl_name="standard" #os.environ["ctl_name"]
 exp_name="modified_noEmis" #os.environ["exp_name"]
-fpath_ctl='/global/cscratch1/sd/xianwen/acme_scratch/cori-knl/E3SMv2_offline_ICEFLAG1_FAKE_noEmis/remap_180x360/'
-fpath_exp='/global/cscratch1/sd/xianwen/acme_scratch/cori-knl/E3SMv2_offline_ICEFLAG1_FAKE_noEmis/remap_180x360/'
+fpath_ctl='/global/cscratch1/sd/xianwen/acme_scratch/cori-knl/E3SMv2_standard_PresSST_UMRadALLoff/climo/'
+fpath_exp='/global/cscratch1/sd/xianwen/acme_scratch/cori-knl/E3SMv2_UMRad_iceflag1_noEmis/remap_180x360/'
 
 #fpath_exp="../../E3SM_output/E3SM_coupled_restart_20TR_Yr2000-Scat.Year2000_2014/climo/"
  
-#f1=fpath_ctl+"E3SMv2_offline_ICEFLAG1_FAKE_noEmis_climo_ANN.nc"
-#f2=fpath_exp+"E3SMv2_offline_ICEFLAG1_FAKE_noEmis_climo_ANN.nc"
-f1=fpath_ctl+"E3SMv2_offline_ICEFLAG1_FAKE_noEmis.cam.h0.2000-01-01-00000.nc"
-f2=fpath_exp+"E3SMv2_offline_ICEFLAG1_FAKE_noEmis.cam.h0.2000-01-01-00000.nc"
+#f1=fpath_ctl+"E3SMv2_offline_ICEFLAG1_full2_noEmis_climo_ANN.nc"
+#f2=fpath_exp+"E3SMv2_offline_ICEFLAG1_full2_noEmis_climo_ANN.nc"
+f1=fpath_ctl+"E3SMv2_standard_PresSST_UMRadALLoff_climo_01.nc"
+f2=fpath_exp+"E3SMv2_UMRad_iceflag1_noEmis.cam.h0.0001-01.nc"
 #f2=fpath_exp+"E3SM_coupled_restart_20TR_Yr2000-Scat.Year2000_2014_climo_ANN.nc"
 
 #f1=fpath_ctl+"solar_TSIS_cesm211_standard-ETEST-f19_g17-ens1.cam.h0.0001-01.nc"
@@ -48,9 +48,9 @@ lev=file_ctl.variables["lev"]
 
 #varnm="FSSDCLRS14"
 varnm="LWCF"
-varnm_off="LWCF_OFF"  #offline computation
+#varnm_off="LWCF_OFF"  #offline computation
 units=r"W/m$^2$"
-figure_name="lat_lon_"+varnm+"_"+exp_name+"-"+ctl_name+"_ICEFLAG1_MC6abs_include_ssa.png"
+figure_name="lat_lon_"+varnm+"_"+exp_name+"-"+ctl_name+"_ICEFLAG1_full2.png"
 #figure_name="lat_lon_"+varnm+"500mb_"+exp_name+"-"+ctl_name+".png"
 
 #lev250=np.min(np.where(lev[:]>250.))
@@ -60,7 +60,7 @@ figure_name="lat_lon_"+varnm+"_"+exp_name+"-"+ctl_name+"_ICEFLAG1_MC6abs_include
 #dtctl=file_ctl.variables[varnm][:,lev500,:,:] #*scale_ctl
 #dtexp=file_exp.variables[varnm][:,lev500,:,:] #*scale_exp
 dtctl=file_ctl.variables[varnm][:,:,:] #*scale_ctl
-dtexp=file_exp.variables[varnm_off][:,:,:] #*scale_exp
+dtexp=file_exp.variables[varnm][:,:,:] #*scale_exp
 dtdif=dtexp[:,:,:]-dtctl[:,:,:]
 stats_ctl=get_area_mean_min_max(dtctl[:,:,:],lat[:])
 stats_exp=get_area_mean_min_max(dtexp[:,:,:],lat[:])
@@ -183,7 +183,7 @@ fig.suptitle(varnm, x=0.5, y=0.96, fontdict=plotTitle)
 #if os.environ["fig_save"]=="True":
 #    fname="d1_lon_lat_contour_"+varnm+"_"+season+"."+os.environ["fig_suffix"]
 #    plt.savefig(os.environ["OUTDIR"]+"/figures/"+fname)
-#plt.savefig("./figures/noEmis_offline_ICEFLAG1_FAKE/"+figure_name)
+#plt.savefig("./figures/noEmis_offline_ICEFLAG1_full2/"+figure_name)
 plt.savefig("./"+figure_name)
 #if os.environ["fig_show"]=="True":
 #    plt.show()
