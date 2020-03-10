@@ -23,15 +23,17 @@ from get_parameters import get_area_mean_min_max
 # data path
 ctl_name="standard" #os.environ["ctl_name"]
 exp_name="modified_noEmis" #os.environ["exp_name"]
-fpath_ctl='/global/cscratch1/sd/xianwen/acme_scratch/cori-knl/E3SMv2_standard_PresSST_UMRadALLoff/climo/'
-fpath_exp='/global/cscratch1/sd/xianwen/acme_scratch/cori-knl/E3SM_v2_UMRad_iceflag3_AMIP_ALLon/climo/'
+#fpath_ctl='/global/cscratch1/sd/xianwen/E3SM_simulations/E3SM_v2_alpha_AMIP_RRTMGP.ne30_ne30.cori-knl/run/'
+fpath_ctl='/global/cscratch1/sd/xianwen/E3SM_simulations/E3SM_v2_alpha_AMIP_RRTMGP.ne30_ne30.cori-knl/archive/remap_180x360/'
+fpath_exp='/global/cscratch1/sd/xianwen/E3SM_simulations/E3SM_v2_alpha_AMIP_RRTMGP_UMRad_debug.ne30_ne30.cori-knl/archive_UMRad/remap_180x360/'
 
 #fpath_exp="../../E3SM_output/E3SM_coupled_restart_20TR_Yr2000-Scat.Year2000_2014/climo/"
  
 #f1=fpath_ctl+"E3SMv2_offline_ICEFLAG1_full2_noEmis_climo_ANN.nc"
 #f2=fpath_exp+"E3SMv2_offline_ICEFLAG1_full2_noEmis_climo_ANN.nc"
-f1=fpath_ctl+"E3SMv2_standard_PresSST_UMRadALLoff_climo_ANN.nc"
-f2=fpath_exp+"E3SM_v2_UMRad_iceflag3_AMIP_ALLon_climo_ANN.nc"
+#f1=fpath_ctl+"E3SM_v2_alpha_AMIP_RRTMGP.ne30_ne30.cori-knl.cam.h0.0001-01-01-00000.nc"
+f1=fpath_ctl+"E3SM_v2_alpha_AMIP_RRTMGP.ne30_ne30.cori-knl.cam.h0.0001-01-01-00000.nc"
+f2=fpath_exp+"E3SM_v2_alpha_AMIP_RRTMGP_UMRad_debug.ne30_ne30.cori-knl.cam.h0.0001-01-01-00000.nc"
 #f2=fpath_exp+"E3SM_coupled_restart_20TR_Yr2000-Scat.Year2000_2014_climo_ANN.nc"
 
 #f1=fpath_ctl+"solar_TSIS_cesm211_standard-ETEST-f19_g17-ens1.cam.h0.0001-01.nc"
@@ -50,7 +52,7 @@ lev=file_ctl.variables["lev"]
 varnm="LWCF"
 #varnm_off="LWCF_OFF"  #offline computation
 units=r"W/m$^2$"
-figure_name="lat_lon_"+varnm+"_"+exp_name+"-"+ctl_name+"_ICEFLAG3_ANN.png"
+figure_name="lat_lon_"+varnm+"_RRTMGP_"+exp_name+"-"+ctl_name+"_ICEFLAG3_ANN.png"
 #figure_name="lat_lon_"+varnm+"500mb_"+exp_name+"-"+ctl_name+".png"
 
 #lev250=np.min(np.where(lev[:]>250.))
@@ -112,7 +114,7 @@ for i in range(0,3):
         #cnlevels=np.arange(0,80,8)
     else:
         #cnlevels=np.arange(-9,10,1.5)
-        cnlevels=np.arange(-7,8,1)*2.
+        cnlevels=np.arange(-7,8,1)
         #cnlevels=np.arange(-0.8,1.0,0.2)
         #cnlevels=np.arange(0.0,3.0,0.2)
         #cnlevels=np.array([-4,-3.5,-3,-2.5,-2,-1.5,-1.,-0.5,0.5,1.,1.5,2.,2.5,3.,3.5,4.]) #parameters["diff_levs"]
