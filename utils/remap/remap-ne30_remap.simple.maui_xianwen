@@ -6,7 +6,7 @@
 exp_name="E3SM_v2_alpha_AMIP_RRTMGP_UMRad_restart_addvar2_debug.ne30_ne30.cori-knl"
 #exp_name="E3SM_v2_alpha_AMIP_RRTMGP.ne30_ne30.cori-knl"
 #filein_folder="/global/cscratch1/sd/xianwen/acme_scratch/cori-knl/"$exp_name"/run"
-filein_folder="/global/cscratch1/sd/xianwen/E3SM_simulations/"$exp_name"/run/restart_run_no_tsatm_import/"
+filein_folder="/global/cscratch1/sd/xianwen/E3SM_simulations/"$exp_name"/run/restart_run_tsatm_import/"
 
 fileinlist=`ls $filein_folder/*cam.h0.200*`
 #for eachfile in $filelist
