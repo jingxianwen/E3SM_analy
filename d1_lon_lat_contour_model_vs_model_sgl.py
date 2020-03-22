@@ -107,8 +107,8 @@ for i in range(0,3):
     levels = None
     norm = None
     if i != 2:
-        cnlevels=np.array([0,10,20,30,40,50,60]) #parameters["contour_levs"]
-        #cnlevels=np.arange(125,300,20)
+        #cnlevels=np.array([0,10,20,30,40,50,60]) #parameters["contour_levs"]
+        cnlevels=np.arange(125,300,20)
         #cnlevels=np.arange(70,420,30)
         #cnlevels=np.arange(20,150,10)
         #cnlevels=np.arange(0,80,8)
