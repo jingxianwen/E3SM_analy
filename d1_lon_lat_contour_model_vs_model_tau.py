@@ -48,7 +48,7 @@ lon=file_ctl.variables["lon"]
 lev=file_ctl.variables["lev"]
 
 #varnm="FSSDCLRS14"
-varnm="TAUA_ICE_SUM"
+varnm="TAU_LIQ_SUM"
 #varnm_off="LWCF_OFF"  #offline computation
 #units=r"W/m$^2$"
 units=""
@@ -111,7 +111,7 @@ for i in range(0,3):
         #cnlevels=np.arange(125,300,20)
         #cnlevels=np.arange(70,420,30)
         #cnlevels=np.arange(20,150,10)
-        cnlevels=np.arange(0,18,2)
+        cnlevels=np.arange(0,80,10)
     else:
         #cnlevels=np.arange(-9,10,1.5)
         cnlevels=np.arange(-8,10,2)
