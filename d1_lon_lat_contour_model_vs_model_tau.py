@@ -111,10 +111,10 @@ for i in range(0,3):
         #cnlevels=np.arange(125,300,20)
         #cnlevels=np.arange(70,420,30)
         #cnlevels=np.arange(20,150,10)
-        cnlevels=np.arange(0,1,0.1)
+        cnlevels=np.arange(0,18,2)
     else:
         #cnlevels=np.arange(-9,10,1.5)
-        cnlevels=np.arange(-1,1.2,0.2)
+        cnlevels=np.arange(-8,10,2)
         #cnlevels=np.arange(-0.8,1.0,0.2)
         #cnlevels=np.arange(0.0,3.0,0.2)
         #cnlevels=np.array([-4,-3.5,-3,-2.5,-2,-1.5,-1.,-0.5,0.5,1.,1.5,2.,2.5,3.,3.5,4.]) #parameters["diff_levs"]
