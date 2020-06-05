@@ -48,7 +48,7 @@ lon=file_ctl.variables["lon"]
 lev=file_ctl.variables["lev"]
 
 #varnm="FSSDCLRS14"
-varnm="TAU_LIQ_SUM"
+varnm="TAU_SNO_SUM"
 #varnm_off="LWCF_OFF"  #offline computation
 #units=r"W/m$^2$"
 units=""
