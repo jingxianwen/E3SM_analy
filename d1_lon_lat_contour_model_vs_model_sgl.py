@@ -22,9 +22,9 @@ from get_parameters import get_area_mean_min_max
 #def lon_lat_contour_model_vs_model(varnm,season,scale_ctl,scale_exp,table):
 # data path
 ctl_name="standardref" #os.environ["ctl_name"]
-exp_name="modifiedref" #os.environ["exp_name"]
+exp_name="modifiedbug" #os.environ["exp_name"]
 fpath_ctl='/global/cscratch1/sd/xianwen/E3SM_simulations/E3SM_v2_alpha_AMIP_RRTMG_UMRad_tau_ice.ne30_ne30.cori-knl/archive/remap_180x360_orig/'
-fpath_exp='/global/cscratch1/sd/xianwen/E3SM_simulations/E3SM_v2_alpha_AMIP_RRTMG_UMRad_tau_ice.ne30_ne30.cori-knl/archive/remap_180x360_UMRad/'
+fpath_exp='/global/cscratch1/sd/xianwen/E3SM_simulations/E3SM_v2_alpha_AMIP_RRTMG_UMRad_tau_ice.ne30_ne30.cori-knl/archive/remap_180x360_UMRad_bug/'
 
 #fpath_exp="../../E3SM_output/E3SM_coupled_restart_20TR_Yr2000-Scat.Year2000_2014/climo/"
  
@@ -48,7 +48,7 @@ lon=file_ctl.variables["lon"]
 lev=file_ctl.variables["lev"]
 
 #varnm="FSSDCLRS14"
-varnm="FLUTC"
+varnm="LWCF"
 #varnm_off="LWCF_OFF"  #offline computation
 units=r"W/m$^2$"
 #units=""
@@ -108,10 +108,10 @@ for i in range(0,3):
     norm = None
     if i != 2:
         #cnlevels=np.array([0,10,20,30,40,50,60]) #parameters["contour_levs"]
-        cnlevels=np.arange(125,300,20)
+        #cnlevels=np.arange(125,300,20)
         #cnlevels=np.arange(70,420,30)
         #cnlevels=np.arange(20,150,10)
-        #cnlevels=np.arange(0,80,8)
+        cnlevels=np.arange(0,80,8)
         #cnlevels=np.arange(0,1,0.1)
     else:
         #cnlevels=np.arange(-9,10,1.5)
