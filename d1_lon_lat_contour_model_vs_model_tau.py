@@ -48,7 +48,7 @@ lon=file_ctl.variables["lon"]
 lev=file_ctl.variables["lev"]
 
 #varnm="FSSDCLRS14"
-varnm="G_ICE"
+varnm="TAUA_ICE_SUM"
 #varnm_off="LWCF_OFF"  #offline computation
 #units=r"W/m$^2$"
 units=""
@@ -56,13 +56,13 @@ figure_name="lat_lon_"+varnm+"_RRTMG_"+exp_name+"-"+ctl_name+"_UMRad_startover.p
 #figure_name="lat_lon_"+varnm+"500mb_"+exp_name+"-"+ctl_name+".png"
 
 #lev250=np.min(np.where(lev[:]>250.))
-lev500=np.min(np.where(lev[:]>500.))
+#lev500=np.min(np.where(lev[:]>500.))
 
 # read data and calculate mean/min/max
-dtctl=file_ctl.variables[varnm][:,lev500,:,:] #*scale_ctl
-dtexp=file_exp.variables[varnm][:,lev500,:,:] #*scale_exp
-#dtctl=file_ctl.variables[varnm][:,:,:] #*scale_ctl
-#dtexp=file_exp.variables[varnm][:,:,:] #*scale_exp
+#dtctl=file_ctl.variables[varnm][:,lev500,:,:] #*scale_ctl
+#dtexp=file_exp.variables[varnm][:,lev500,:,:] #*scale_exp
+dtctl=file_ctl.variables[varnm][:,:,:] #*scale_ctl
+dtexp=file_exp.variables[varnm][:,:,:] #*scale_exp
 dtdif=dtexp[:,:,:]-dtctl[:,:,:]
 stats_ctl=get_area_mean_min_max(dtctl[:,:,:],lat[:])
 stats_exp=get_area_mean_min_max(dtexp[:,:,:],lat[:])
@@ -110,12 +110,13 @@ for i in range(0,3):
         #cnlevels=np.array([0,10,20,30,40,50,60]) #parameters["contour_levs"]
         #cnlevels=np.arange(125,300,20)
         #cnlevels=np.arange(70,420,30)
-        cnlevels=np.arange(0,1,0.1)
+        #cnlevels=np.arange(0,1,0.1)
+        cnlevels=np.arange(0,12,1)
         #cnlevels=np.arange(0,80,10)
     else:
         #cnlevels=np.arange(-9,10,1.5)
-        #cnlevels=np.arange(-8,10,2)
-        cnlevels=np.arange(-0.8,1.0,0.2)
+        cnlevels=np.arange(-8,10,2)
+        #cnlevels=np.arange(-0.8,1.0,0.2)
         #cnlevels=np.arange(0.0,3.0,0.2)
         #cnlevels=np.array([-4,-3.5,-3,-2.5,-2,-1.5,-1.,-0.5,0.5,1.,1.5,2.,2.5,3.,3.5,4.]) #parameters["diff_levs"]
 

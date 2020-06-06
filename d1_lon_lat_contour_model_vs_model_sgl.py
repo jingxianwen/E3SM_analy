@@ -48,7 +48,7 @@ lon=file_ctl.variables["lon"]
 lev=file_ctl.variables["lev"]
 
 #varnm="FSSDCLRS14"
-varnm="LWCF"
+varnm="FLUTC"
 #varnm_off="LWCF_OFF"  #offline computation
 units=r"W/m$^2$"
 #units=""
@@ -108,10 +108,10 @@ for i in range(0,3):
     norm = None
     if i != 2:
         #cnlevels=np.array([0,10,20,30,40,50,60]) #parameters["contour_levs"]
-        #cnlevels=np.arange(125,300,20)
+        cnlevels=np.arange(125,300,20)
         #cnlevels=np.arange(70,420,30)
         #cnlevels=np.arange(20,150,10)
-        cnlevels=np.arange(0,80,8)
+        #cnlevels=np.arange(0,80,8)
         #cnlevels=np.arange(0,1,0.1)
     else:
         #cnlevels=np.arange(-9,10,1.5)
