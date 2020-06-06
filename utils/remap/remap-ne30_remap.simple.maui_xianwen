@@ -15,7 +15,7 @@ fileinlist=`ls $filein_folder/*cam.h0.*`
 #done
 #exit 0
 #fileout_folder="/global/cscratch1/sd/xianwen/acme_scratch/cori-knl/"$exp_name"/remap_180x360"
-fileout_folder="/global/cscratch1/sd/xianwen/E3SM_simulations/"$exp_name"/archive/remap_180x360_UMRad_bug"
+fileout_folder="/global/cscratch1/sd/xianwen/E3SM_simulations/"$exp_name"/archive/remap_180x360_UMRad_bug2"
 # mapfile to convert an  E3SM ne30 file
 #mapfile="/raid00/xianwen/E3SM_remap/map_ne30np4_to_fv257x512_bilin.20150901.nc"
 #mapfile="./map_ne30np4_to_fv257x512_bilin.20150901.nc"
