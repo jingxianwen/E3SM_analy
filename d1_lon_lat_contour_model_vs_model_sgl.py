@@ -22,17 +22,19 @@ from get_parameters import get_area_mean_min_max
 #def lon_lat_contour_model_vs_model(varnm,season,scale_ctl,scale_exp,table):
 # data path
 ctl_name="standard" #os.environ["ctl_name"]
-exp_name="modified_scat" #os.environ["exp_name"]
-fpath_ctl='/global/cscratch1/sd/xianwen/E3SM_simulations/E3SM_v2_alpha_AMIP_RRTMG_UMRad_startover.ne30_ne30.cori-knl/archive/remap_180x360_orig/'
-fpath_exp='/global/cscratch1/sd/xianwen/E3SM_simulations/E3SM_v2_alpha_AMIP_RRTMG_UMRad_startover.ne30_ne30.cori-knl/archive/remap_180x360_UMRad_startover/'
+exp_name="modifiedbug" #os.environ["exp_name"]
+#fpath_ctl='/global/cscratch1/sd/xianwen/E3SM_simulations/E3SM_v2_alpha_AMIP_RRTMG_UMRad_startover.ne30_ne30.cori-knl/archive/remap_180x360_orig/'
+#fpath_exp='/global/cscratch1/sd/xianwen/E3SM_simulations/E3SM_v2_alpha_AMIP_RRTMG_UMRad_startover.ne30_ne30.cori-knl/archive/remap_180x360_UMRad_bug/'
+fpath_ctl='/global/cscratch1/sd/xianwen/E3SM_simulations/E3SM_v2_alpha_AMIP_RRTMG_UMRad_tau_ice.ne30_ne30.cori-knl/archive/remap_180x360_orig/'
+fpath_exp='/global/cscratch1/sd/xianwen/E3SM_simulations/E3SM_v2_alpha_AMIP_RRTMG_UMRad_tau_ice.ne30_ne30.cori-knl/archive/remap_180x360_UMRad_bug/'
 
 #fpath_exp="../../E3SM_output/E3SM_coupled_restart_20TR_Yr2000-Scat.Year2000_2014/climo/"
  
 #f1=fpath_ctl+"E3SMv2_offline_ICEFLAG1_full2_noEmis_climo_ANN.nc"
 #f2=fpath_exp+"E3SMv2_offline_ICEFLAG1_full2_noEmis_climo_ANN.nc"
 #f1=fpath_ctl+"E3SM_v2_alpha_AMIP_RRTMGP.ne30_ne30.cori-knl.cam.h0.0001-01-01-00000.nc"
-f1=fpath_ctl+"E3SM_v2_alpha_AMIP_RRTMG_UMRad_startover.ne30_ne30.cori-knl.cam.h0.2000-01-01-07200.nc"
-f2=fpath_exp+"E3SM_v2_alpha_AMIP_RRTMG_UMRad_startover.ne30_ne30.cori-knl.cam.h0.2000-01-01-07200.nc"
+f1=fpath_ctl+"E3SM_v2_alpha_AMIP_RRTMG_UMRad_tau_ice.ne30_ne30.cori-knl.cam.h0.2000-01-01-07200.nc"
+f2=fpath_exp+"E3SM_v2_alpha_AMIP_RRTMG_UMRad_tau_ice.ne30_ne30.cori-knl.cam.h0.2000-01-01-07200.nc"
 #f2=fpath_exp+"E3SM_coupled_restart_20TR_Yr2000-Scat.Year2000_2014_climo_ANN.nc"
 
 #f1=fpath_ctl+"solar_TSIS_cesm211_standard-ETEST-f19_g17-ens1.cam.h0.0001-01.nc"
@@ -110,10 +112,10 @@ for i in range(0,3):
     norm = None
     if i != 2:
         #cnlevels=np.array([0,10,20,30,40,50,60]) #parameters["contour_levs"]
-        cnlevels=np.arange(125,300,20)
+        #cnlevels=np.arange(125,300,20)
         #cnlevels=np.arange(70,420,30)
         #cnlevels=np.arange(20,150,10)
-        #cnlevels=np.arange(0,80,8)
+        cnlevels=np.arange(0,80,8)
         #cnlevels=np.arange(0,1,0.1)
     else:
         #cnlevels=np.arange(-9,10,1.5)
