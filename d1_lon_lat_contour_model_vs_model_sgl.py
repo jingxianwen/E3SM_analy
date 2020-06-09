@@ -52,7 +52,7 @@ varnm="FLUTC"
 #varnm_off="LWCF_OFF"  #offline computation
 units=r"W/m$^2$"
 #units=""
-figure_name="lat_lon_"+varnm+"_RRTMG_"+exp_name+"-"+ctl_name+"_UMRad_startover.png"
+figure_name="lat_lon_"+varnm+"_RRTMG_"+exp_name+"-"+ctl_name+".png"
 #figure_name="lat_lon_"+varnm+"500mb_"+exp_name+"-"+ctl_name+".png"
 
 #lev250=np.min(np.where(lev[:]>250.))
