@@ -31,8 +31,8 @@ fpath_exp='/global/cscratch1/sd/xianwen/E3SM_simulations/E3SM_v2_alpha_AMIP_RRTM
 #f1=fpath_ctl+"E3SMv2_offline_ICEFLAG1_full2_noEmis_climo_ANN.nc"
 #f2=fpath_exp+"E3SMv2_offline_ICEFLAG1_full2_noEmis_climo_ANN.nc"
 #f1=fpath_ctl+"E3SM_v2_alpha_AMIP_RRTMGP.ne30_ne30.cori-knl.cam.h0.0001-01-01-00000.nc"
-f1=fpath_ctl+"E3SM_v2_alpha_AMIP_RRTMG_UMRad_startover.ne30_ne30.cori-knl.cam.h0.2000-01-01-03600.nc"
-f2=fpath_exp+"E3SM_v2_alpha_AMIP_RRTMG_UMRad_startover.ne30_ne30.cori-knl.cam.h0.2000-01-01-03600.nc"
+f1=fpath_ctl+"E3SM_v2_alpha_AMIP_RRTMG_UMRad_startover.ne30_ne30.cori-knl.cam.h0.2000-01-01-00000.nc"
+f2=fpath_exp+"E3SM_v2_alpha_AMIP_RRTMG_UMRad_startover.ne30_ne30.cori-knl.cam.h0.2000-01-01-00000.nc"
 #f2=fpath_exp+"E3SM_coupled_restart_20TR_Yr2000-Scat.Year2000_2014_climo_ANN.nc"
 
 #f1=fpath_ctl+"solar_TSIS_cesm211_standard-ETEST-f19_g17-ens1.cam.h0.0001-01.nc"
