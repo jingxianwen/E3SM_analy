@@ -48,11 +48,11 @@ lon=file_ctl.variables["lon"]
 lev=file_ctl.variables["lev"]
 
 #varnm="FSSDCLRS14"
-varnm="FLUTC"
+varnm="FLDS"
 #varnm_off="LWCF_OFF"  #offline computation
 units=r"W/m$^2$"
 #units=""
-figure_name="lat_lon_"+varnm+"_RRTMG_"+exp_name+"-"+ctl_name+".png"
+figure_name="lat_lon_"+"FLUS"+"_RRTMG_"+exp_name+"-"+ctl_name+".png"
 #figure_name="lat_lon_"+varnm+"500mb_"+exp_name+"-"+ctl_name+".png"
 
 #lev250=np.min(np.where(lev[:]>250.))
@@ -61,8 +61,10 @@ lev500=np.min(np.where(lev[:]>500.))
 # read data and calculate mean/min/max
 #dtctl=file_ctl.variables[varnm][:,lev500,:,:] #*scale_ctl
 #dtexp=file_exp.variables[varnm][:,lev500,:,:] #*scale_exp
-dtctl=file_ctl.variables[varnm][:,:,:] #*scale_ctl
-dtexp=file_exp.variables[varnm][:,:,:] #*scale_exp
+#dtctl=file_ctl.variables[varnm][:,:,:] #*scale_ctl
+#dtexp=file_exp.variables[varnm][:,:,:] #*scale_exp
+dtctl=file_ctl.variables["FLNS"][:,:,:]+file_ctl.variables[varnm][:,:,:] #*scale_ctl
+dtexp=file_exp.variables["FLNS"][:,:,:]+file_exp.variables[varnm][:,:,:] #*scale_exp
 dtdif=dtexp[:,:,:]-dtctl[:,:,:]
 stats_ctl=get_area_mean_min_max(dtctl[:,:,:],lat[:])
 stats_exp=get_area_mean_min_max(dtexp[:,:,:],lat[:])
