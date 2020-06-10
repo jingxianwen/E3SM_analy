@@ -23,18 +23,18 @@ from get_parameters import get_area_mean_min_max
 # data path
 ctl_name="abs" #os.environ["ctl_name"]
 exp_name="scat" #os.environ["exp_name"]
-#fpath_ctl='/global/cscratch1/sd/xianwen/E3SM_simulations/E3SM_v2_alpha_AMIP_RRTMG_UMRad_startover.ne30_ne30.cori-knl/archive/remap_180x360_abs/'
-#fpath_exp='/global/cscratch1/sd/xianwen/E3SM_simulations/E3SM_v2_alpha_AMIP_RRTMG_UMRad_startover.ne30_ne30.cori-knl/archive/remap_180x360_UMRad_bug/'
-fpath_ctl='/global/cscratch1/sd/xianwen/E3SM_simulations/E3SM_v2_alpha_AMIP_RRTMG_UMRad_startover.ne30_ne30.cori-knl/archive/remap_180x360_UMRad_abs/'
-fpath_exp='/global/cscratch1/sd/xianwen/E3SM_simulations/E3SM_v2_alpha_AMIP_RRTMG_UMRad_startover.ne30_ne30.cori-knl/archive/remap_180x360_UMRad_scat/'
+#fpath_ctl='/global/cscratch1/sd/xianwen/E3SM_simulations/E3SM_v2_alpha_AMIP_RRTMGP_UMRad_startover.ne30_ne30.cori-knl/archive/remap_180x360_abs/'
+#fpath_exp='/global/cscratch1/sd/xianwen/E3SM_simulations/E3SM_v2_alpha_AMIP_RRTMGP_UMRad_startover.ne30_ne30.cori-knl/archive/remap_180x360_UMRad_bug/'
+fpath_ctl='/global/cscratch1/sd/xianwen/E3SM_simulations/E3SM_v2_alpha_AMIP_RRTMGP_UMRad_startover.ne30_ne30.cori-knl/archive/remap_180x360_UMRad_abs/'
+fpath_exp='/global/cscratch1/sd/xianwen/E3SM_simulations/E3SM_v2_alpha_AMIP_RRTMGP_UMRad_startover.ne30_ne30.cori-knl/archive/remap_180x360_UMRad_scat/'
 
 #fpath_exp="../../E3SM_output/E3SM_coupled_restart_20TR_Yr2000-Scat.Year2000_2014/climo/"
  
 #f1=fpath_ctl+"E3SMv2_offline_ICEFLAG1_full2_noEmis_climo_ANN.nc"
 #f2=fpath_exp+"E3SMv2_offline_ICEFLAG1_full2_noEmis_climo_ANN.nc"
-#f1=fpath_ctl+"E3SM_v2_alpha_AMIP_RRTMGP.ne30_ne30.cori-knl.cam.h0.0001-01-01-00000.nc"
-f1=fpath_ctl+"E3SM_v2_alpha_AMIP_RRTMG_UMRad_startover.ne30_ne30.cori-knl.cam.h0.2000-01-01-07200.nc"
-f2=fpath_exp+"E3SM_v2_alpha_AMIP_RRTMG_UMRad_startover.ne30_ne30.cori-knl.cam.h0.2000-01-01-07200.nc"
+#f1=fpath_ctl+"E3SM_v2_alpha_AMIP_RRTMGPP.ne30_ne30.cori-knl.cam.h0.0001-01-01-00000.nc"
+f1=fpath_ctl+"E3SM_v2_alpha_AMIP_RRTMGP_UMRad_startover.ne30_ne30.cori-knl.cam.h0.2000-01-01-07200.nc"
+f2=fpath_exp+"E3SM_v2_alpha_AMIP_RRTMGP_UMRad_startover.ne30_ne30.cori-knl.cam.h0.2000-01-01-07200.nc"
 #f2=fpath_exp+"E3SM_coupled_restart_20TR_Yr2000-Scat.Year2000_2014_climo_ANN.nc"
 
 #f1=fpath_ctl+"solar_TSIS_cesm211_standard-ETEST-f19_g17-ens1.cam.h0.0001-01.nc"
@@ -51,10 +51,10 @@ lev=file_ctl.variables["lev"]
 
 #varnm="FSSDCLRS14"
 varnm="LWCF"
-#varnm_off="FLUTC_OFF"  #offline computation
+#varnm_off="LWCF_OFF"  #offline computation
 units=r"W/m$^2$"
 #units=""
-figure_name="lat_lon_"+varnm+"_RRTMG_"+exp_name+"-"+ctl_name+".png"
+figure_name="lat_lon_"+varnm+"_RRTMGP_"+exp_name+"-"+ctl_name+".png"
 #figure_name="lat_lon_"+varnm+"500mb_"+exp_name+"-"+ctl_name+".png"
 
 #lev250=np.min(np.where(lev[:]>250.))
