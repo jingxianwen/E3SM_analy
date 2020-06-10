@@ -3,8 +3,8 @@
 
 # folder that regridded files will be
 #exp_name="E3SM_coupled_restart_20TR_Yr2000-Scat.Year2000_2014"
-#exp_name="E3SM_v2_alpha_AMIP_RRTMG_UMRad_startover.ne30_ne30.cori-knl"
-exp_name="E3SM_v2_alpha_AMIP_RRTMGP_UMRad_startover.ne30_ne30.cori-knl"
+exp_name="E3SM_v2_alpha_AMIP_RRTMG_UMRad_startover.ne30_ne30.cori-knl"
+#exp_name="E3SM_v2_alpha_AMIP_RRTMGP_UMRad_startover.ne30_ne30.cori-knl"
 #filein_folder="/global/cscratch1/sd/xianwen/acme_scratch/cori-knl/"$exp_name"/run"
 filein_folder="/global/cscratch1/sd/xianwen/E3SM_simulations/"$exp_name"/run/"
 
@@ -15,7 +15,7 @@ fileinlist=`ls $filein_folder/*cam.h0.2000-01-*`
 #done
 #exit 0
 #fileout_folder="/global/cscratch1/sd/xianwen/acme_scratch/cori-knl/"$exp_name"/remap_180x360"
-fileout_folder="/global/cscratch1/sd/xianwen/E3SM_simulations/"$exp_name"/archive/remap_180x360_UMRad_abs_rest"
+fileout_folder="/global/cscratch1/sd/xianwen/E3SM_simulations/"$exp_name"/archive/remap_180x360_UMRad_orig_new"
 # mapfile to convert an  E3SM ne30 file
 #mapfile="/raid00/xianwen/E3SM_remap/map_ne30np4_to_fv257x512_bilin.20150901.nc"
 #mapfile="./map_ne30np4_to_fv257x512_bilin.20150901.nc"
