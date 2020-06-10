@@ -21,12 +21,12 @@ from get_parameters import get_area_mean_min_max
 
 #def lon_lat_contour_model_vs_model(varnm,season,scale_ctl,scale_exp,table):
 # data path
-ctl_name="orig" #os.environ["ctl_name"]
-exp_name="orig_new" #os.environ["exp_name"]
-#fpath_ctl='/global/cscratch1/sd/xianwen/E3SM_simulations/E3SM_v2_alpha_AMIP_RRTMG_UMRad_startover.ne30_ne30.cori-knl/archive/remap_180x360_orig/'
+ctl_name="orig_new" #os.environ["ctl_name"]
+exp_name="scat" #os.environ["exp_name"]
+#fpath_ctl='/global/cscratch1/sd/xianwen/E3SM_simulations/E3SM_v2_alpha_AMIP_RRTMG_UMRad_startover.ne30_ne30.cori-knl/archive/remap_180x360_orig_new/'
 #fpath_exp='/global/cscratch1/sd/xianwen/E3SM_simulations/E3SM_v2_alpha_AMIP_RRTMG_UMRad_startover.ne30_ne30.cori-knl/archive/remap_180x360_UMRad_bug/'
-fpath_ctl='/global/cscratch1/sd/xianwen/E3SM_simulations/E3SM_v2_alpha_AMIP_RRTMG_UMRad_startover.ne30_ne30.cori-knl/archive/remap_180x360_orig/'
-fpath_exp='/global/cscratch1/sd/xianwen/E3SM_simulations/E3SM_v2_alpha_AMIP_RRTMG_UMRad_startover.ne30_ne30.cori-knl/archive/remap_180x360_orig_new/'
+fpath_ctl='/global/cscratch1/sd/xianwen/E3SM_simulations/E3SM_v2_alpha_AMIP_RRTMG_UMRad_startover.ne30_ne30.cori-knl/archive/remap_180x360_orig_new/'
+fpath_exp='/global/cscratch1/sd/xianwen/E3SM_simulations/E3SM_v2_alpha_AMIP_RRTMG_UMRad_startover.ne30_ne30.cori-knl/archive/remap_180x360_UMRad_scat/'
 
 #fpath_exp="../../E3SM_output/E3SM_coupled_restart_20TR_Yr2000-Scat.Year2000_2014/climo/"
  
@@ -102,7 +102,7 @@ panel = [(0.1691, 0.6810, 0.6465, 0.2258), \
          (0.1691, 0.1112, 0.6465, 0.2258), \
          ]
 #labels=[exp_name,ctl_name,varnm+" 500mb ("+exp_name+"-"+ctl_name+")"] 
-labels=[exp_name+"(Note: no emis.)",ctl_name,exp_name+"-"+ctl_name] 
+labels=[exp_name,ctl_name,exp_name+"-"+ctl_name] 
 #units=parameters["units"]
 #units="W/m2"
 #units="kg/m2"
