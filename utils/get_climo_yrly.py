@@ -23,15 +23,15 @@ def listToString(s):
 # Input 
 #caseid="E3SM_DECKv1b_H1.ne30"
 #monthly_data_path="./E3SM_DECKv1b_H1.ne30/remap_180x360"
-caseid="E3SMv2_modified_PresSST_UMRad_noEmis"
+caseid="CMIP_RRTMG_UMRad_abs.ne30_ne30.cori-knl"
 print(caseid)
 #monthly_data_path="/raid00/xianwen/E3SM_output/"+caseid+"/remap_180x360"
-monthly_data_path="/global/cscratch1/sd/xianwen/acme_scratch/cori-knl/"+caseid+"/remap_180x360/"
+monthly_data_path="/global/cscratch1/sd/xianwen/E3SM_simulations/"+caseid+"/archive/remap_180x360/"
 #years=np.arange(0001,0004)
-years=np.arange(2001,2011)
+years=np.arange(2000,2005)
 print(years)
-months_all=["01","02","03","04","05","06","07","08","09","10","11","12"]
-
+#months_all=["01","02","03","04","05","06","07","08","09","10","11","12"]
+months_all=[]
 # check file existence:
 for yr in years:
     for mon in months_all:
@@ -43,10 +43,11 @@ print("All input files have been found ^_^")
 #print(years)
 #exit()
 # Output
-months_to_do=["01","02","03","04","05","06","07","08","09","10","11","12"]
+#months_to_do=["01","02","03","04","05","06","07","08","09","10","11","12"]
+months_to_do=[]
 seasons_to_do=["ANN","DJF","MAM","JJA","SON"]
 
-out_path=monthly_data_path+"../climo"
+out_path=monthly_data_path+"../climo/yby"
 if not os.path.exists(out_path):
      os.makedirs(out_path)
 # create list of all input files
@@ -161,6 +162,7 @@ for seasn in seasons_to_do:
            os.system(cmd)
            os.system("mv "+list_file+" "+out_path+"/")
 
+exit()
 # Seasonal and Annual climo
 for seasn in seasons_to_do:
     print("-- doing "+seasn+" --")
