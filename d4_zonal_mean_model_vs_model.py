@@ -264,7 +264,7 @@ ax2.set_title("Differences (Scat - Abs)",fontsize=14) #+var_long_name,fontsize=1
 ax2.set_ylabel(units,fontsize=14)
 ax2.set_xlabel("Latitude",fontsize=14)
 ax2.set_xlim(-90,90)
-ax2.set_ylim(-1.2,0.8)
+ax2.set_ylim(-1.2,0.9)
 plt.xticks(fontsize=12)
 plt.yticks(fontsize=12)
 
