@@ -3,7 +3,7 @@
 
 # folder that regridded files will be
 #exp_name="E3SM_coupled_restart_20TR_Yr2000-Scat.Year2000_2014"
-exp_name="AMIP_RRTMG_UMRad_scat.ne30_ne30.cori-knl"
+exp_name="AMIP_RRTMG_UMRad_abs.ne30_ne30.cori-knl"
 #exp_name="E3SM_v2_alpha_AMIP_RRTMGP_UMRad_startover.ne30_ne30.cori-knl"
 #filein_folder="/global/cscratch1/sd/xianwen/acme_scratch/cori-knl/"$exp_name"/run"
 filein_folder="/global/cscratch1/sd/xianwen/E3SM_simulations/"$exp_name"/run/"
