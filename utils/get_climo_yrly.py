@@ -4,6 +4,7 @@
 
 import os
 import numpy as np
+import glob
 
 #==========================================
 # Python function to convert a list 
@@ -25,186 +26,134 @@ def listToString(s):
 #monthly_data_path="./E3SM_DECKv1b_H1.ne30/remap_180x360"
 caseid="AMIP_RRTMG_UMRad_scat.ne30_ne30.cori-knl"
 print(caseid)
-#monthly_data_path="/raid00/xianwen/E3SM_output/"+caseid+"/remap_180x360"
 monthly_data_path="/global/cscratch1/sd/xianwen/E3SM_simulations/"+caseid+"/archive/remap_180x360/"
-#years=np.arange(0001,0004)
 years=np.arange(2000,2007)
 print(years)
-#months_all=["01","02","03","04","05","06","07","08","09","10","11","12"]
-months_all=[]
-# check file existence:
-for yr in years:
-    for mon in months_all:
-       checkfile=monthly_data_path+"/"+caseid+".cam.h0."+str(yr)+"-"+mon+".nc"
-       if not os.path.exists(checkfile):
-           print(checkfile+" not found!!!")
-           exit()
-print("All input files have been found ^_^")
-#print(years)
-#exit()
-# Output
-#months_to_do=["01","02","03","04","05","06","07","08","09","10","11","12"]
-months_to_do=[]
+months_all=["01","02","03","04","05","06","07","08","09","10","11","12"]
 seasons_to_do=["ANN","DJF","MAM","JJA","SON"]
 
+# creat output path if not existent:
 out_path=monthly_data_path+"../climo/yby"
 if not os.path.exists(out_path):
      os.makedirs(out_path)
-# create list of all input files
-# Monthly climo
-for mon in months_to_do:
-    print("-- doing "+mon+" --")
-    list_file="list_"+mon+".txt"
-    if os.path.exists(list_file):
-        os.system("rm "+list_file)
-    for yr in years:
-        os.system("ls "+monthly_data_path+"/*"+str(yr)+"-"+mon+".nc|cat >>"+list_file)
-    #os.system("ls "+monthly_data_path+"/*"+mon+".nc >"+list_file)
-    with open(list_file) as f_obj:
-        lines=f_obj.readlines()
-    lists=listToString(lines)
-    
-    climo_file=caseid+"_climo_"+mon+".nc"
-    cmd="ncra "+lists+" "+out_path+"/"+climo_file
-    os.system(cmd)
-    os.system("mv "+list_file+" "+out_path+"/")
 
-# Seasonal and Annual mean for each year
+# check existence of input files
+for yr in years:
+    for mon in months_all:
+       file_now=monthly_data_path+"/"+caseid+".cam.h0."+str(yr)+"-"+mon+".nc"
+       if not os.path.exists(file_now):
+           print("File not found!!! ",file_now)
+           exit()
+print('--- All input files are found ^_^ ---')
+
+# check existence of old output file:
 for seasn in seasons_to_do:
-    print("-- doing "+seasn+"for each year --")
+    climo_file=out_path+"/"+caseid+"_"+seasn+"_"+str(yr)+".nc"
+    if os.path.exists(climo_file):
+        print('Old file exists!!! '+out_path+"/"+climo_file)
+        exit()
+print('--- Output directory is clean ^_^ ---')
+
+# compute seasonal and annual mean for each year
+for seasn in seasons_to_do:
+    print("-- doing "+seasn+" for each year --")
     if seasn == "ANN":
         mons_for_seasn=["01","02","03","04","05","06","07","08","09","10","11","12"]
         for yr in years:
-           list_file="list_"+seasn+"_"+str(yr)+".txt"
-           if os.path.exists(list_file):
-               os.system("rm "+list_file)
-           for mons in mons_for_seasn:
-               os.system("ls "+monthly_data_path+"/*"+str(yr)+"-"+mons+".nc|cat >>"+list_file)
+          # create list of input files
+            list_file="list_"+seasn+"_"+str(yr)+".txt"
+            if os.path.exists(list_file):
+                os.system("rm "+list_file)
+            for mons in mons_for_seasn:
+                os.system("ls "+monthly_data_path+"/*"+str(yr)+"-"+mons+".nc|cat >>"+list_file)
 
-           with open(list_file) as f_obj:
-               lines=f_obj.readlines()
-           lists=listToString(lines)
-           
-           climo_file=caseid+"_"+seasn+"_"+str(yr)+".nc"
-           cmd="ncra "+lists+" "+out_path+"/"+climo_file
-           os.system(cmd)
-           os.system("mv "+list_file+" "+out_path+"/")
+            with open(list_file) as f_obj:
+                lines=f_obj.readlines()
+            lists=listToString(lines)
+
+          # compute means from the listed files above    
+            climo_file=caseid+"_"+seasn+"_"+str(yr)+".nc"
+            cmd="ncra "+lists+" "+out_path+"/"+climo_file
+            os.system(cmd)
+            os.system("mv "+list_file+" "+out_path+"/")
 
     elif seasn == "DJF":
         mons_for_seasn=["12","01","02"]
         for yr in years:
-           list_file="list_"+seasn+"_"+str(yr)+".txt"
-           if os.path.exists(list_file):
-               os.system("rm "+list_file)
-           for mons in mons_for_seasn:
-               os.system("ls "+monthly_data_path+"/*"+str(yr)+"-"+mons+".nc|cat >>"+list_file)
+          # create list of input files
+            list_file="list_"+seasn+"_"+str(yr)+".txt"
+            if os.path.exists(list_file):
+                os.system("rm "+list_file)
+            for mons in mons_for_seasn:
+                os.system("ls "+monthly_data_path+"/*"+str(yr)+"-"+mons+".nc|cat >>"+list_file)
 
-           with open(list_file) as f_obj:
-               lines=f_obj.readlines()
-           lists=listToString(lines)
+            with open(list_file) as f_obj:
+                lines=f_obj.readlines()
+            lists=listToString(lines)
            
-           climo_file=caseid+"_"+seasn+"_"+str(yr)+".nc"
-           cmd="ncra "+lists+" "+out_path+"/"+climo_file
-           os.system(cmd)
-           os.system("mv "+list_file+" "+out_path+"/")
+          # compute means from the listed files above    
+            climo_file=caseid+"_"+seasn+"_"+str(yr)+".nc"
+            cmd="ncra "+lists+" "+out_path+"/"+climo_file
+            os.system(cmd)
+            os.system("mv "+list_file+" "+out_path+"/")
 
     elif seasn == "MAM":
         mons_for_seasn=["03","04","05"]
         for yr in years:
-           list_file="list_"+seasn+"_"+str(yr)+".txt"
-           if os.path.exists(list_file):
-               os.system("rm "+list_file)
-           for mons in mons_for_seasn:
-               os.system("ls "+monthly_data_path+"/*"+str(yr)+"-"+mons+".nc|cat >>"+list_file)
+          # create list of input files
+            list_file="list_"+seasn+"_"+str(yr)+".txt"
+            if os.path.exists(list_file):
+                os.system("rm "+list_file)
+            for mons in mons_for_seasn:
+                os.system("ls "+monthly_data_path+"/*"+str(yr)+"-"+mons+".nc|cat >>"+list_file)
 
-           with open(list_file) as f_obj:
-               lines=f_obj.readlines()
-           lists=listToString(lines)
+            with open(list_file) as f_obj:
+                lines=f_obj.readlines()
+            lists=listToString(lines)
            
-           climo_file=caseid+"_"+seasn+"_"+str(yr)+".nc"
-           cmd="ncra "+lists+" "+out_path+"/"+climo_file
-           os.system(cmd)
-           os.system("mv "+list_file+" "+out_path+"/")
+          # compute means from the listed files above    
+            climo_file=caseid+"_"+seasn+"_"+str(yr)+".nc"
+            cmd="ncra "+lists+" "+out_path+"/"+climo_file
+            os.system(cmd)
+            os.system("mv "+list_file+" "+out_path+"/")
 
     elif seasn == "JJA":
         mons_for_seasn=["06","07","08"]
         for yr in years:
-           list_file="list_"+seasn+"_"+str(yr)+".txt"
-           if os.path.exists(list_file):
-               os.system("rm "+list_file)
-           for mons in mons_for_seasn:
-               os.system("ls "+monthly_data_path+"/*"+str(yr)+"-"+mons+".nc|cat >>"+list_file)
+          # create list of input files
+            list_file="list_"+seasn+"_"+str(yr)+".txt"
+            if os.path.exists(list_file):
+                os.system("rm "+list_file)
+            for mons in mons_for_seasn:
+                os.system("ls "+monthly_data_path+"/*"+str(yr)+"-"+mons+".nc|cat >>"+list_file)
 
-           with open(list_file) as f_obj:
-               lines=f_obj.readlines()
-           lists=listToString(lines)
+            with open(list_file) as f_obj:
+                lines=f_obj.readlines()
+            lists=listToString(lines)
            
-           climo_file=caseid+"_"+seasn+"_"+str(yr)+".nc"
-           cmd="ncra "+lists+" "+out_path+"/"+climo_file
-           os.system(cmd)
-           os.system("mv "+list_file+" "+out_path+"/")
+          # compute means from the listed files above    
+            climo_file=caseid+"_"+seasn+"_"+str(yr)+".nc"
+            cmd="ncra "+lists+" "+out_path+"/"+climo_file
+            os.system(cmd)
+            os.system("mv "+list_file+" "+out_path+"/")
 
     elif seasn == "SON":
         mons_for_seasn=["09","10","11"]
         for yr in years:
-           list_file="list_"+seasn+"_"+str(yr)+".txt"
-           if os.path.exists(list_file):
-               os.system("rm "+list_file)
-           for mons in mons_for_seasn:
-               os.system("ls "+monthly_data_path+"/*"+str(yr)+"-"+mons+".nc|cat >>"+list_file)
+          # create list of input files
+            list_file="list_"+seasn+"_"+str(yr)+".txt"
+            if os.path.exists(list_file):
+                os.system("rm "+list_file)
+            for mons in mons_for_seasn:
+                os.system("ls "+monthly_data_path+"/*"+str(yr)+"-"+mons+".nc|cat >>"+list_file)
 
-           with open(list_file) as f_obj:
-               lines=f_obj.readlines()
-           lists=listToString(lines)
+            with open(list_file) as f_obj:
+                lines=f_obj.readlines()
+            lists=listToString(lines)
            
-           climo_file=caseid+"_"+seasn+"_"+str(yr)+".nc"
-           cmd="ncra "+lists+" "+out_path+"/"+climo_file
-           os.system(cmd)
-           os.system("mv "+list_file+" "+out_path+"/")
+          # compute means from the listed files above    
+            climo_file=caseid+"_"+seasn+"_"+str(yr)+".nc"
+            cmd="ncra "+lists+" "+out_path+"/"+climo_file
+            os.system(cmd)
+            os.system("mv "+list_file+" "+out_path+"/")
 
-exit()
-# Seasonal and Annual climo
-for seasn in seasons_to_do:
-    print("-- doing "+seasn+" --")
-    list_file="list_"+seasn+".txt"
-    if seasn == "ANN":
-        mons_for_seasn=["01","02","03","04","05","06","07","08","09","10","11","12"]
-        if os.path.exists(list_file):
-            os.system("rm "+list_file)
-        for mons in mons_for_seasn:
-            os.system("ls "+out_path+"/*climo_"+mons+".nc|cat >>"+list_file)
-    elif seasn == "DJF":
-        mons_for_seasn=["12","01","02"]
-        if os.path.exists(list_file):
-            os.system("rm "+list_file)
-        for mons in mons_for_seasn:
-            os.system("ls "+out_path+"/*climo_"+mons+".nc|cat >>"+list_file)
-    elif seasn == "MAM":
-        mons_for_seasn=["03","04","05"]
-        if os.path.exists(list_file):
-            os.system("rm "+list_file)
-        for mons in mons_for_seasn:
-            os.system("ls "+out_path+"/*climo_"+mons+".nc|cat >>"+list_file)
-    elif seasn == "JJA":
-        mons_for_seasn=["06","07","08"]
-        if os.path.exists(list_file):
-            os.system("rm "+list_file)
-        for mons in mons_for_seasn:
-            os.system("ls "+out_path+"/*climo_"+mons+".nc|cat >>"+list_file)
-    elif seasn == "SON":
-        mons_for_seasn=["09","10","11"]
-        if os.path.exists(list_file):
-            os.system("rm "+list_file)
-        for mons in mons_for_seasn:
-            os.system("ls "+out_path+"/*climo_"+mons+".nc|cat >>"+list_file)
-
-    with open(list_file) as f_obj:
-        lines=f_obj.readlines()
-    lists=listToString(lines)
-    
-    climo_file=caseid+"_climo_"+seasn+".nc"
-    cmd="ncra "+lists+" "+out_path+"/"+climo_file
-    os.system(cmd)
-    os.system("mv "+list_file+" "+out_path+"/")
-print("----- all finished -----")
-	
