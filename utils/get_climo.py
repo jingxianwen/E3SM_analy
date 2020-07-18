@@ -68,7 +68,7 @@ for mon in months_to_do:
 for seasn in seasons_to_do:
     climo_file=out_path+caseid+"_climo_"+seasn+".nc"
     if os.path.exists(climo_file):
-        print('Ole file exists!!! '+climo_file)
+        print('Ole file exists!!! ',climo_file)
         exit()
 print('--- Output directory is clean ^_^ ---')
 
