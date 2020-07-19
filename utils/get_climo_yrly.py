@@ -65,8 +65,8 @@ for seasn in seasons_to_do:
             list_file="list_"+seasn+"_"+str(yr)+".txt"
             if os.path.exists(list_file):
                 os.system("rm "+list_file)
-            for mons in mons_for_seasn:
-                os.system("ls "+monthly_data_path+"*"+str(yr)+"-"+mons+".nc|cat >>"+list_file)
+            for mon in mons_for_seasn:
+                os.system("ls "+monthly_data_path+"*"+str(yr)+"-"+mon+".nc|cat >>"+list_file)
 
             with open(list_file) as f_obj:
                 lines=f_obj.readlines()
@@ -85,8 +85,8 @@ for seasn in seasons_to_do:
             list_file="list_"+seasn+"_"+str(yr)+".txt"
             if os.path.exists(list_file):
                 os.system("rm "+list_file)
-            for mons in mons_for_seasn:
-                os.system("ls "+monthly_data_path+"*"+str(yr)+"-"+mons+".nc|cat >>"+list_file)
+            for mon in mons_for_seasn:
+                os.system("ls "+monthly_data_path+"*"+str(yr)+"-"+mon+".nc|cat >>"+list_file)
 
             with open(list_file) as f_obj:
                 lines=f_obj.readlines()
@@ -105,8 +105,8 @@ for seasn in seasons_to_do:
             list_file="list_"+seasn+"_"+str(yr)+".txt"
             if os.path.exists(list_file):
                 os.system("rm "+list_file)
-            for mons in mons_for_seasn:
-                os.system("ls "+monthly_data_path+"*"+str(yr)+"-"+mons+".nc|cat >>"+list_file)
+            for mon in mons_for_seasn:
+                os.system("ls "+monthly_data_path+"*"+str(yr)+"-"+mon+".nc|cat >>"+list_file)
 
             with open(list_file) as f_obj:
                 lines=f_obj.readlines()
@@ -125,8 +125,8 @@ for seasn in seasons_to_do:
             list_file="list_"+seasn+"_"+str(yr)+".txt"
             if os.path.exists(list_file):
                 os.system("rm "+list_file)
-            for mons in mons_for_seasn:
-                os.system("ls "+monthly_data_path+"*"+str(yr)+"-"+mons+".nc|cat >>"+list_file)
+            for mon in mons_for_seasn:
+                os.system("ls "+monthly_data_path+"*"+str(yr)+"-"+mon+".nc|cat >>"+list_file)
 
             with open(list_file) as f_obj:
                 lines=f_obj.readlines()
@@ -145,8 +145,8 @@ for seasn in seasons_to_do:
             list_file="list_"+seasn+"_"+str(yr)+".txt"
             if os.path.exists(list_file):
                 os.system("rm "+list_file)
-            for mons in mons_for_seasn:
-                os.system("ls "+monthly_data_path+"*"+str(yr)+"-"+mons+".nc|cat >>"+list_file)
+            for mon in mons_for_seasn:
+                os.system("ls "+monthly_data_path+"*"+str(yr)+"-"+mon+".nc|cat >>"+list_file)
 
             with open(list_file) as f_obj:
                 lines=f_obj.readlines()

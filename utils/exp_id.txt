@@ -1,0 +1,1 @@
+AMIP_RRTMG_UMRad_scat.ne30_ne30.cori-knl

@@ -23,13 +23,16 @@ def listToString(s):
 
 # Input 
 #caseid="E3SMv2_standard_PresSST_UMRadALLoff"
-caseid="CMIP_RRTMG_UMRad_abs.ne30_ne30.cori-knl"
+fcaseid=open('exp_id.txt','r')
+caseid=fcaseid.read()
 print(caseid)
-#monthly_data_path="/raid00/xianwen/E3SM_output/"+caseid+"/remap_180x360"
-#monthly_data_path="/global/cscratch1/sd/xianwen/acme_scratch/cori-knl/"+caseid+"/remap_180x360/"
+
 monthly_data_path="/global/cscratch1/sd/xianwen/E3SM_simulations/"+caseid+"/archive/remap_180x360/"
 #years=np.arange(2000,2013)
-years=np.array(["2000","2001","2002","2003","2004","2005","2006","2007","2008","2009","2010","2011","2012"])
+if caseid[0:4] == 'AMIP':
+    years=np.array(["2000","2001","2002","2003","2004","2005","2006","2007","2008","2009","2010"])
+else:
+    years=np.array(["2000","2001","2002","2003","2004","2005","2006","2007","2008","2009","2010","2011","2012"])
 # Output
 months_to_do=["01","02","03","04","05","06","07","08","09","10","11","12"]
 seasons_to_do=["ANN","DJF","MAM","JJA","SON"]
@@ -103,35 +106,35 @@ if do_seasonal:
            mons_for_seasn=["01","02","03","04","05","06","07","08","09","10","11","12"]
            if os.path.exists(list_file):
                os.system("rm "+list_file)
-           for mons in mons_for_seasn:
+           for mon in mons_for_seasn:
                file_now=glob.glob(monthly_data_path+"*cam.h0*"+str(yr)+"-"+mon+".nc")[0]
                os.system("ls "+file_now+"|cat >>"+list_file)
        elif seasn == "DJF":
            mons_for_seasn=["12","01","02"]
            if os.path.exists(list_file):
                os.system("rm "+list_file)
-           for mons in mons_for_seasn:
+           for mon in mons_for_seasn:
                file_now=glob.glob(monthly_data_path+"*cam.h0*"+str(yr)+"-"+mon+".nc")[0]
                os.system("ls "+file_now+"|cat >>"+list_file)
        elif seasn == "MAM":
            mons_for_seasn=["03","04","05"]
            if os.path.exists(list_file):
                os.system("rm "+list_file)
-           for mons in mons_for_seasn:
+           for mon in mons_for_seasn:
                file_now=glob.glob(monthly_data_path+"*cam.h0*"+str(yr)+"-"+mon+".nc")[0]
                os.system("ls "+file_now+"|cat >>"+list_file)
        elif seasn == "JJA":
            mons_for_seasn=["06","07","08"]
            if os.path.exists(list_file):
                os.system("rm "+list_file)
-           for mons in mons_for_seasn:
+           for mon in mons_for_seasn:
                file_now=glob.glob(monthly_data_path+"*cam.h0*"+str(yr)+"-"+mon+".nc")[0]
                os.system("ls "+file_now+"|cat >>"+list_file)
        elif seasn == "SON":
            mons_for_seasn=["09","10","11"]
            if os.path.exists(list_file):
                os.system("rm "+list_file)
-           for mons in mons_for_seasn:
+           for mon in mons_for_seasn:
                file_now=glob.glob(monthly_data_path+"*cam.h0*"+str(yr)+"-"+mon+".nc")[0]
                os.system("ls "+file_now+"|cat >>"+list_file)
    

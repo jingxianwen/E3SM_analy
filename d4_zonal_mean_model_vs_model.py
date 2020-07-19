@@ -37,7 +37,7 @@ exp_pref="CMIP_RRTMG_UMRad_scat.ne30_ne30.cori-knl"
 fpath_ctl="/global/cscratch1/sd/xianwen/E3SM_simulations/"+ctl_pref+"/archive/climo/yby/"
 fpath_exp="/global/cscratch1/sd/xianwen/E3SM_simulations/"+exp_pref+"/archive/climo/yby/"
  
-years=np.arange(2000,2005) 
+years=np.arange(2000,2013) 
 months_all=["01","02","03","04","05","06","07","08","09","10","11","12"]
 
 var_group_todo=1
