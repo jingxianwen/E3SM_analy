@@ -20,8 +20,8 @@ import numpy as np
 from get_parameters import get_area_mean_min_max
 
 # data path
-fpath_ctl='/global/cscratch1/sd/xianwen/E3SM_simulations/CMIP_RRTMG_UMRad_abs.ne30_ne30.cori-knl/archive/climo/'
-f1=fpath_ctl+"CMIP_RRTMG_UMRad_abs.ne30_ne30.cori-knl_climo_JJA.nc"
+fpath_ctl='/global/cscratch1/sd/xianwen/E3SM_simulations/AMIP_RRTMG_UMRad_abs.ne30_ne30.cori-knl/archive/climo/'
+f1=fpath_ctl+"AMIP_RRTMG_UMRad_abs.ne30_ne30.cori-knl_climo_JJA.nc"
 print(f1)
 
 varlst=[ \
