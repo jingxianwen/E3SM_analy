@@ -36,7 +36,7 @@ else:
 # Output
 months_to_do=["01","02","03","04","05","06","07","08","09","10","11","12"]
 seasons_to_do=["ANN","DJF","MAM","JJA","SON"]
-do_monthly=True
+do_monthly=False
 do_seasonal=True
 
 out_path=monthly_data_path+"../climo/"
@@ -49,30 +49,45 @@ if not os.path.exists(out_path):
    os.makedirs(out_path)
 
 # check existence of input files
-for yr in years:
+if do_monthly:
+    for yr in years:
+        for mon in months_to_do:
+           file_tmp=glob.glob(monthly_data_path+"*cam.h0*"+str(yr)+"-"+mon+".nc")
+           if len(file_tmp) != 1:
+               print('Either path or file name prefix is incorrect:', \
+                       monthly_data_path+"*cam.h0*"+str(yr)+"-"+mon+".nc")
+               exit()
+           file_now=file_tmp[0]
+           if not os.path.exists(file_now):
+               print("File not found!!! ",file_now)
+               exit()
+if do_seasonal:
     for mon in months_to_do:
-       file_tmp=glob.glob(monthly_data_path+"*cam.h0*"+str(yr)+"-"+mon+".nc")
-       if len(file_tmp) != 1:
-           print('Either path or file name prefix is incorrect:', \
-                   monthly_data_path+"*cam.h0*"+str(yr)+"-"+mon+".nc")
-           exit()
-       file_now=file_tmp[0]
+       file_now=out_path+caseid+"_climo_"+mon+".nc"
+       #if len(file_tmp) != 1:
+       #    print('Either path or file name prefix is incorrect:', \
+       #            monthly_data_path+"*cam.h0*"+str(yr)+"-"+mon+".nc")
+       #    exit()
+       #file_now=file_tmp[0]
        if not os.path.exists(file_now):
            print("File not found!!! ",file_now)
            exit()
+
 print('--- All input files are found ^_^ ---')
 
 # check existance of old output files
-for mon in months_to_do:
-    climo_file=out_path+caseid+"_climo_"+mon+".nc"
-    if os.path.exists(climo_file):
-        print('Old file exists!!! '+climo_file)
-        exit()
-for seasn in seasons_to_do:
-    climo_file=out_path+caseid+"_climo_"+seasn+".nc"
-    if os.path.exists(climo_file):
-        print('Ole file exists!!! ',climo_file)
-        exit()
+if do_monthly:
+    for mon in months_to_do:
+        climo_file=out_path+caseid+"_climo_"+mon+".nc"
+        if os.path.exists(climo_file):
+            print('Old file exists!!! '+climo_file)
+            exit()
+if do_seasonal:
+    for seasn in seasons_to_do:
+        climo_file=out_path+caseid+"_climo_"+seasn+".nc"
+        if os.path.exists(climo_file):
+            print('Ole file exists!!! ',climo_file)
+            exit()
 print('--- Output directory is clean ^_^ ---')
 
 # comput monthly climo
@@ -107,35 +122,40 @@ if do_seasonal:
            if os.path.exists(list_file):
                os.system("rm "+list_file)
            for mon in mons_for_seasn:
-               file_now=glob.glob(monthly_data_path+"*cam.h0*"+str(yr)+"-"+mon+".nc")[0]
+               file_now=out_path+caseid+"_climo_"+mon+".nc"
+               #file_now=glob.glob(monthly_data_path+"*cam.h0*"+str(yr)+"-"+mon+".nc")[0]
                os.system("ls "+file_now+"|cat >>"+list_file)
        elif seasn == "DJF":
            mons_for_seasn=["12","01","02"]
            if os.path.exists(list_file):
                os.system("rm "+list_file)
            for mon in mons_for_seasn:
-               file_now=glob.glob(monthly_data_path+"*cam.h0*"+str(yr)+"-"+mon+".nc")[0]
+               file_now=out_path+caseid+"_climo_"+mon+".nc"
+               #file_now=glob.glob(monthly_data_path+"*cam.h0*"+str(yr)+"-"+mon+".nc")[0]
                os.system("ls "+file_now+"|cat >>"+list_file)
        elif seasn == "MAM":
            mons_for_seasn=["03","04","05"]
            if os.path.exists(list_file):
                os.system("rm "+list_file)
            for mon in mons_for_seasn:
-               file_now=glob.glob(monthly_data_path+"*cam.h0*"+str(yr)+"-"+mon+".nc")[0]
+               file_now=out_path+caseid+"_climo_"+mon+".nc"
+               #file_now=glob.glob(monthly_data_path+"*cam.h0*"+str(yr)+"-"+mon+".nc")[0]
                os.system("ls "+file_now+"|cat >>"+list_file)
        elif seasn == "JJA":
            mons_for_seasn=["06","07","08"]
            if os.path.exists(list_file):
                os.system("rm "+list_file)
            for mon in mons_for_seasn:
-               file_now=glob.glob(monthly_data_path+"*cam.h0*"+str(yr)+"-"+mon+".nc")[0]
+               file_now=out_path+caseid+"_climo_"+mon+".nc"
+               #file_now=glob.glob(monthly_data_path+"*cam.h0*"+str(yr)+"-"+mon+".nc")[0]
                os.system("ls "+file_now+"|cat >>"+list_file)
        elif seasn == "SON":
            mons_for_seasn=["09","10","11"]
            if os.path.exists(list_file):
                os.system("rm "+list_file)
            for mon in mons_for_seasn:
-               file_now=glob.glob(monthly_data_path+"*cam.h0*"+str(yr)+"-"+mon+".nc")[0]
+               file_now=out_path+caseid+"_climo_"+mon+".nc"
+               #file_now=glob.glob(monthly_data_path+"*cam.h0*"+str(yr)+"-"+mon+".nc")[0]
                os.system("ls "+file_now+"|cat >>"+list_file)
    
        with open(list_file) as f_obj:
