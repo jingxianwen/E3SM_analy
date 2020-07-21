@@ -39,7 +39,7 @@ fpath_exp="/global/cscratch1/sd/xianwen/E3SM_simulations/"+exp_pref+"/archive/cl
  
 years=np.arange(2000,2013) 
 #months_all=["01","02","03","04","05","06","07","08","09","10","11","12"]
-season="DJF"
+season="SON"
 
 varnms="TREFHT"
 #units=r"W/m$^2$"
@@ -102,7 +102,7 @@ ax1.plot(xlocs[:],diffs[:],color="k",lw=2)
 #ax1.set_title("Diff in "+varnms+" ("+exp_name+"-"+ctl_name+")",fontsize=12)
 ax1.set_title("Diff in "+varnms+" ("+exp_name+"-"+ctl_name+")",fontsize=12)
 ax1.set_ylabel(units,fontsize=12)
-ax1.set_xlabel("months",fontsize=12)
+ax1.set_xlabel("years",fontsize=12)
 #ax1.grid(True)
 #ax1.set_axisbelow(True)
 #ax1.xaxis.grid(color='gray', linestyle=':')
