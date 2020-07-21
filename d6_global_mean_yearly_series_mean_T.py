@@ -41,9 +41,9 @@ years=np.arange(2000,2013)
 #months_all=["01","02","03","04","05","06","07","08","09","10","11","12"]
 season="DJF"
 
-varnms="TVH"
-units=r"W/m$^2$"
-#units="K"
+varnms="TREFHT"
+#units=r"W/m$^2$"
+units="K"
 
 #pole='S'
 #if pole is 'N':
@@ -84,8 +84,8 @@ for iy in range(0,years.size):
 
     lat_N=np.min(np.where(lat[:]>66.5))
 
-    means_yby_ctl[nn]=np.mean(dtctl[0,lat_N,:]) #get_area_mean_min_max(dtctl[:,lat_N:,:],lat[lat_N:])[0]
-    means_yby_exp[nn]=np.mean(dtexp[0,lat_N,:]) #get_area_mean_min_max(dtexp[:,lat_N:,:],lat[lat_N:])[0]
+    means_yby_ctl[nn]=get_area_mean_min_max(dtctl[:,lat_N:,:],lat[lat_N:])[0]
+    means_yby_exp[nn]=get_area_mean_min_max(dtexp[:,lat_N:,:],lat[lat_N:])[0]
     nn=nn+1
 
 diffs=means_yby_exp-means_yby_ctl
@@ -102,7 +102,7 @@ ax1.plot(xlocs[:],diffs[:],color="k",lw=2)
 #ax1.set_title("Diff in "+varnms+" ("+exp_name+"-"+ctl_name+")",fontsize=12)
 ax1.set_title("Diff in "+varnms+" ("+exp_name+"-"+ctl_name+")",fontsize=12)
 ax1.set_ylabel(units,fontsize=12)
-ax1.set_xlabel("years",fontsize=12)
+ax1.set_xlabel("months",fontsize=12)
 #ax1.grid(True)
 #ax1.set_axisbelow(True)
 #ax1.xaxis.grid(color='gray', linestyle=':')
