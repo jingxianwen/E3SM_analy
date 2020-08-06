@@ -270,7 +270,7 @@ plt.xticks(fontsize=12)
 plt.yticks(fontsize=12)
 
 #plt.savefig(figure_name+".eps")
-plt.savefig(figure_name+"2.png",dpi=(200))
+plt.savefig(figure_name+"3.png",dpi=(200))
 plt.show()
 
 exit()
