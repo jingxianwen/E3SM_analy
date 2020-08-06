@@ -31,13 +31,13 @@ from get_parameters import get_area_mean_min_max
 # data path
 ctl_name="Abs" #os.environ["ctl_name"]
 exp_name="Scat" #os.environ["exp_name"]
-ctl_pref="CMIP_RRTMG_UMRad_abs.ne30_ne30.cori-knl"
-exp_pref="CMIP_RRTMG_UMRad_scat.ne30_ne30.cori-knl"
+ctl_pref="AMIP_RRTMG_UMRad_abs.ne30_ne30.cori-knl"
+exp_pref="AMIP_RRTMG_UMRad_scat.ne30_ne30.cori-knl"
 
 fpath_ctl="/global/cscratch1/sd/xianwen/E3SM_simulations/"+ctl_pref+"/archive/climo/yby/"
 fpath_exp="/global/cscratch1/sd/xianwen/E3SM_simulations/"+exp_pref+"/archive/climo/yby/"
  
-years=np.arange(2005,2022) 
+years=np.arange(2001,2011) 
 months_all=["01","02","03","04","05","06","07","08","09","10","11","12"]
 
 var_group_todo=1
@@ -45,7 +45,7 @@ var_group_todo=1
 varnms=np.array(["TREFHT"])
 #varnms=np.array(["FSNTOA","FSNS","TS"])
 var_long_name="Surface air Temperature"
-figure_name="Surface_air_Temperature_zonal_ANN_CMIP_scat_vs_abs_2005-21"
+figure_name="Surface_air_Temperature_zonal_ANN_AMIP_scat_vs_abs_2001-10"
 units="K"
 #var_long_name="Surface Net SW"
 #figure_name="Surface_Net_SW_zonal_ANN"
@@ -256,9 +256,9 @@ ax2.fill_between(lat[:],diffs_JJA[0,:]-stddev_diffs_JJA[0,:],diffs_JJA[0,:]+stdd
 ax2.plot(lat[:],diffs[0,:],color="k",lw=1)
 ax2.plot(lat[:],diffs_DJF[0,:],color="royalblue",lw=1)
 ax2.plot(lat[:],diffs_JJA[0,:],color="darkorange",lw=1)
-ax2.plot(lat[:],diffs_sig[0,:],color="k",lw=4,alpha=1.)
-ax2.plot(lat[:],diffs_sig_DJF[0,:],color="royalblue",lw=4,alpha=1.)
-ax2.plot(lat[:],diffs_sig_JJA[0,:],color="darkorange",lw=4,alpha=1.)
+ax2.plot(lat[:],diffs_sig[0,:],color="k",lw=4,alpha=0.5)
+ax2.plot(lat[:],diffs_sig_DJF[0,:],color="royalblue",lw=4,alpha=0.5)
+ax2.plot(lat[:],diffs_sig_JJA[0,:],color="darkorange",lw=4,alpha=0.5)
 ax2.plot(lat[:],zeros[0,:],color="lightgray",lw=1)
 ax2.set_title("Differences (Scat - Abs)",fontsize=14) #+var_long_name,fontsize=12)
 ax2.set_ylabel(units,fontsize=14)
