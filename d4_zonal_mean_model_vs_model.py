@@ -45,7 +45,7 @@ var_group_todo=1
 varnms=np.array(["TREFHT"])
 #varnms=np.array(["FSNTOA","FSNS","TS"])
 var_long_name="Surface air Temperature"
-figure_name="Surface_air_Temperature_zonal_ANN_AMIP_scat_vs_abs_2005-10"
+figure_name="Surface_air_Temperature_zonal_ANN_AMIP_scat_vs_abs_2005-21"
 units="K"
 #var_long_name="Surface Net SW"
 #figure_name="Surface_Net_SW_zonal_ANN"
@@ -264,7 +264,7 @@ ax2.set_title("Differences (Scat - Abs)",fontsize=14) #+var_long_name,fontsize=1
 ax2.set_ylabel(units,fontsize=14)
 ax2.set_xlabel("Latitude",fontsize=14)
 ax2.set_xlim(-90,90)
-ax2.set_ylim(-1.2,1.8)
+ax2.set_ylim(-1.2,2.8)
 plt.xticks(fontsize=12)
 plt.yticks(fontsize=12)
 
