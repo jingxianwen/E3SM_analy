@@ -39,7 +39,7 @@ fpath_exp="/global/cscratch1/sd/xianwen/E3SM_simulations/"+exp_pref+"/archive/cl
  
 years=np.arange(2000,2013) 
 #months_all=["01","02","03","04","05","06","07","08","09","10","11","12"]
-season="SON"
+season="DJF"
 
 varnms="TREFHT"
 #units=r"W/m$^2$"

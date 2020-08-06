@@ -36,8 +36,8 @@ else:
     years=np.array(["2005","2006","2007","2008","2009","2010","2011","2012"])
 # Output
 months_to_do=["01","02","03","04","05","06","07","08","09","10","11","12"]
-seasons_to_do=["ANN","DJF","MAM","JJA","SON"]
-#seasons_to_do=["DJF","JJA"]
+#seasons_to_do=["ANN","DJF","MAM","JJA","SON"]
+seasons_to_do=["ANN","MAM","SON"]
 do_monthly=False
 do_seasonal=True
 

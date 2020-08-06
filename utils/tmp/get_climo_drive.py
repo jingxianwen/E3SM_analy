@@ -7,8 +7,8 @@ import numpy as np
 import os
 
 #list of all experiments to be processed
-exps=['CMIP_RRTMG_UMRad_abs.ne30_ne30.cori-knl',  \
-      'CMIP_RRTMG_UMRad_scat.ne30_ne30.cori-knl'] #, \
+exps=['CMIP_RRTMG_UMRad_abs.ne30_ne30.cori-knl'] #,  \
+      #'CMIP_RRTMG_UMRad_scat.ne30_ne30.cori-knl'] #, \
 
       #'AMIP_RRTMG_UMRad_abs.ne30_ne30.cori-knl',  \
       #'AMIP_RRTMG_UMRad_scat.ne30_ne30.cori-knl']
