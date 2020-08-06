@@ -33,12 +33,12 @@ if caseid[0:4] == 'AMIP':
     years=np.array(["2000","2001","2002","2003","2004","2005","2006","2007","2008","2009","2010"])
 else:
     #years=np.array(["2000","2001","2002","2003","2004","2005","2006","2007","2008","2009","2010","2011","2012"])
-    years=np.array(["2005","2006","2007","2008","2009","2010","2011","2012"])
+    years=np.array(["2005","2006","2007","2008","2009","2010","2011","2012","2013","2014","2015","2016","2017","2018","2019","2020","2021"])
 # Output
 months_to_do=["01","02","03","04","05","06","07","08","09","10","11","12"]
 seasons_to_do=["ANN","DJF","MAM","JJA","SON"]
 #seasons_to_do=["DJF","JJA"]
-do_monthly=False
+do_monthly=True
 do_seasonal=True
 
 out_path=monthly_data_path+"../climo/"
@@ -63,7 +63,7 @@ if do_monthly:
            if not os.path.exists(file_now):
                print("File not found!!! ",file_now)
                exit()
-if do_seasonal:
+if do_seasonal and not do_monthly:
     for mon in months_to_do:
        file_now=out_path+caseid+"_climo_"+mon+".nc"
        #if len(file_tmp) != 1:

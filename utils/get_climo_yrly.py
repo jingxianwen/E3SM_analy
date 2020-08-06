@@ -24,10 +24,13 @@ def listToString(s):
 # Input 
 #caseid="E3SM_DECKv1b_H1.ne30"
 #monthly_data_path="./E3SM_DECKv1b_H1.ne30/remap_180x360"
-caseid="CMIP_RRTMG_UMRad_abs.ne30_ne30.cori-knl"
+#caseid="CMIP_RRTMG_UMRad_abs.ne30_ne30.cori-knl"
+fcaseid=open('exp_id.txt','r')
+caseid=fcaseid.read()
 print(caseid)
+
 monthly_data_path="/global/cscratch1/sd/xianwen/E3SM_simulations/"+caseid+"/archive/remap_180x360/"
-years=np.arange(2005,2013)
+years=np.arange(2013,2022)
 print(years)
 months_all=["01","02","03","04","05","06","07","08","09","10","11","12"]
 seasons_to_do=["ANN","DJF","MAM","JJA","SON"]

@@ -31,13 +31,13 @@ from get_parameters import get_area_mean_min_max
 # data path
 ctl_name="Abs" #os.environ["ctl_name"]
 exp_name="Scat" #os.environ["exp_name"]
-ctl_pref="AMIP_RRTMG_UMRad_abs.ne30_ne30.cori-knl"
-exp_pref="AMIP_RRTMG_UMRad_scat.ne30_ne30.cori-knl"
+ctl_pref="CMIP_RRTMG_UMRad_abs.ne30_ne30.cori-knl"
+exp_pref="CMIP_RRTMG_UMRad_scat.ne30_ne30.cori-knl"
 
 fpath_ctl="/global/cscratch1/sd/xianwen/E3SM_simulations/"+ctl_pref+"/archive/climo/yby/"
 fpath_exp="/global/cscratch1/sd/xianwen/E3SM_simulations/"+exp_pref+"/archive/climo/yby/"
  
-years=np.arange(2005,2011) 
+years=np.arange(2005,2022) 
 months_all=["01","02","03","04","05","06","07","08","09","10","11","12"]
 
 var_group_todo=1
