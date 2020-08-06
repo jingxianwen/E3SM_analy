@@ -31,14 +31,14 @@ from get_parameters import get_area_mean_min_max
 # data path
 ctl_name="Abs" #os.environ["ctl_name"]
 exp_name="Scat" #os.environ["exp_name"]
-ctl_pref="AMIP_RRTMG_UMRad_abs.ne30_ne30.cori-knl"
-exp_pref="AMIP_RRTMG_UMRad_scat.ne30_ne30.cori-knl"
+ctl_pref="CMIP_RRTMG_UMRad_abs.ne30_ne30.cori-knl"
+exp_pref="CMIP_RRTMG_UMRad_scat.ne30_ne30.cori-knl"
 
 fpath_ctl="/global/cscratch1/sd/xianwen/E3SM_simulations/"+ctl_pref+"/archive/climo/yby/"
 fpath_exp="/global/cscratch1/sd/xianwen/E3SM_simulations/"+exp_pref+"/archive/climo/yby/"
  
-years=np.arange(2001,2011) 
-#years=np.arange(2010,2021) 
+#years=np.arange(2001,2011) 
+years=np.arange(2010,2021) 
 months_all=["01","02","03","04","05","06","07","08","09","10","11","12"]
 
 var_group_todo=1
@@ -46,7 +46,7 @@ var_group_todo=1
 varnms=np.array(["TREFHT"])
 #varnms=np.array(["FSNTOA","FSNS","TS"])
 var_long_name="Surface air Temperature"
-figure_name="Surface_air_Temperature_zonal_ANN_AMIP_scat_vs_abs_2001-10"
+figure_name="Surface_air_Temperature_zonal_ANN_CMIP_scat_vs_abs_2010-21"
 units="K"
 #var_long_name="Surface Net SW"
 #figure_name="Surface_Net_SW_zonal_ANN"
