@@ -116,14 +116,14 @@ for i in range(0,3):
     norm = None
     if i != 2:
         #cnlevels=np.array([0,10,20,30,40,50,60]) #parameters["contour_levs"]
-        #cnlevels=np.arange(125,300,20)
+        cnlevels=np.arange(125,300,20)
         #cnlevels=np.arange(70,420,30)
         #cnlevels=np.arange(20,150,10)
-        cnlevels=np.arange(0,80,8)
+        #cnlevels=np.arange(0,80,8)
         #cnlevels=np.arange(0,1,0.1)
     else:
-        #cnlevels=np.arange(-9,10,1.5)
-        cnlevels=np.arange(-7,8,1)
+        cnlevels=np.arange(-80,90,20)
+        #cnlevels=np.arange(-7,8,1)
         #cnlevels=np.arange(-0.8,1.0,0.2)
         #cnlevels=np.arange(-5,6,1)
         #cnlevels=np.array([-4,-3.5,-3,-2.5,-2,-1.5,-1.,-0.5,0.5,1.,1.5,2.,2.5,3.,3.5,4.]) #parameters["diff_levs"]
