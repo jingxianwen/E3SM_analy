@@ -21,20 +21,20 @@ from get_parameters import get_area_mean_min_max
 
 #def lon_lat_contour_model_vs_model(varnm,season,scale_ctl,scale_exp,table):
 # data path
-ctl_name="AMIP" #os.environ["ctl_name"]
-exp_name="AMIP" #os.environ["exp_name"]
+ctl_name="CMIP" #os.environ["ctl_name"]
+exp_name="CMIP" #os.environ["exp_name"]
 #fpath_ctl='/global/cscratch1/sd/xianwen/E3SM_simulations/E3SM_v2_alpha_AMIP_RRTMG_UMRad_startover.ne30_ne30.cori-knl/archive/remap_180x360_orig_new/'
 #fpath_exp='/global/cscratch1/sd/xianwen/E3SM_simulations/E3SM_v2_alpha_AMIP_RRTMG_UMRad_startover.ne30_ne30.cori-knl/archive/remap_180x360_UMRad_bug/'
-fpath_ctl='/global/cscratch1/sd/xianwen/E3SM_simulations/AMIP_RRTMG_UMRad_scat.ne30_ne30.cori-knl/archive/remap_180x360/'
-fpath_exp='/global/cscratch1/sd/xianwen/E3SM_simulations/AMIP_RRTMG_UMRad_scat.ne30_ne30.cori-knl/archive/remap_180x360/'
+fpath_ctl='/global/cscratch1/sd/xianwen/E3SM_simulations/CMIP_RRTMG_UMRad_scat_offline.ne30_ne30.cori-knl-ens0/archive/remap_180x360/'
+fpath_exp='/global/cscratch1/sd/xianwen/E3SM_simulations/CMIP_RRTMG_UMRad_scat_offline.ne30_ne30.cori-knl-ens0/archive/remap_180x360/'
 
 #fpath_exp="../../E3SM_output/E3SM_coupled_restart_20TR_Yr2000-Scat.Year2000_2014/climo/"
  
 #f1=fpath_ctl+"E3SMv2_offline_ICEFLAG1_full2_noEmis_climo_ANN.nc"
 #f2=fpath_exp+"E3SMv2_offline_ICEFLAG1_full2_noEmis_climo_ANN.nc"
 #f1=fpath_ctl+"E3SM_v2_alpha_AMIP_RRTMGP.ne30_ne30.cori-knl.cam.h0.0001-01-01-00000.nc"
-f1=fpath_ctl+"AMIP_RRTMG_UMRad_scat.ne30_ne30.cori-knl.cam.h0.2000-01-02-00000.nc"
-f2=fpath_exp+"AMIP_RRTMG_UMRad_scat.ne30_ne30.cori-knl.cam.h0.2000-01-02-00000.nc"
+f1=fpath_ctl+"CMIP_RRTMG_UMRad_scat_offline.ne30_ne30.cori-knl-ens0.cam.h0.2000-01-01-00000.nc"
+f2=fpath_exp+"CMIP_RRTMG_UMRad_scat_offline.ne30_ne30.cori-knl-ens0.cam.h0.2000-01-01-00000.nc"
 #f2=fpath_exp+"E3SM_coupled_restart_20TR_Yr2000-Scat.Year2000_2014_climo_ANN.nc"
 
 #f1=fpath_ctl+"solar_TSIS_cesm211_standard-ETEST-f19_g17-ens1.cam.h0.0001-01.nc"
@@ -50,8 +50,8 @@ lon=file_ctl.variables["lon"]
 lev=file_ctl.variables["lev"]
 
 #varnm="FSSDCLRS14"
-varnm="FLUTC08"
-varnm2="FLUTC09"
+varnm="FLUT"
+varnm2="FLUT_OFF"
 #varnm_off="FLUTC_OFF"  #offline computation
 units=r"W/m$^2$"
 #units=""
@@ -72,8 +72,9 @@ dtdif=dtexp[:,:,:]-dtctl[:,:,:]
 stats_ctl=get_area_mean_min_max(dtctl[:,:,:],lat[:])
 stats_exp=get_area_mean_min_max(dtexp[:,:,:],lat[:])
 stats_dif=get_area_mean_min_max(dtdif[:,:,:],lat[:])
-stats_difp=stats_dif[0]/stats_ctl[0]*100.
-#print(stats_ctl)
+#stats_difp=stats_dif[0]/stats_ctl[0]*100.
+print(stats_ctl)
+print(stats_exp)
 #exit()
 # stats_out saves the two mean, their difference and % difference.
 #stats_out=np.array([0.,0.,0.,0.])
@@ -109,6 +110,7 @@ labels=[varnm,varnm2,varnm2+"-"+varnm]
 #units="W/m2"
 #units="kg/m2"
 for i in range(0,3):
+    print(i)
    #1. first plot
     levels = None
     norm = None
