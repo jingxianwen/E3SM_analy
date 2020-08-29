@@ -33,8 +33,8 @@ fpath_exp='/global/cscratch1/sd/xianwen/E3SM_simulations/CMIP_RRTMG_UMRad_scat_o
 #f1=fpath_ctl+"E3SMv2_offline_ICEFLAG1_full2_noEmis_climo_ANN.nc"
 #f2=fpath_exp+"E3SMv2_offline_ICEFLAG1_full2_noEmis_climo_ANN.nc"
 #f1=fpath_ctl+"E3SM_v2_alpha_AMIP_RRTMGP.ne30_ne30.cori-knl.cam.h0.0001-01-01-00000.nc"
-f1=fpath_ctl+"CMIP_RRTMG_UMRad_scat_offline.ne30_ne30.cori-knl-ens0.cam.h0.2000-01.nc"
-f2=fpath_exp+"CMIP_RRTMG_UMRad_scat_offline.ne30_ne30.cori-knl-ens0.cam.h0.2000-01.nc"
+f1=fpath_ctl+"CMIP_RRTMG_UMRad_scat_offline.ne30_ne30.cori-knl-ens0.cam.h0.2000-07.nc"
+f2=fpath_exp+"CMIP_RRTMG_UMRad_scat_offline.ne30_ne30.cori-knl-ens0.cam.h0.2000-07.nc"
 #f2=fpath_exp+"E3SM_coupled_restart_20TR_Yr2000-Scat.Year2000_2014_climo_ANN.nc"
 
 #f1=fpath_ctl+"solar_TSIS_cesm211_standard-ETEST-f19_g17-ens1.cam.h0.0001-01.nc"
@@ -55,7 +55,7 @@ varnm2="FLDS"
 #varnm_off="FLUTC_OFF"  #offline computation
 units=r"W/m$^2$"
 #units=""
-figure_name="lat_lon_"+varnm2+"_RRTMG_"+exp_name+"-"+ctl_name+"_Jan.png"
+figure_name="lat_lon_"+varnm2+"_RRTMG_"+exp_name+"-"+ctl_name+"_Jul.png"
 #figure_name="lat_lon_"+varnm+"500mb_"+exp_name+"-"+ctl_name+".png"
 
 #lev250=np.min(np.where(lev[:]>250.))
@@ -190,7 +190,7 @@ for i in range(0,3):
              stats[0:3], ha='right', fontdict=plotText)
 
 #fig.suptitle(varnm, x=0.5, y=0.96, fontsize=14)
-fig.suptitle("January", x=0.5, y=0.96, fontdict=plotTitle)
+fig.suptitle("July", x=0.5, y=0.96, fontdict=plotTitle)
 #save figure as file
 #if os.environ["fig_save"]=="True":
 #    fname="d1_lon_lat_contour_"+varnm+"_"+season+"."+os.environ["fig_suffix"]
