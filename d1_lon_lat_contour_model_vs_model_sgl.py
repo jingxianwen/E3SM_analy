@@ -50,8 +50,8 @@ lon=file_ctl.variables["lon"]
 lev=file_ctl.variables["lev"]
 
 #varnm="FSSDCLRS14"
-varnm="FLDS_OFF"
-varnm2="FLDS"
+varnm="FLDSC_OFF"
+varnm2="FLDSC"
 #varnm_off="FLUTC_OFF"  #offline computation
 units=r"W/m$^2$"
 #units=""
