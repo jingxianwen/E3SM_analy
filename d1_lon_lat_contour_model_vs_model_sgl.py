@@ -123,7 +123,7 @@ for i in range(0,3):
         #cnlevels=np.arange(0,80,8)
         #cnlevels=np.arange(0,1,0.1)
     else:
-        cnlevels=np.arange(-70,80,10)
+        cnlevels=np.arange(-0.05,0.06,0.01)
         #cnlevels=np.arange(-7,8,1)
         #cnlevels=np.arange(-0.8,1.0,0.2)
         #cnlevels=np.arange(-5,6,1)
@@ -143,12 +143,12 @@ for i in range(0,3):
         dtplot=dtexp[:,:,:]
         #cmap="PiYG_r" #parameters["colormap"]
         cmap="jet" #parameters["colormap"]
-        stats=stats_exp[:]
+        stats=stats_ctl[:]
     elif i == 1:
         dtplot=dtctl[:,:,:]
         #cmap="PiYG_r" #parameters["colormap"]
         cmap="jet" #parameters["colormap"]
-        stats=stats_ctl[:]
+        stats=stats_exp[:]
     else:
         dtplot=dtdif[:,:,:]
         cmap="seismic" #parameters["colormap_diff"]
