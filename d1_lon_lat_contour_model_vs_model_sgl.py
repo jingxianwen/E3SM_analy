@@ -21,8 +21,8 @@ from get_parameters import get_area_mean_min_max
 
 #def lon_lat_contour_model_vs_model(varnm,season,scale_ctl,scale_exp,table):
 # data path
-ctl_name="noScat" #os.environ["ctl_name"]
-exp_name="Scat" #os.environ["exp_name"]
+ctl_name="UMRad" #os.environ["ctl_name"]
+exp_name="Standard" #os.environ["exp_name"]
 #fpath_ctl='/global/cscratch1/sd/xianwen/E3SM_simulations/E3SM_v2_alpha_AMIP_RRTMG_UMRad_startover.ne30_ne30.cori-knl/archive/remap_180x360_orig_new/'
 #fpath_exp='/global/cscratch1/sd/xianwen/E3SM_simulations/E3SM_v2_alpha_AMIP_RRTMG_UMRad_startover.ne30_ne30.cori-knl/archive/remap_180x360_UMRad_bug/'
 fpath_ctl='/global/cscratch1/sd/xianwen/E3SM_simulations/AMIP_RRTMG_UMRad_scat_offline.ne30_ne30.cori-knl/archive/remap_180x360/'
@@ -35,8 +35,8 @@ fpath_exp='/global/cscratch1/sd/xianwen/E3SM_simulations/AMIP_RRTMG_UMRad_scat_o
 #f1=fpath_ctl+"E3SMv2_offline_ICEFLAG1_full2_noEmis_climo_ANN.nc"
 #f2=fpath_exp+"E3SMv2_offline_ICEFLAG1_full2_noEmis_climo_ANN.nc"
 #f1=fpath_ctl+"E3SM_v2_alpha_AMIP_RRTMGP.ne30_ne30.cori-knl.cam.h0.0001-01-01-00000.nc"
-f1=fpath_ctl+"AMIP_RRTMG_UMRad_scat_offline.ne30_ne30.cori-knl.cam.h0.2000-01-01-00000.nc"
-f2=fpath_exp+"AMIP_RRTMG_UMRad_scat_offline.ne30_ne30.cori-knl.cam.h0.2000-01-01-00000.nc"
+f1=fpath_ctl+"AMIP_RRTMG_UMRad_scat_offline.ne30_ne30.cori-knl.cam.h0.2000-01-03-00000.nc"
+f2=fpath_exp+"AMIP_RRTMG_UMRad_scat_offline.ne30_ne30.cori-knl.cam.h0.2000-01-03-00000.nc"
 #f1=fpath_ctl+"CMIP_RRTMG_UMRad_abs.ne30_ne30.cori-knl.cam.h0.2000-01.nc"
 #f2=fpath_exp+"CMIP_RRTMG_UMRad_scat.ne30_ne30.cori-knl.cam.h0.2000-01.nc"
 
@@ -53,8 +53,8 @@ lon=file_ctl.variables["lon"]
 lev=file_ctl.variables["lev"]
 
 #varnm="FSSDCLRS14"
-varnm="FLUT_OFF"
-varnm2="FLUT"
+varnm="CRFDS_OFF"
+varnm2="CRFDS"
 #varnm_off="FLUTC_OFF"  #offline computation
 units=r"W/m$^2$"
 #units=""
@@ -67,8 +67,11 @@ lev500=np.min(np.where(lev[:]>500.))
 # read data and calculate mean/min/max
 #dtctl=file_ctl.variables[varnm][:,lev500,:,:] #*scale_ctl
 #dtexp=file_exp.variables[varnm][:,lev500,:,:] #*scale_exp
-dtctl=file_ctl.variables[varnm][:,:,:] #*scale_ctl
-dtexp=file_exp.variables[varnm2][:,:,:] #*scale_exp
+#dtctl=file_ctl.variables[varnm][:,:,:] #*scale_ctl
+#dtexp=file_exp.variables[varnm2][:,:,:] #*scale_exp
+dtctl=file_ctl.variables["FLDS_OFF"][:,:,:] - file_ctl.variables["FLDSC_OFF"][:,:,:] #*scale_ctl
+dtexp=file_exp.variables["FLDS"][:,:,:] - file_ctl.variables["FLDSC"][:,:,:]#*scale_exp
+
 #dtctl=file_ctl.variables[varnm][:,:,:]+file_ctl.variables[varnm][:,:,:] #*scale_ctl
 #dtexp=file_exp.variables[varnm][:,:,:]+file_exp.variables[varnm][:,:,:] #*scale_exp
 dtdif=dtexp[:,:,:]-dtctl[:,:,:]
