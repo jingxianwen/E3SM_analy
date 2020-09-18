@@ -53,8 +53,8 @@ lon=file_ctl.variables["lon"]
 lev=file_ctl.variables["lev"]
 
 #varnm="FSSDCLRS14"
-varnm="LWCF_OFF"
-varnm2="LWCF"
+varnm="FLDS_CF"
+varnm2="FLDS_CF"
 #varnm_off="FLUTC_OFF"  #offline computation
 units=r"W/m$^2$"
 #units=""
@@ -69,10 +69,10 @@ lev500=np.min(np.where(lev[:]>500.))
 #dtexp=file_exp.variables[varnm][:,lev500,:,:] #*scale_exp
 #dtctl=file_ctl.variables[varnm][:,:,:] #*scale_ctl
 #dtexp=file_exp.variables[varnm2][:,:,:] #*scale_exp
-#dtctl=file_ctl.variables["FLDS_OFF"][:,:,:] - file_ctl.variables["FLDSC_OFF"][:,:,:] #*scale_ctl
-#dtexp=file_exp.variables["FLDS"][:,:,:] - file_exp.variables["FLDSC"][:,:,:]#*scale_exp
-dtctl=file_ctl.variables["FLUTC_OFF"][:,:,:] - file_ctl.variables["FLUT_OFF"][:,:,:] #*scale_ctl
-dtexp=file_exp.variables["FLUTC"][:,:,:] - file_exp.variables["FLUT"][:,:,:]#*scale_exp
+dtctl=file_ctl.variables["FLDS_OFF"][:,:,:] - file_ctl.variables["FLDSC_OFF"][:,:,:] #*scale_ctl
+dtexp=file_exp.variables["FLDS"][:,:,:] - file_exp.variables["FLDSC"][:,:,:]#*scale_exp
+#dtctl=file_ctl.variables["FLUTC_OFF"][:,:,:] - file_ctl.variables["FLUT_OFF"][:,:,:] #*scale_ctl
+#dtexp=file_exp.variables["FLUTC"][:,:,:] - file_exp.variables["FLUT"][:,:,:]#*scale_exp
 
 #dtctl=file_ctl.variables[varnm][:,:,:]+file_ctl.variables[varnm][:,:,:] #*scale_ctl
 #dtexp=file_exp.variables[varnm][:,:,:]+file_exp.variables[varnm][:,:,:] #*scale_exp
@@ -114,7 +114,7 @@ panel = [(0.1691, 0.6810, 0.6465, 0.2258), \
          ]
 #labels=[exp_name,ctl_name,varnm+" 500mb ("+exp_name+"-"+ctl_name+")"] 
 #labels=[exp_name,ctl_name,exp_name+"-"+ctl_name] 
-labels=[varnm2+"(noScat)",varnm2+"(Scat)","\u0394"+varnm2+"(Scat-noScat)"] 
+labels=[varnm2+"(Standard)",varnm2+"(UMRad)","\u0394"+varnm2+"(UMRad-Standard)"] 
 #units=parameters["units"]
 #units="W/m2"
 #units="kg/m2"
@@ -132,9 +132,9 @@ for i in range(0,3):
         #cnlevels=np.arange(0,1,0.1)
     else:
         #cnlevels=np.arange(-0.5,0.6,0.1)
-        cnlevels=np.arange(-7,8,1)
+        #cnlevels=np.arange(-7,8,1)
         #cnlevels=np.arange(-0.8,1.0,0.2)
-        #cnlevels=np.arange(-1.2,1.3,0.3)
+        cnlevels=np.arange(-1.2,1.3,0.3)
         #cnlevels=np.array([-4,-3.5,-3,-2.5,-2,-1.5,-1.,-0.5,0.5,1.,1.5,2.,2.5,3.,3.5,4.]) #parameters["diff_levs"]
 
     #if len(cnlevels) >0:
@@ -198,7 +198,7 @@ for i in range(0,3):
              stats[0:3], ha='right', fontdict=plotText)
 
 #fig.suptitle(varnm, x=0.5, y=0.96, fontsize=14)
-fig.suptitle("July", x=0.5, y=0.96, fontdict=plotTitle)
+#fig.suptitle("July", x=0.5, y=0.96, fontdict=plotTitle)
 #save figure as file
 #if os.environ["fig_save"]=="True":
 #    fname="d1_lon_lat_contour_"+varnm+"_"+season+"."+os.environ["fig_suffix"]
