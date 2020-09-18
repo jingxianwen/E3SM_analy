@@ -58,7 +58,7 @@ varnm2="CRFDS"
 #varnm_off="FLUTC_OFF"  #offline computation
 units=r"W/m$^2$"
 #units=""
-figure_name="lat_lon_"+varnm2+"_offline_umrad_vs_standd"+exp_name+"-"+ctl_name+".png"
+figure_name="lat_lon_"+varnm2+"_offline_umrad_vs_standd_"+exp_name+"-"+ctl_name+".png"
 #figure_name="lat_lon_"+varnm+"500mb_"+exp_name+"-"+ctl_name+".png"
 
 #lev250=np.min(np.where(lev[:]>250.))
