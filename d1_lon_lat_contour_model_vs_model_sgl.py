@@ -119,7 +119,8 @@ panel = [(0.1691, 0.6810, 0.6465, 0.2258), \
          ]
 #labels=[exp_name,ctl_name,varnm+" 500mb ("+exp_name+"-"+ctl_name+")"] 
 #labels=[exp_name,ctl_name,exp_name+"-"+ctl_name] 
-labels=[varnm2+"(Standard)",varnm2+"(UMRad)","\u0394"+varnm2+"(UMRad-Standard)"] 
+#labels=[varnm2+"(Standard)",varnm2+"(UMRad)","\u0394"+varnm2+"(UMRad-Standard)"] 
+labels=[varnm2+"(noScat)",varnm2+"(Scat)","\u0394"+varnm2+"(Scat-noScat)"] 
 #units=parameters["units"]
 #units="W/m2"
 #units="kg/m2"
