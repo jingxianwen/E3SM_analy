@@ -35,8 +35,8 @@ fpath_exp='/global/cscratch1/sd/xianwen/E3SM_simulations/AMIP_RRTMG_UMRad_scat_o
 #f1=fpath_ctl+"E3SMv2_offline_ICEFLAG1_full2_noEmis_climo_ANN.nc"
 #f2=fpath_exp+"E3SMv2_offline_ICEFLAG1_full2_noEmis_climo_ANN.nc"
 #f1=fpath_ctl+"E3SM_v2_alpha_AMIP_RRTMGP.ne30_ne30.cori-knl.cam.h0.0001-01-01-00000.nc"
-f1=fpath_ctl+"AMIP_RRTMG_UMRad_scat_offline.ne30_ne30.cori-knl.cam.h0.2000-01-01-00000.nc"
-f2=fpath_exp+"AMIP_RRTMG_UMRad_scat_offline.ne30_ne30.cori-knl.cam.h0.2000-01-01-00000.nc"
+f1=fpath_ctl+"AMIP_RRTMG_UMRad_scat_offline.ne30_ne30.cori-knl.cam.h0.2000-01-03-00000.nc"
+f2=fpath_exp+"AMIP_RRTMG_UMRad_scat_offline.ne30_ne30.cori-knl.cam.h0.2000-01-03-00000.nc"
 #f1=fpath_ctl+"CMIP_RRTMG_UMRad_abs.ne30_ne30.cori-knl.cam.h0.2000-01.nc"
 #f2=fpath_exp+"CMIP_RRTMG_UMRad_scat.ne30_ne30.cori-knl.cam.h0.2000-01.nc"
 
@@ -124,11 +124,11 @@ for i in range(0,3):
     levels = None
     norm = None
     if i != 2:
-        #cnlevels=np.array([0,10,20,30,40,50,60]) #parameters["contour_levs"]
+        cnlevels=np.array([0,10,20,30,40,50,60]) #parameters["contour_levs"]
         #cnlevels=np.arange(145,320,20)
         #cnlevels=np.arange(90,450,30)
         #cnlevels=np.arange(20,150,10)
-        cnlevels=np.arange(10,100,10)
+        #cnlevels=np.arange(10,100,10)
         #cnlevels=np.arange(0,1,0.1)
     else:
         #cnlevels=np.arange(-0.5,0.6,0.1)
