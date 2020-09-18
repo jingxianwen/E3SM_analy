@@ -25,10 +25,10 @@ ctl_name="UMRad" #os.environ["ctl_name"]
 exp_name="Standard" #os.environ["exp_name"]
 #fpath_ctl='/global/cscratch1/sd/xianwen/E3SM_simulations/E3SM_v2_alpha_AMIP_RRTMG_UMRad_startover.ne30_ne30.cori-knl/archive/remap_180x360_orig_new/'
 #fpath_exp='/global/cscratch1/sd/xianwen/E3SM_simulations/E3SM_v2_alpha_AMIP_RRTMG_UMRad_startover.ne30_ne30.cori-knl/archive/remap_180x360_UMRad_bug/'
-#fpath_ctl='/global/cscratch1/sd/xianwen/E3SM_simulations/AMIP_RRTMG_UMRad_scat_offline.ne30_ne30.cori-knl/archive/remap_180x360/'
-#fpath_exp='/global/cscratch1/sd/xianwen/E3SM_simulations/AMIP_RRTMG_UMRad_scat_offline.ne30_ne30.cori-knl/archive/remap_180x360/'
-fpath_ctl='/global/cscratch1/sd/xianwen/E3SM_simulations/CMIP_RRTMG_UMRad_scat_offline.ne30_ne30.cori-knl-ens0/archive/remap_180x360/'
-fpath_exp='/global/cscratch1/sd/xianwen/E3SM_simulations/CMIP_RRTMG_UMRad_scat_offline.ne30_ne30.cori-knl-ens0/archive/remap_180x360/'
+fpath_ctl='/global/cscratch1/sd/xianwen/E3SM_simulations/AMIP_RRTMG_UMRad_scat_offline.ne30_ne30.cori-knl/archive/remap_180x360/'
+fpath_exp='/global/cscratch1/sd/xianwen/E3SM_simulations/AMIP_RRTMG_UMRad_scat_offline.ne30_ne30.cori-knl/archive/remap_180x360/'
+#fpath_ctl='/global/cscratch1/sd/xianwen/E3SM_simulations/CMIP_RRTMG_UMRad_scat_offline.ne30_ne30.cori-knl-ens0/archive/remap_180x360/'
+#fpath_exp='/global/cscratch1/sd/xianwen/E3SM_simulations/CMIP_RRTMG_UMRad_scat_offline.ne30_ne30.cori-knl-ens0/archive/remap_180x360/'
 #fpath_ctl='/global/cscratch1/sd/xianwen/E3SM_simulations/CMIP_RRTMG_UMRad_abs.ne30_ne30.cori-knl/archive/remap_180x360/'
 #fpath_exp='/global/cscratch1/sd/xianwen/E3SM_simulations/CMIP_RRTMG_UMRad_scat.ne30_ne30.cori-knl/archive/remap_180x360/'
 
@@ -37,10 +37,10 @@ fpath_exp='/global/cscratch1/sd/xianwen/E3SM_simulations/CMIP_RRTMG_UMRad_scat_o
 #f1=fpath_ctl+"E3SMv2_offline_ICEFLAG1_full2_noEmis_climo_ANN.nc"
 #f2=fpath_exp+"E3SMv2_offline_ICEFLAG1_full2_noEmis_climo_ANN.nc"
 #f1=fpath_ctl+"E3SM_v2_alpha_AMIP_RRTMGP.ne30_ne30.cori-knl.cam.h0.0001-01-01-00000.nc"
-#f1=fpath_ctl+"AMIP_RRTMG_UMRad_scat_offline.ne30_ne30.cori-knl.cam.h0.2000-01-03-00000.nc"
-#f2=fpath_exp+"AMIP_RRTMG_UMRad_scat_offline.ne30_ne30.cori-knl.cam.h0.2000-01-03-00000.nc"
-f1=fpath_ctl+"CMIP_RRTMG_UMRad_scat_offline.ne30_ne30.cori-knl-ens0.cam.h0.2000-07.nc"
-f2=fpath_exp+"CMIP_RRTMG_UMRad_scat_offline.ne30_ne30.cori-knl-ens0.cam.h0.2000-07.nc"
+f1=fpath_ctl+"AMIP_RRTMG_UMRad_scat_offline.ne30_ne30.cori-knl.cam.h0.2000-01-03-00000.nc"
+f2=fpath_exp+"AMIP_RRTMG_UMRad_scat_offline.ne30_ne30.cori-knl.cam.h0.2000-01-03-00000.nc"
+#f1=fpath_ctl+"CMIP_RRTMG_UMRad_scat_offline.ne30_ne30.cori-knl-ens0.cam.h0.2000-07.nc"
+#f2=fpath_exp+"CMIP_RRTMG_UMRad_scat_offline.ne30_ne30.cori-knl-ens0.cam.h0.2000-07.nc"
 #f1=fpath_ctl+"CMIP_RRTMG_UMRad_abs.ne30_ne30.cori-knl.cam.h0.2000-01.nc"
 #f2=fpath_exp+"CMIP_RRTMG_UMRad_scat.ne30_ne30.cori-knl.cam.h0.2000-01.nc"
 
@@ -62,8 +62,8 @@ varnm2="LWCF"
 #varnm_off="FLUTC_OFF"  #offline computation
 units=r"W/m$^2$"
 #units=""
-#figure_name="lat_lon_"+varnm2+"_offline_umrad_vs_standd_"+exp_name+"-"+ctl_name+".png"
-figure_name="lat_lon_"+varnm2+"_offline_scat_vs_noscat_"+exp_name+"-"+ctl_name+".png"
+figure_name="lat_lon_"+varnm2+"_offline_umrad_vs_standd_"+exp_name+"-"+ctl_name+".png"
+#figure_name="lat_lon_"+varnm2+"_offline_scat_vs_noscat_"+exp_name+"-"+ctl_name+".png"
 #figure_name="lat_lon_"+varnm+"500mb_"+exp_name+"-"+ctl_name+".png"
 
 #lev250=np.min(np.where(lev[:]>250.))
@@ -119,8 +119,8 @@ panel = [(0.1691, 0.6810, 0.6465, 0.2258), \
          ]
 #labels=[exp_name,ctl_name,varnm+" 500mb ("+exp_name+"-"+ctl_name+")"] 
 #labels=[exp_name,ctl_name,exp_name+"-"+ctl_name] 
-#labels=[varnm2+"(Standard)",varnm2+"(UMRad)","\u0394"+varnm2+"(UMRad-Standard)"] 
-labels=[varnm2+"(noScat)",varnm2+"(Scat)","\u0394"+varnm2+"(Scat-noScat)"] 
+labels=[varnm2+"(Standard)",varnm2+"(UMRad)","\u0394"+varnm2+"(UMRad-Standard)"] 
+#labels=[varnm2+"(noScat)",varnm2+"(Scat)","\u0394"+varnm2+"(Scat-noScat)"] 
 #units=parameters["units"]
 #units="W/m2"
 #units="kg/m2"
@@ -204,7 +204,7 @@ for i in range(0,3):
              stats[0:3], ha='right', fontdict=plotText)
 
 #fig.suptitle(varnm, x=0.5, y=0.96, fontsize=14)
-fig.suptitle("July", x=0.5, y=0.96, fontdict=plotTitle)
+#fig.suptitle("July", x=0.5, y=0.96, fontdict=plotTitle)
 #save figure as file
 #if os.environ["fig_save"]=="True":
 #    fname="d1_lon_lat_contour_"+varnm+"_"+season+"."+os.environ["fig_suffix"]
