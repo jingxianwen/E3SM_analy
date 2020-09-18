@@ -35,8 +35,8 @@ fpath_exp='/global/cscratch1/sd/xianwen/E3SM_simulations/AMIP_RRTMG_UMRad_scat_o
 #f1=fpath_ctl+"E3SMv2_offline_ICEFLAG1_full2_noEmis_climo_ANN.nc"
 #f2=fpath_exp+"E3SMv2_offline_ICEFLAG1_full2_noEmis_climo_ANN.nc"
 #f1=fpath_ctl+"E3SM_v2_alpha_AMIP_RRTMGP.ne30_ne30.cori-knl.cam.h0.0001-01-01-00000.nc"
-f1=fpath_ctl+"AMIP_RRTMG_UMRad_scat_offline.ne30_ne30.cori-knl.cam.h0.2000-01-03-00000.nc"
-f2=fpath_exp+"AMIP_RRTMG_UMRad_scat_offline.ne30_ne30.cori-knl.cam.h0.2000-01-03-00000.nc"
+f1=fpath_ctl+"AMIP_RRTMG_UMRad_scat_offline.ne30_ne30.cori-knl.cam.h0.2000-01-01-00000.nc"
+f2=fpath_exp+"AMIP_RRTMG_UMRad_scat_offline.ne30_ne30.cori-knl.cam.h0.2000-01-01-00000.nc"
 #f1=fpath_ctl+"CMIP_RRTMG_UMRad_abs.ne30_ne30.cori-knl.cam.h0.2000-01.nc"
 #f2=fpath_exp+"CMIP_RRTMG_UMRad_scat.ne30_ne30.cori-knl.cam.h0.2000-01.nc"
 
