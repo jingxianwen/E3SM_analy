@@ -1,0 +1,5 @@
+mv /global/cscratch1/sd/xianwen/E3SM_simulations/AMIP_RRTMG_UMRad_standd.ne30_ne30.cori-knl/run/*2001* /global/cscratch1/sd/xianwen/E3SM_simulations/AMIP_RRTMG_UMRad_standd.ne30_ne30.cori-knl/run/Data_tmp/
+mv /global/cscratch1/sd/xianwen/E3SM_simulations/AMIP_RRTMG_UMRad_standd.ne30_ne30.cori-knl/run/*2002* /global/cscratch1/sd/xianwen/E3SM_simulations/AMIP_RRTMG_UMRad_standd.ne30_ne30.cori-knl/run/Data_tmp/
+mv /global/cscratch1/sd/xianwen/E3SM_simulations/AMIP_RRTMG_UMRad_standd.ne30_ne30.cori-knl/run/*2003* /global/cscratch1/sd/xianwen/E3SM_simulations/AMIP_RRTMG_UMRad_standd.ne30_ne30.cori-knl/run/Data_tmp/
+mv /global/cscratch1/sd/xianwen/E3SM_simulations/AMIP_RRTMG_UMRad_standd.ne30_ne30.cori-knl/run/*2004* /global/cscratch1/sd/xianwen/E3SM_simulations/AMIP_RRTMG_UMRad_standd.ne30_ne30.cori-knl/run/Data_tmp/
+mv /global/cscratch1/sd/xianwen/E3SM_simulations/AMIP_RRTMG_UMRad_standd.ne30_ne30.cori-knl/run/*2005* /global/cscratch1/sd/xianwen/E3SM_simulations/AMIP_RRTMG_UMRad_standd.ne30_ne30.cori-knl/run/Data_tmp/
