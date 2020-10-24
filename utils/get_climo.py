@@ -29,8 +29,8 @@ print(caseid)
 
 monthly_data_path="/global/cscratch1/sd/xianwen/E3SM_simulations/"+caseid+"/archive/remap_180x360/"
 #years=np.arange(2000,2013)
-years=np.array(["2005","2006","2007","2008","2009","2010","2011"])
-    #years=np.array(["2005","2006","2007","2008","2009","2010","2011","2012","2013","2014","2015","2016","2017","2018","2019","2020","2021"])
+#years=np.array(["2005","2006","2007","2008","2009","2010","2011"])
+years=np.array(["2010","2011","2012","2013","2014","2015","2016","2017","2018","2019"])
 # Output
 months_to_do=["01","02","03","04","05","06","07","08","09","10","11","12"]
 seasons_to_do=["ANN","DJF","MAM","JJA","SON"]
@@ -38,7 +38,7 @@ seasons_to_do=["ANN","DJF","MAM","JJA","SON"]
 do_monthly=True
 do_seasonal=True
 
-out_path=monthly_data_path+"../climo_2005-2011/"
+out_path=monthly_data_path+"../climo_2010-2019/"
 
 # check input and output path
 if not os.path.exists(monthly_data_path):

@@ -37,24 +37,24 @@ nlat=180
 #      CMIP 4 ensembles
 #---------------------------
 ctl_pref_CMIP=["CMIP_RRTMG_UMRad_abs.ne30_ne30.cori-knl",\
-               "CMIP_RRTMG_UMRad_abs.ne30_ne30.cori-knl-ens1",\
-               "CMIP_RRTMG_UMRad_abs.ne30_ne30.cori-knl-ens2",\
-               "CMIP_RRTMG_UMRad_abs.ne30_ne30.cori-knl-ens3"]
+               #"CMIP_RRTMG_UMRad_abs.ne30_ne30.cori-knl-ens1",\
+               "CMIP_RRTMG_UMRad_abs.ne30_ne30.cori-knl-ens2"] #,\
+               #"CMIP_RRTMG_UMRad_abs.ne30_ne30.cori-knl-ens3"]
 exp_pref_CMIP=["CMIP_RRTMG_UMRad_scat.ne30_ne30.cori-knl",\
-               "CMIP_RRTMG_UMRad_scat.ne30_ne30.cori-knl-ens1",\
-               "CMIP_RRTMG_UMRad_scat.ne30_ne30.cori-knl-ens2",\
-               "CMIP_RRTMG_UMRad_scat.ne30_ne30.cori-knl-ens3"]
+               "CMIP_RRTMG_UMRad_scat.ne30_ne30.cori-knl-ens1"] #,\
+               #"CMIP_RRTMG_UMRad_scat.ne30_ne30.cori-knl-ens2",\
+               #"CMIP_RRTMG_UMRad_scat.ne30_ne30.cori-knl-ens3"]
 
 zm_tair_4ens_ctl_DJF=np.zeros((4,nlat))
 zm_tair_4ens_exp_DJF=np.zeros((4,nlat))
 zm_tair_4ens_ctl_JJA=np.zeros((4,nlat))
 zm_tair_4ens_exp_JJA=np.zeros((4,nlat))
 
-for iens in range(0,4):
+for iens in range(0,2):
     fpath_ctl="/global/cscratch1/sd/xianwen/E3SM_simulations/"+\
-            ctl_pref_CMIP[iens]+"/archive/climo_2005-2011/"
+            ctl_pref_CMIP[iens]+"/archive/climo_2010-2019/"
     fpath_exp="/global/cscratch1/sd/xianwen/E3SM_simulations/"+\
-            exp_pref_CMIP[iens]+"/archive/climo_2005-2011/"
+            exp_pref_CMIP[iens]+"/archive/climo_2010-2019/"
     for iss in ["DJF","JJA"]:
         fctl=fpath_ctl+ctl_pref_CMIP[iens]+"_climo_"+iss+".nc"
         fexp=fpath_exp+exp_pref_CMIP[iens]+"_climo_"+iss+".nc"
@@ -152,7 +152,7 @@ plt.xticks(xloc,fontsize=10)
 plt.yticks(fontsize=10)
 
 #plt.savefig(figure_name+".eps")
-plt.savefig("zm_tair_CMIP_AMIP_ens_spread.png",dpi=(200))
+plt.savefig("zm_tair_CMIP_AMIP_2ens_spread_2010-2019.png",dpi=(200))
 plt.show()
 
 exit()
