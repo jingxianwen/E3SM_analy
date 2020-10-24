@@ -44,13 +44,13 @@ exp_pref_CMIP=["CMIP_RRTMG_UMRad_scat.ne30_ne30.cori-knl",\
                "CMIP_RRTMG_UMRad_scat.ne30_ne30.cori-knl-ens1"] #,\
                #"CMIP_RRTMG_UMRad_scat.ne30_ne30.cori-knl-ens2",\
                #"CMIP_RRTMG_UMRad_scat.ne30_ne30.cori-knl-ens3"]
+num_ens=2
+zm_tair_4ens_ctl_DJF=np.zeros((num_ens,nlat))
+zm_tair_4ens_exp_DJF=np.zeros((num_ens,nlat))
+zm_tair_4ens_ctl_JJA=np.zeros((num_ens,nlat))
+zm_tair_4ens_exp_JJA=np.zeros((num_ens,nlat))
 
-zm_tair_4ens_ctl_DJF=np.zeros((4,nlat))
-zm_tair_4ens_exp_DJF=np.zeros((4,nlat))
-zm_tair_4ens_ctl_JJA=np.zeros((4,nlat))
-zm_tair_4ens_exp_JJA=np.zeros((4,nlat))
-
-for iens in range(0,2):
+for iens in range(0,num_ens):
     fpath_ctl="/global/cscratch1/sd/xianwen/E3SM_simulations/"+\
             ctl_pref_CMIP[iens]+"/archive/climo_2010-2019/"
     fpath_exp="/global/cscratch1/sd/xianwen/E3SM_simulations/"+\
