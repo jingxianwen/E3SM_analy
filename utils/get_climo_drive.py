@@ -9,12 +9,12 @@ import os
 #list of all experiments to be processed
 exps=[ \
       #'CMIP_RRTMG_UMRad_scat.ne30_ne30.cori-knl', \
-      'CMIP_RRTMG_UMRad_scat.ne30_ne30.cori-knl-ens1',\
+      #'CMIP_RRTMG_UMRad_scat.ne30_ne30.cori-knl-ens1',\
       #'CMIP_RRTMG_UMRad_scat.ne30_ne30.cori-knl-ens2',\
       #'CMIP_RRTMG_UMRad_scat.ne30_ne30.cori-knl-ens3',\
       #'CMIP_RRTMG_UMRad_abs.ne30_ne30.cori-knl',\
-      #'CMIP_RRTMG_UMRad_abs.ne30_ne30.cori-knl-ens1' ] #,\
-      'CMIP_RRTMG_UMRad_abs.ne30_ne30.cori-knl-ens2' ] #,\
+      'CMIP_RRTMG_UMRad_abs.ne30_ne30.cori-knl-ens1'] #,\
+      #'CMIP_RRTMG_UMRad_abs.ne30_ne30.cori-knl-ens2' ] #,\
       #'CMIP_RRTMG_UMRad_abs.ne30_ne30.cori-knl-ens3']
 
       #'AMIP_RRTMG_UMRad_abs.ne30_ne30.cori-knl',  \

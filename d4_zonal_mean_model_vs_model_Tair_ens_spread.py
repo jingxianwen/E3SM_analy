@@ -37,14 +37,14 @@ nlat=180
 #      CMIP 4 ensembles
 #---------------------------
 ctl_pref_CMIP=["CMIP_RRTMG_UMRad_abs.ne30_ne30.cori-knl",\
-               #"CMIP_RRTMG_UMRad_abs.ne30_ne30.cori-knl-ens1",\
-               "CMIP_RRTMG_UMRad_abs.ne30_ne30.cori-knl-ens2"] #,\
-               #"CMIP_RRTMG_UMRad_abs.ne30_ne30.cori-knl-ens3"]
+               "CMIP_RRTMG_UMRad_abs.ne30_ne30.cori-knl-ens1",\
+               "CMIP_RRTMG_UMRad_abs.ne30_ne30.cori-knl-ens2",\
+               "CMIP_RRTMG_UMRad_abs.ne30_ne30.cori-knl-ens3"]
 exp_pref_CMIP=["CMIP_RRTMG_UMRad_scat.ne30_ne30.cori-knl",\
-               "CMIP_RRTMG_UMRad_scat.ne30_ne30.cori-knl-ens1"] #,\
-               #"CMIP_RRTMG_UMRad_scat.ne30_ne30.cori-knl-ens2",\
-               #"CMIP_RRTMG_UMRad_scat.ne30_ne30.cori-knl-ens3"]
-num_ens=2
+               "CMIP_RRTMG_UMRad_scat.ne30_ne30.cori-knl-ens1",\
+               "CMIP_RRTMG_UMRad_scat.ne30_ne30.cori-knl-ens2",\
+               "CMIP_RRTMG_UMRad_scat.ne30_ne30.cori-knl-ens3"]
+num_ens=4
 zm_tair_4ens_ctl_DJF=np.zeros((num_ens,nlat))
 zm_tair_4ens_exp_DJF=np.zeros((num_ens,nlat))
 zm_tair_4ens_ctl_JJA=np.zeros((num_ens,nlat))
@@ -157,7 +157,7 @@ plt.xticks(xloc,fontsize=10)
 plt.yticks(fontsize=10)
 
 #plt.savefig(figure_name+".eps")
-plt.savefig("zm_tair_CMIP_AMIP_2ens_spread_2010-2019.png",dpi=(200))
+plt.savefig("zm_tair_CMIP_AMIP_4ens_spread_2010-2019.png",dpi=(200))
 plt.show()
 
 exit()
