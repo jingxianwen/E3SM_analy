@@ -131,7 +131,8 @@ ax1.set_ylabel("\u0394SAT (K)",fontsize=10)
 ax1.set_xlabel("Latitude",fontsize=10)
 ax1.set_xlim(-90,90)
 ax1.set_ylim(-1.5,2.5)
-plt.xticks(fontsize=10)
+xloc=[-90,-60,-30,0,30,60,90]
+plt.xticks(xloc,fontsize=10)
 plt.yticks(fontsize=10)
 
 ax2=fig.add_axes([0.5,0.15,0.3,0.4])
@@ -146,7 +147,8 @@ ax2.set_ylabel("\u0394SAT (K)",fontsize=10)
 ax2.set_xlabel("Latitude",fontsize=10)
 ax2.set_xlim(-90,90)
 ax2.set_ylim(-1.5,2.5)
-plt.xticks(fontsize=10)
+xloc=[-90,-60,-30,0,30,60,90]
+plt.xticks(xloc,fontsize=10)
 plt.yticks(fontsize=10)
 
 #plt.savefig(figure_name+".eps")
