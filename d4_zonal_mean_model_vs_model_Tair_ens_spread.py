@@ -80,6 +80,11 @@ zm_ensmean_tair_diff_JJA=np.mean(zm_tair_4ens_diff_JJA,axis=0)
 zm_ensmin_tair_diff_JJA=np.min(zm_tair_4ens_diff_JJA,axis=0)
 zm_ensmax_tair_diff_JJA=np.max(zm_tair_4ens_diff_JJA,axis=0)
 
+
+print(zm_ensmean_tair_diff_DJF)
+print(zm_ensmin_tair_diff_DJF)
+print(zm_ensmax_tair_diff_DJF)
+
 #---------------------------
 #      AMIP 1 ensemble
 #---------------------------
@@ -108,7 +113,7 @@ for iss in ["DJF","JJA"]:
        zm_tair_AMIP_diff_JJA=zm_tair_AMIP_exp_JJA - zm_tair_AMIP_ctl_JJA
 
 
-print(zm_tair_AMIP_diff_JJA)
+#print(zm_tair_AMIP_diff_JJA)
 #print(zm_ensmin_tair_diff)
 #print(zm_ensmax_tair_diff)
 
@@ -130,7 +135,7 @@ ax1.set_title("DJF",fontsize=14)
 ax1.set_ylabel("\u0394SAT (K)",fontsize=10)
 ax1.set_xlabel("Latitude",fontsize=10)
 ax1.set_xlim(-90,90)
-ax1.set_ylim(-1.5,2.5)
+ax1.set_ylim(-1.5,4.0)
 xloc=[-90,-60,-30,0,30,60,90]
 plt.xticks(xloc,fontsize=10)
 plt.yticks(fontsize=10)
@@ -146,7 +151,7 @@ ax2.set_title("JJA",fontsize=14) #+var_long_name,fontsize=12)
 ax2.set_ylabel("\u0394SAT (K)",fontsize=10)
 ax2.set_xlabel("Latitude",fontsize=10)
 ax2.set_xlim(-90,90)
-ax2.set_ylim(-1.5,2.5)
+ax2.set_ylim(-1.5,4.0)
 xloc=[-90,-60,-30,0,30,60,90]
 plt.xticks(xloc,fontsize=10)
 plt.yticks(fontsize=10)
