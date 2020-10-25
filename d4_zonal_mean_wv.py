@@ -89,15 +89,15 @@ diff_wv_cc=diff_ts[:]*means_ctl_wv[:]*0.075
 fig=plt.figure(figsize=(8,7))
 
 ax2=fig.add_axes([0.15,0.15,0.7,0.6])
-ax2.plot(lat[:],diff_wv[:],color="k",lw=4,alpha=1.0)
-ax2.plot(lat[:],diff_wv_cc[:],color="k",lw=2,ls=":") #,label="\u0394TPW"
+ax2.plot(lat[:],diff_wv[:],color="k",lw=4,alpha=1.0,label="model")
+ax2.plot(lat[:],diff_wv_cc[:],color="k",lw=2,ls=":",label="C-C estimate") #,label="\u0394TPW"
 ax2.plot(lat[:],zeros[:],color="gray",lw=1)
-#ax2.legend(fontsize=8)
+ax2.legend(fontsize=8)
 ax2.set_title("Differences (Scat - noScat)",fontsize=14) #+var_long_name,fontsize=12)
 ax2.set_xlabel("Latitude",fontsize=14)
 ax2.set_ylabel("\u0394TPW ("+units+")",fontsize=14)
 ax2.set_xlim(-90,90)
-ax2.set_ylim(-0.6,0.6)
+#ax2.set_ylim(-0.6,0.6)
 plt.xticks(fontsize=12)
 plt.yticks(fontsize=12)
 
