@@ -98,15 +98,12 @@ ax2.set_xlabel("Latitude",fontsize=14)
 ax2.set_ylabel("\u0394TPW ("+units+")",fontsize=14)
 ax2.set_xlim(-90,90)
 #ax2.set_ylim(-0.6,0.6)
-plt.xticks(fontsize=12)
-plt.yticks(fontsize=12)
+xloc=[-90,-60,-30,0,30,60,90]
+plt.xticks(xloc,fontsize=14)
+plt.yticks(fontsize=14)
 
-# add shading 
 
-plt.xticks(fontsize=12)
-plt.yticks(fontsize=12)
-
-plt.savefig(figure_name+".png")
+plt.savefig(figure_name+"_2.png")
 plt.show()
 
 exit()
