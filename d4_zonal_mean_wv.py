@@ -83,7 +83,7 @@ diff_ts = means_exp_ts - means_ctl_ts
 
 zeros=np.zeros(diff_wv.shape)
 
-diff_wv_cc=diff_ts[:]*means_ctl_wv[:]*0.075
+diff_wv_cc=diff_ts[:]*means_ctl_wv[:]*0.079
 
 # make the plot
 fig=plt.figure(figsize=(8,7))
@@ -103,7 +103,7 @@ plt.xticks(xloc,fontsize=14)
 plt.yticks(fontsize=14)
 
 
-plt.savefig(figure_name+"_2.png")
+plt.savefig(figure_name+".pdf")
 plt.show()
 
 exit()
